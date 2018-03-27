@@ -1,0 +1,8 @@
+.header {
+    height: 200px;
+    border-bottom: black solid 3px;
+}
+
+.content {
+    margin: 50px 0;
+}
