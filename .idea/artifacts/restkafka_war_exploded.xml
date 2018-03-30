@@ -1,0 +1,45 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="restkafka:war exploded">
+    <output-path>$PROJECT_DIR$/target/restkafka-1.0-SNAPSHOT</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="restkafka" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: org.springframework:spring-webmvc:5.0.4.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-aop:5.0.4.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-beans:5.0.4.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-context:5.0.4.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-core:5.0.4.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-jcl:5.0.4.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-expression:5.0.4.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-web:5.0.4.RELEASE" />
+          <element id="library" level="project" name="Maven: javax.servlet:javax.servlet-api:4.0.0" />
+          <element id="library" level="project" name="Maven: javax.servlet:jstl:1.2" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.9.4" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.9.0" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.9.4" />
+          <element id="library" level="project" name="Maven: org.apache.kafka:kafka_2.12:1.0.1" />
+          <element id="library" level="project" name="Maven: net.sf.jopt-simple:jopt-simple:5.0.4" />
+          <element id="library" level="project" name="Maven: com.yammer.metrics:metrics-core:2.2.0" />
+          <element id="library" level="project" name="Maven: org.scala-lang:scala-library:2.12.4" />
+          <element id="library" level="project" name="Maven: org.slf4j:slf4j-log4j12:1.7.25" />
+          <element id="library" level="project" name="Maven: com.101tec:zkclient:0.10" />
+          <element id="library" level="project" name="Maven: org.apache.zookeeper:zookeeper:3.4.10" />
+          <element id="library" level="project" name="Maven: org.apache.kafka:kafka-clients:1.0.1" />
+          <element id="library" level="project" name="Maven: org.lz4:lz4-java:1.4" />
+          <element id="library" level="project" name="Maven: org.xerial.snappy:snappy-java:1.1.4" />
+          <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.25" />
+          <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-core:2.11.0" />
+          <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-api:2.11.0" />
+          <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-1.2-api:2.11.0" />
+        </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/target/restkafka-1.0-SNAPSHOT/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="javaee-facet-resources" facet="restkafka/web/Web" />
+    </root>
+  </artifact>
+</component>

@@ -13,7 +13,12 @@
       </configuration>
     </facet>
     <facet type="Spring" name="Spring">
-      <configuration />
+      <configuration>
+        <fileset id="fileset" name="Spring Application Context" removed="false">
+          <file>file://$MODULE_DIR$/src/main/java/com/persoff/restkafka/configs/AppConfig.java</file>
+          <file>file://$MODULE_DIR$/src/main/java/com/persoff/restkafka/configs/KafkaConfig.java</file>
+        </fileset>
+      </configuration>
     </facet>
   </component>
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
@@ -37,6 +42,9 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-web:5.0.4.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: javax.servlet:javax.servlet-api:4.0.0" level="project" />
     <orderEntry type="library" name="Maven: javax.servlet:jstl:1.2" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.9.4" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.9.0" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.9.4" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.kafka:spring-kafka:2.1.4.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-messaging:5.0.4.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-tx:5.0.4.RELEASE" level="project" />
@@ -44,11 +52,6 @@
     <orderEntry type="library" name="Maven: org.apache.kafka:kafka-clients:1.0.0" level="project" />
     <orderEntry type="library" name="Maven: org.lz4:lz4-java:1.4" level="project" />
     <orderEntry type="library" name="Maven: org.xerial.snappy:snappy-java:1.1.4" level="project" />
-    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.9.4" level="project" />
-    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.9.0" level="project" />
-    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.9.4" level="project" />
-    <orderEntry type="library" name="Maven: ch.qos.logback:logback-classic:1.2.3" level="project" />
-    <orderEntry type="library" name="Maven: ch.qos.logback:logback-core:1.2.3" level="project" />
-    <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.25" level="project" />
+    <orderEntry type="library" name="Maven: log4j:log4j:1.2.17" level="project" />
   </component>
 </module>

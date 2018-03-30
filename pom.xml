@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.persoff</groupId>
-    <artifactId>webtest</artifactId>
+    <artifactId>restkafka</artifactId>
     <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
 
@@ -14,17 +14,15 @@
         <jdk.version>1.8</jdk.version>
 
         <maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
-        <maven-jar-plugin.version>3.0.2</maven-jar-plugin.version>
+        <maven-war-plugin.version>3.2.0</maven-war-plugin.version>
         <maven-shade-plugin.version>3.1.0</maven-shade-plugin.version>
 
         <spring.version>5.0.4.RELEASE</spring.version>
         <servlet.version>4.0.0</servlet.version>
         <jstl.version>1.2</jstl.version>
-        <spring-kafka.version>2.1.4.RELEASE</spring-kafka.version>
         <jackson.version>2.9.4</jackson.version>
-        <slf4j.version>1.6.4</slf4j.version>
-        <logback.version>1.2.3</logback.version>
-
+        <kafka.version>1.0.1</kafka.version>
+        <log4j.version>2.11.0</log4j.version>
     </properties>
 
     <dependencyManagement>
@@ -61,13 +59,6 @@
             <version>${jstl.version}</version>
         </dependency>
 
-        <!-- Spring Kafka -->
-        <dependency>
-            <groupId>org.springframework.kafka</groupId>
-            <artifactId>spring-kafka</artifactId>
-            <version>${spring-kafka.version}</version>
-        </dependency>
-
         <!-- Jackson -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
@@ -75,17 +66,61 @@
             <version>${jackson.version}</version>
         </dependency>
 
-        <!-- Logback-->
+        <!-- Kafka -->
         <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>${logback.version}</version>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka_2.12</artifactId>
+            <version>${kafka.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.logging.log4j</groupId>
+                    <artifactId>log4j-core</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.apache.log4j</groupId>
+                    <artifactId>log4j-core</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>log4j</groupId>
+                    <artifactId>log4j</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka-clients</artifactId>
+            <version>${kafka.version}</version>
+        </dependency>
+
+        <!-- log4j2 -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+
+        <!-- log4j for Kafka -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-1.2-api</artifactId>
+            <version>${log4j.version}</version>
         </dependency>
 
     </dependencies>
 
 
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -94,6 +129,14 @@
                 <configuration>
                     <source>${jdk.version}</source>
                     <target>${jdk.version}</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>${maven-war-plugin.version}</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
             </plugin>
 
