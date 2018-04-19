@@ -17,10 +17,11 @@
           <element id="library" level="project" name="Maven: org.springframework:spring-web:5.0.4.RELEASE" />
           <element id="library" level="project" name="Maven: javax.servlet:javax.servlet-api:4.0.0" />
           <element id="library" level="project" name="Maven: javax.servlet:jstl:1.2" />
-          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.9.4" />
-          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.9.0" />
-          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.9.4" />
+          <element id="library" level="project" name="Maven: org.json:json:20180130" />
           <element id="library" level="project" name="Maven: org.apache.kafka:kafka_2.12:1.0.1" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.9.1" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.9.0" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.9.1" />
           <element id="library" level="project" name="Maven: net.sf.jopt-simple:jopt-simple:5.0.4" />
           <element id="library" level="project" name="Maven: com.yammer.metrics:metrics-core:2.2.0" />
           <element id="library" level="project" name="Maven: org.scala-lang:scala-library:2.12.4" />
