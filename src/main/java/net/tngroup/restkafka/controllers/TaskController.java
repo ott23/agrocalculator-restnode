@@ -30,6 +30,9 @@ public class TaskController {
     @Value("${kafka.results-topic-prefix}")
     private String resultsTopicPrefix;
 
+    @Value("${kafka.max-count}")
+    private String maxCount;
+
     /*
     Метод отправки в Kafka
      */
@@ -110,7 +113,6 @@ public class TaskController {
         List<String> taskList = new ArrayList<>();
 
         taskMap.forEach((key, value) -> {
-            System.out.println(key);
             if (key.split("-")[1].equals(taskId))
                 taskList.add(value);
         });

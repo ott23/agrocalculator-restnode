@@ -104,6 +104,10 @@ public class KafkaService {
         Properties properties = kafkaConsumerProperties();
         properties.setProperty(ConsumerConfig.GROUP_ID_CONFIG, clientId);
 
+        if (fromBeginning) {
+            properties.setProperty(ConsumerConfig.GROUP_ID_CONFIG, clientId+"-fromBeginning");
+        }
+
         if (maxCount == 0) {
             maxCount = Integer.MAX_VALUE;
         } else {
