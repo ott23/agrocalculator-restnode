@@ -21,6 +21,7 @@
         <servlet.version>4.0.0</servlet.version>
         <jstl.version>1.2</jstl.version>
         <json.version>20180130</json.version>
+        <json-javax.version>1.1.2</json-javax.version>
         <kafka.version>1.0.1</kafka.version>
         <log4j.version>2.11.0</log4j.version>
     </properties>
@@ -64,6 +65,12 @@
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
             <version>${json.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.json</groupId>
+            <artifactId>javax.json-api</artifactId>
+            <version>${json-javax.version}</version>
         </dependency>
 
         <!-- Kafka -->

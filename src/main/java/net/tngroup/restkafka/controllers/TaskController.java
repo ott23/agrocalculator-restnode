@@ -1,10 +1,9 @@
 package net.tngroup.restkafka.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import net.tngroup.restkafka.services.KafkaService;
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -42,9 +41,9 @@ public class TaskController {
         // Парсин JSON
         ObjectMapper mapper = new ObjectMapper();
         ObjectNode json = (ObjectNode) mapper.readTree(inputJson);
-        String topicId = json.remove("topicId").asText();
-        String clientId = json.remove("clientId").asText();
-        String taskId = json.remove("taskId").asText();
+        String topicId = json.get("topicId").asText();
+        String clientId = json.get("clientId").asText();
+        String taskId = json.get("taskId").asText();
         String message = json.toString();
 
         String key = clientId + "-" + taskId;
@@ -53,7 +52,11 @@ public class TaskController {
         if (kafkaService.isKafkaNotAvailable())
             return kafkaNotAvailableResponse();
 
-        String response = kafkaService.send(topicId, key, message);
+        String kafkaResponse = kafkaService.send(topicId, key, message);
+
+        ObjectNode responseJson = mapper.createObjectNode();
+        responseJson.put("response", kafkaResponse);
+        String response = responseJson.toString();
 
         DeferredResult<ResponseEntity<?>> deferredResult = new DeferredResult<>();
         ResponseEntity<String> responseEntity = new ResponseEntity<>(response, HttpStatus.OK);
@@ -126,25 +129,27 @@ public class TaskController {
 
     private DeferredResult<ResponseEntity<?>> kafkaNotAvailableResponse() {
         DeferredResult<ResponseEntity<?>> deferredResult = new DeferredResult<>();
-        JSONObject jsonResponse = new JSONObject();
-        jsonResponse.put("response", "Servers are not available");
-        ResponseEntity<String> responseEntity = new ResponseEntity<>(jsonResponse.toString(), HttpStatus.SERVICE_UNAVAILABLE);
+        ObjectMapper mapper = new ObjectMapper();
+        ObjectNode response = mapper.createObjectNode();
+        response.put("response", "Servers are not available");
+        ResponseEntity<String> responseEntity = new ResponseEntity<>(response.toString(), HttpStatus.SERVICE_UNAVAILABLE);
         deferredResult.setResult(responseEntity);
         return deferredResult;
     }
 
-    private String makeResponse(List<String> taskList) {
-        JSONObject jsonResponse = new JSONObject();
-        JSONArray jsonArray = new JSONArray();
+    private String makeResponse(List<String> taskList) throws IOException {
 
-        taskList.forEach(task -> {
-            JSONObject taskJson = new JSONObject(task);
-            jsonArray.put(taskJson);
-        });
+        ObjectMapper mapper = new ObjectMapper();
+        ObjectNode response = mapper.createObjectNode();
+        ArrayNode tasks = mapper.createArrayNode();
 
-        jsonResponse.put("response", jsonArray);
+        for (String task : taskList) {
+            tasks.add(mapper.readTree(task));
+        }
 
-        return jsonResponse.toString();
+        response.putPOJO("response", tasks);
+
+        return response.toString();
     }
 
 }

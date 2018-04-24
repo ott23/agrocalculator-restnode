@@ -11,7 +11,6 @@ import org.apache.kafka.common.serialization.StringDeserializer;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -74,10 +73,7 @@ public class KafkaService {
         // Закрытие продюссера
         kafkaProducer.close();
 
-        JSONObject json = new JSONObject();
-        json.put("response", response);
-
-        return json.toString();
+        return response;
     }
 
     /*
