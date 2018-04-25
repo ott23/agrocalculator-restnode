@@ -3,9 +3,9 @@ package net.tngroup.restkafka.controllers;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import net.tngroup.restkafka.services.ConfigService;
 import net.tngroup.restkafka.services.KafkaService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,11 +26,16 @@ public class TaskController {
     @Autowired
     KafkaService kafkaService;
 
-    @Value("${kafka.results-topic-prefix}")
-    private String resultsTopicPrefix;
+    @Autowired
+    ConfigService configService;
 
-    @Value("${kafka.max-count}")
-    private String maxCount;
+    private String resultsTopicPrefix;
+    private int maxCount;
+
+    TaskController() {
+        resultsTopicPrefix = configService.getProperty("tn.kafka.results-topic-prefix");
+        maxCount = Integer.parseInt(configService.getProperty("tn.kafka.max-message-size"));
+    }
 
     /*
     Метод отправки в Kafka
@@ -82,7 +87,7 @@ public class TaskController {
         if (kafkaService.isKafkaNotAvailable())
             return kafkaNotAvailableResponse();
 
-        Map<String, String> taskMap = kafkaService.read(topicId, clientId, false, 1);
+        Map<String, String> taskMap = kafkaService.read(topicId, clientId, false, maxCount);
 
         List<String> taskList = new ArrayList<>();
 

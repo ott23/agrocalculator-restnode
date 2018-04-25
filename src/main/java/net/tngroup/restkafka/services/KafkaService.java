@@ -11,10 +11,11 @@ import org.apache.kafka.common.serialization.StringDeserializer;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.util.Collections;
 import java.util.Map;
@@ -26,13 +27,18 @@ public class KafkaService {
 
     Logger logger = LogManager.getLogger("CommonLogger");
 
-    @Value("${kafka.bootstrap-servers}")
-    private String bootstrapServers;
+    @Autowired
+    ConfigService configService;
 
-    @Value("${kafka.response-timeout}")
+    private String bootstrapServers;
     private Long responseTimeout;
 
     private String response;
+
+    KafkaService() {
+        bootstrapServers = configService.getProperty("tn.kafka.bootstrap-servers");
+        responseTimeout = Long.parseLong(configService.getProperty("tn.kafka.timeout"));
+    }
 
     /*
     Параметры записи в Kafka
@@ -139,19 +145,21 @@ public class KafkaService {
      */
     public boolean isKafkaNotAvailable() {
         String serversList = bootstrapServers;
-        String[] sockets = serversList.split(",");
+        String[] sockets = serversList.replace(" ","").split(",");
 
         // Active Kafka handlers counter
         int active = 0;
 
         // Loop iterating while no one responses
-        for (String socket : sockets) {
+        for (String socketString : sockets) {
             try {
-                String[] socketArray = socket.split(":");
-                (new Socket(socketArray[0], Integer.valueOf(socketArray[1]))).close();
+                String[] socketArray = socketString.split(":");
+                Socket socket = new Socket();
+                socket.connect(new InetSocketAddress(socketArray[0], Integer.valueOf(socketArray[1])), 1000);
+                socket.close();
                 active++;
             } catch (IOException e) {
-                logger.debug("Kafka broker `%s` is not available", socket);
+                logger.debug("Kafka broker `%s` is not available", socketString);
             }
             if (active > 0) break;
         }
