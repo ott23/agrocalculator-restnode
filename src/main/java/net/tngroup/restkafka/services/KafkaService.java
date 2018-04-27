@@ -14,13 +14,16 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.net.SocketAddress;
 import java.util.Collections;
 import java.util.Map;
 import java.util.Properties;
 import java.util.TreeMap;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Service
 public class KafkaService {
@@ -32,12 +35,16 @@ public class KafkaService {
 
     private String bootstrapServers;
     private Long responseTimeout;
+    private Integer testTimeout;
 
     private String response;
 
-    KafkaService() {
+
+    @PostConstruct
+    public void init() {
         bootstrapServers = configService.getProperty("tn.kafka.bootstrap-servers");
         responseTimeout = Long.parseLong(configService.getProperty("tn.kafka.timeout"));
+        testTimeout = Integer.parseInt(configService.getProperty("tn.kafka.test-timeout"));
     }
 
     /*
@@ -107,12 +114,10 @@ public class KafkaService {
         properties.setProperty(ConsumerConfig.GROUP_ID_CONFIG, clientId);
 
         if (fromBeginning) {
-            properties.setProperty(ConsumerConfig.GROUP_ID_CONFIG, clientId+"-fromBeginning");
+            properties.setProperty(ConsumerConfig.GROUP_ID_CONFIG, clientId + "-fromBeginning");
         }
 
-        if (maxCount == 0) {
-            maxCount = Integer.MAX_VALUE;
-        } else {
+        if (maxCount != 0) {
             properties.setProperty(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, maxCount.toString());
         }
 
@@ -125,15 +130,10 @@ public class KafkaService {
         }
 
         Map<String, String> taskMap = new TreeMap<>();
-        ConsumerRecords<String, String> records;
-        long counter = 0;
-        do {
-            records = kafkaConsumer.poll(responseTimeout);
-            for (ConsumerRecord<String, String> record : records) {
-                taskMap.put(record.key(), record.value());
-            }
-            counter += records.count();
-        } while (records.count() > 0 && counter < maxCount);
+        ConsumerRecords<String, String> records = kafkaConsumer.poll(responseTimeout);
+        for (ConsumerRecord<String, String> record : records) {
+            taskMap.put(record.key(), record.value());
+        }
 
         kafkaConsumer.close();
 
@@ -143,28 +143,39 @@ public class KafkaService {
     /*
     Проверка соединения с серверами Kafka
      */
-    public boolean isKafkaNotAvailable() {
+    public synchronized boolean isKafkaNotAvailable() {
         String serversList = bootstrapServers;
-        String[] sockets = serversList.replace(" ","").split(",");
+        String[] sockets = serversList.replace(" ", "").split(",");
 
         // Active Kafka handlers counter
-        int active = 0;
+        AtomicInteger active = new AtomicInteger(0);
 
         // Loop iterating while no one responses
         for (String socketString : sockets) {
-            try {
-                String[] socketArray = socketString.split(":");
-                Socket socket = new Socket();
-                socket.connect(new InetSocketAddress(socketArray[0], Integer.valueOf(socketArray[1])), 1000);
-                socket.close();
-                active++;
-            } catch (IOException e) {
-                logger.debug("Kafka broker `%s` is not available", socketString);
-            }
-            if (active > 0) break;
+            String[] socketArray = socketString.split(":");
+            new Thread(() -> {
+                try {
+                    SocketAddress isa = new InetSocketAddress(socketArray[0], Integer.valueOf(socketArray[1]));
+                    Socket socket = new Socket();
+                    socket.connect(isa, testTimeout);
+                    socket.close();
+                    active.set(active.get() + 1);
+                } catch (IOException e) {
+                    logger.debug("Kafka broker `%s` is not available", socketString);
+                }
+            }).start();
         }
 
-        if (active > 0) return false;
+        long time = System.currentTimeMillis();
+        while (active.get() == 0 && (System.currentTimeMillis() - time) < testTimeout) {
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        }
+
+        if (active.get() > 0) return false;
 
         logger.warn("All Kafka brokers are unavailable!");
         return true;

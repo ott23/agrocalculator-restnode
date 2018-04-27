@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.async.DeferredResult;
 
+import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +33,8 @@ public class TaskController {
     private String resultsTopicPrefix;
     private int maxCount;
 
-    TaskController() {
+    @PostConstruct
+    public void init() {
         resultsTopicPrefix = configService.getProperty("tn.kafka.results-topic-prefix");
         maxCount = Integer.parseInt(configService.getProperty("tn.kafka.max-message-size"));
     }
@@ -153,6 +155,7 @@ public class TaskController {
         }
 
         response.putPOJO("response", tasks);
+        response.put("size", taskList.size());
 
         return response.toString();
     }
