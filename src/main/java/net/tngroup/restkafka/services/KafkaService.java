@@ -28,7 +28,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Service
 public class KafkaService {
 
-    Logger logger = LogManager.getLogger("CommonLogger");
+    private Logger logger = LogManager.getLogger("CommonLogger");
 
     @Autowired
     ConfigService configService;
