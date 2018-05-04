@@ -144,14 +144,14 @@ public class TaskController {
         return deferredResult;
     }
 
-    private String makeResponse(List<String> taskList) throws IOException {
+    private String makeResponse(List<String> taskList) {
 
         ObjectMapper mapper = new ObjectMapper();
         ObjectNode response = mapper.createObjectNode();
         ArrayNode tasks = mapper.createArrayNode();
 
         for (String task : taskList) {
-            tasks.add(mapper.readTree(task));
+            tasks.addPOJO(task);
         }
 
         response.putPOJO("response", tasks);
