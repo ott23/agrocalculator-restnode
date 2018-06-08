@@ -1,4 +1,4 @@
-package net.tngroup.restkafka.services;
+package net.tngroup.acrest.services;
 
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;

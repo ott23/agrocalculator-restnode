@@ -1,4 +1,4 @@
-package net.tngroup.restkafka.configs;
+package net.tngroup.acrest.configs;
 
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;

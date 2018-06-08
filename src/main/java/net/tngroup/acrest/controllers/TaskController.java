@@ -1,10 +1,10 @@
-package net.tngroup.restkafka.controllers;
+package net.tngroup.acrest.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import net.tngroup.restkafka.services.ConfigService;
-import net.tngroup.restkafka.services.KafkaService;
+import net.tngroup.acrest.services.ConfigService;
+import net.tngroup.acrest.services.KafkaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

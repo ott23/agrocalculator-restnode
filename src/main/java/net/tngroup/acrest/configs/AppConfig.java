@@ -1,4 +1,4 @@
-package net.tngroup.restkafka.configs;
+package net.tngroup.acrest.configs;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -19,7 +19,7 @@ import java.util.concurrent.TimeUnit;
 @EnableWebMvc
 @PropertySource("classpath:application.properties")
 @PropertySource("classpath:log4j2.properties")
-@ComponentScan("net.tngroup.restkafka")
+@ComponentScan("net.tngroup.acrest")
 public class AppConfig implements WebMvcConfigurer {
 
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
