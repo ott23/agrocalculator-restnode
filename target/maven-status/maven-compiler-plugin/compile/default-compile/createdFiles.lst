@@ -1,5 +1,0 @@
-net/tngroup/restkafka/configs/AppConfig.class
-net/tngroup/restkafka/controllers/TaskController.class
-net/tngroup/restkafka/configs/AppInitializer.class
-net/tngroup/restkafka/services/KafkaService.class
-net/tngroup/restkafka/services/ConfigService.class
