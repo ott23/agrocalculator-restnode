@@ -6,11 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="agrocalculator-rest" />
+        <module name="agrocalculator-restnode" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="agrocalculator-rest" target="1.8" />
+      <module name="agrocalculator-restnode" target="10" />
     </bytecodeTargetLevel>
   </component>
 </project>
