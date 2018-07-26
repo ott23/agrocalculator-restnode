@@ -21,7 +21,6 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>10</java.version>
 
-        <hibernate.version>5.2.13.Final</hibernate.version>
         <h2.version>1.4.197</h2.version>
 
         <cassandra.version>2.1.9</cassandra.version>
