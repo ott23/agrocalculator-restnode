@@ -57,12 +57,8 @@ public class UnitController {
         // Error if channel is closed
         if (!channelComponent.isStatus()) return badResponse(new Exception("Server is not started"));
 
-        try {
-            List<Unit> unitList = unitService.getAllByClient(client.getId());
-            return okResponse(unitList);
-        } catch (JsonProcessingException e) {
-            return badResponse(e);
-        }
+        List<Unit> unitList = unitService.getAllByClient(client.getId());
+        return okResponse(unitList);
     }
 
     @RequestMapping("/save")

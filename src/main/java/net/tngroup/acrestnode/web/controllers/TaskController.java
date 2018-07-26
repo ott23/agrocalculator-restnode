@@ -94,7 +94,7 @@ public class TaskController {
             TaskKey taskKey = new TaskKey(client.getId(), task);
             TaskCondition taskCondition = new TaskCondition(taskKey, topic, message);
             taskConditionService.save(taskCondition);
-            return okResponse(task);
+            return okResponse(formTaskId(task));
         } else {
             return badResponse(new Exception("TaskCondition wasn't accepted"));
         }
@@ -130,6 +130,15 @@ public class TaskController {
         TaskResult taskResult = taskResultService.getByKey(taskKey);
 
         return okResponse(formTaskResult(taskResult));
+    }
+
+    private String formTaskId(UUID task) {
+        ObjectMapper mapper = new ObjectMapper();
+        ObjectNode response = mapper.createObjectNode();
+
+        response.put("task", task.toString());
+
+        return response.toString();
     }
 
     private String formTaskResult(TaskResult taskResult) {
