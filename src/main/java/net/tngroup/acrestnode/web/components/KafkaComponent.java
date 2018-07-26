@@ -116,7 +116,7 @@ public class KafkaComponent {
     /*
     Чтение из Kafka
      */
-    public Map<String, String> read(boolean fromBeginning) {
+    Map<String, String> read(boolean fromBeginning) {
 
         // Соединение и чтение из Kafka
         Properties properties = kafkaConsumerProperties();

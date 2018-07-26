@@ -101,35 +101,6 @@ public class TaskController {
 
     }
 
-    /*
-    Методы чтения из Kafka
-     */
-    /*
-    @RequestMapping(value = "/poll", method = RequestMethod.POST)
-    public ResponseEntity poll(@RequestBody String inputJson) throws IOException {
-        if (!channelComponent.isStatus()) return badResponse(new Exception("Server is not started"));
-
-        // Connection with Kafka testing
-        try {
-            kafkaComponent.testSocket();
-        } catch (Exception e) {
-            return kafkaNotAvailableResponse();
-        }
-
-        // Json parsing
-        ObjectNode json = (ObjectNode) new ObjectMapper().readTree(inputJson);
-        String clientId = json.remove("clientId").asText();
-
-        // Kafka request
-        Map<String, String> taskMap = kafkaComponent.read(clientId, false);
-
-        // Answer preparing
-        List<String> taskList = new ArrayList<>();
-        taskMap.forEach((key, value) -> taskList.add(value));
-
-        return okResponse(formTaskListResponse(taskList));
-    }*/
-
 
     @RequestMapping(value = "/poll", method = RequestMethod.POST)
     public ResponseEntity pollTaskId(@RequestBody String inputJson, HttpServletRequest request) throws IOException {
@@ -166,25 +137,8 @@ public class TaskController {
         ObjectNode response = mapper.createObjectNode();
 
         if (taskResult == null) response.put("result", "No result available");
-        else response.put("result", taskResult.getValue());
+        else response.putPOJO("result", taskResult.getValue());
 
         return response.toString();
     }
-
-
-    /*
-    private String formTaskListResponse(List<String> taskList) {
-        ObjectMapper mapper = new ObjectMapper();
-        ObjectNode response = mapper.createObjectNode();
-        ArrayNode tasks = mapper.createArrayNode();
-
-        taskList.forEach(tasks::addPOJO);
-
-        response.putPOJO("response", tasks);
-        response.put("size", taskList.size());
-
-        return response.toString();
-    }
-    */
-
 }

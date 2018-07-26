@@ -9,9 +9,8 @@ import org.springframework.http.ResponseEntity;
 
 class Responses {
 
-    static ResponseEntity okResponse(Object o) throws JsonProcessingException {
-        String response = new ObjectMapper().writeValueAsString(o);
-        return ResponseEntity.ok(response);
+    static ResponseEntity okResponse(Object o) {
+        return ResponseEntity.ok(o);
     }
 
     static ResponseEntity okFullResponse(Object o) throws JsonProcessingException {

@@ -7,51 +7,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ef620892-b034-40a8-bab4-f2d7f538dee1" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/agrocalculator-restnode.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/controllers/TaskController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/agrocalculator_rest_war.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/agrocalculator_rest_war_exploded.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/restkafka_war.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/restkafka_war_exploded.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_core_2_9_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_databind_2_9_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_json_javax_json_api_1_1_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_servlet_javax_servlet_api_4_0_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_servlet_jstl_1_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_1_2_api_2_11_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_api_2_11_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_core_2_11_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_json_json_20180130.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_log4j12_1_7_25.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_aop_5_0_4_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_beans_5_0_4_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_context_5_0_4_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_core_5_0_4_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_expression_5_0_4_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_jcl_5_0_4_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_web_5_0_4_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_webmvc_5_0_4_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/restkafka_Dockerfile.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/agrocalculator-rest.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/tngroup/acrest/configs/AppConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/tngroup/acrest/configs/AppInitializer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/tngroup/acrest/controllers/TaskController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/tngroup/acrest/services/ConfigService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/tngroup/acrest/services/KafkaService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/log4j2.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/static/css/bootstrap.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/static/css/main.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/static/images/favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/static/js/bootstrap.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/tags/wrapper.tag" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/index.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/components/KafkaComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/components/KafkaComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/controllers/Responses.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/controllers/Responses.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/controllers/TaskController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/controllers/TaskController.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -66,11 +24,36 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="TaskController.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/controllers/TaskController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="460">
+              <caret line="142" column="5" selection-start-line="142" selection-start-column="5" selection-end-line="142" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Responses.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/controllers/Responses.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="352">
+              <caret line="43" lean-forward="true" selection-start-line="43" selection-end-line="43" />
+              <folding>
+                <element signature="e#427#428#0" expanded="true" />
+                <element signature="e#470#471#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="KafkaComponent.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/components/KafkaComponent.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="67" column="46" lean-forward="true" selection-start-line="67" selection-start-column="46" selection-end-line="67" selection-end-column="46" />
+            <state relative-caret-position="142">
+              <caret line="91" column="41" lean-forward="true" selection-start-line="91" selection-start-column="41" selection-end-line="91" selection-end-column="41" />
             </state>
           </provider>
         </entry>
@@ -102,30 +85,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SettingComponent.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/nodeclient/components/SettingComponent.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="262">
-              <caret line="74" column="33" lean-forward="true" selection-start-line="74" selection-start-column="33" selection-end-line="74" selection-end-column="33" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UnitController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/controllers/UnitController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1692">
-              <caret line="116" column="48" selection-start-line="116" selection-start-column="48" selection-end-line="116" selection-end-column="48" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="TaskConditionServiceImpl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/databases/cassandra/services/TaskConditionServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -135,11 +94,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ClientServiceImpl.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ClientServiceImpl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/databases/cassandra/services/ClientServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="17" column="34" selection-start-line="17" selection-start-column="34" selection-end-line="17" selection-end-column="34" />
+            <state relative-caret-position="270">
+              <caret line="23" column="36" lean-forward="true" selection-start-line="23" selection-start-column="36" selection-end-line="23" selection-end-column="36" />
+              <folding>
+                <element signature="e#771#772#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -159,7 +121,7 @@
       <file leaf-file-name="TaskResultComponent.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/components/TaskResultComponent.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="352">
+            <state relative-caret-position="432">
               <caret line="57" column="36" lean-forward="true" selection-start-line="57" selection-start-column="36" selection-end-line="57" selection-end-column="36" />
             </state>
           </provider>
@@ -179,6 +141,7 @@
     <findStrings>
       <find>System</find>
       <find>formTaskListResponse</find>
+      <find>system.o</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -205,7 +168,6 @@
         <option value="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/databases/cassandra/services/ClientServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/databases/cassandra/services/TaskServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/databases/cassandra/services/UnitServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/controllers/Responses.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/nodeclient/databases/h2/models/Setting.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/databases/cassandra/repositories/UnitRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/databases/cassandra/CassandraConnector.java" />
@@ -234,10 +196,11 @@
         <option value="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/databases/cassandra/services/TaskResultServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/databases/cassandra/repositories/TaskResultRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/components/TaskResultComponent.java" />
-        <option value="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/controllers/TaskController.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/controllers/UnitController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/settings.properties" />
         <option value="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/components/KafkaComponent.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/controllers/Responses.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/controllers/TaskController.java" />
       </list>
     </option>
   </component>
@@ -582,12 +545,12 @@
       <workItem from="1532329550105" duration="7165000" />
       <workItem from="1532432804121" duration="6420000" />
       <workItem from="1532500493517" duration="11754000" />
-      <workItem from="1532522522173" duration="2698000" />
+      <workItem from="1532522522173" duration="7779000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="206699000" />
+    <option name="totallyTimeSpent" value="211780000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -610,11 +573,11 @@
       <window_info anchor="right" id="Maven Projects" order="3" weight="0.13820705" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32984293" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32771337" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32771337" />
       <window_info anchor="bottom" id="Spring" order="7" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32876712" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1995731" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1995731" />
       <window_info anchor="right" id="Bean Validation" order="4" weight="0.32977587" />
       <window_info id="Web" order="2" side_tool="true" />
       <window_info anchor="right" id="Database" order="3" />
@@ -774,6 +737,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="10" column="4" selection-start-line="10" selection-start-column="4" selection-end-line="11" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -881,13 +847,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/controllers/Responses.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="14" column="5" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/AgroCalculatorRestNode.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="162">
@@ -952,16 +911,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/controllers/TaskController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2070">
-          <caret line="141" column="56" selection-start-line="141" selection-start-column="56" selection-end-line="141" selection-end-column="56" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/controllers/UnitController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1692">
@@ -986,20 +935,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
           <caret line="6" column="39" selection-start-line="6" selection-start-column="39" selection-end-line="6" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/components/TaskResultComponent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="57" column="36" lean-forward="true" selection-start-line="57" selection-start-column="36" selection-end-line="57" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/components/KafkaComponent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="67" column="46" lean-forward="true" selection-start-line="67" selection-start-column="46" selection-end-line="67" selection-end-column="46" />
         </state>
       </provider>
     </entry>
@@ -1036,8 +971,46 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/databases/cassandra/services/ClientServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="17" column="34" selection-start-line="17" selection-start-column="34" selection-end-line="17" selection-end-column="34" />
+        <state relative-caret-position="270">
+          <caret line="23" column="36" lean-forward="true" selection-start-line="23" selection-start-column="36" selection-end-line="23" selection-end-column="36" />
+          <folding>
+            <element signature="e#771#772#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/components/TaskResultComponent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="57" column="36" lean-forward="true" selection-start-line="57" selection-start-column="36" selection-end-line="57" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/controllers/Responses.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="43" lean-forward="true" selection-start-line="43" selection-end-line="43" />
+          <folding>
+            <element signature="e#427#428#0" expanded="true" />
+            <element signature="e#470#471#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/components/KafkaComponent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="142">
+          <caret line="91" column="41" lean-forward="true" selection-start-line="91" selection-start-column="41" selection-end-line="91" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/controllers/TaskController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="460">
+          <caret line="142" column="5" selection-start-line="142" selection-start-column="5" selection-end-line="142" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
