@@ -34,6 +34,11 @@ class Responses {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
     }
 
+    static ResponseEntity unavailableResponse() {
+        return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).build();
+    }
+
+
     static ResponseEntity conflictResponse() {
         return ResponseEntity.status(HttpStatus.CONFLICT).build();
     }

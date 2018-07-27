@@ -43,7 +43,9 @@ public class AutoExecutor implements ApplicationRunner {
         settingComponent.checkStatus();
         settingComponent.checkSettings();
 
-        if (channelComponent.isStatus()) processor.doCommand("start");
+        if (channelComponent.getCode() != null
+                && channelComponent.getKey() != null
+                && channelComponent.isStatus()) processor.doCommand("start");
 
         nodeClient.createBootstrap(new Bootstrap(), new NioEventLoopGroup());
         taskComponent.start();

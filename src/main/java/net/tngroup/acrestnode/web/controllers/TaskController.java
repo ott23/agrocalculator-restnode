@@ -9,7 +9,6 @@ import net.tngroup.acrestnode.databases.cassandra.models.TaskResult;
 import net.tngroup.acrestnode.databases.cassandra.services.ClientService;
 import net.tngroup.acrestnode.databases.cassandra.services.TaskConditionService;
 import net.tngroup.acrestnode.databases.cassandra.services.TaskResultService;
-import net.tngroup.acrestnode.nodeclient.components.ChannelComponent;
 import net.tngroup.acrestnode.web.components.KafkaComponent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -35,19 +34,16 @@ public class TaskController {
     // Loggers
     private Logger logger = LogManager.getFormatterLogger("CommonLogger");
 
-    private ChannelComponent channelComponent;
     private KafkaComponent kafkaComponent;
     private ClientService clientService;
     private TaskConditionService taskConditionService;
     private TaskResultService taskResultService;
 
     @Autowired
-    public TaskController(ChannelComponent channelComponent,
-                          @Lazy KafkaComponent kafkaComponent,
+    public TaskController(@Lazy KafkaComponent kafkaComponent,
                           @Lazy ClientService clientService,
                           @Lazy TaskConditionService taskConditionService,
                           @Lazy TaskResultService taskResultService) {
-        this.channelComponent = channelComponent;
         this.kafkaComponent = kafkaComponent;
         this.clientService = clientService;
         this.taskConditionService = taskConditionService;
@@ -65,10 +61,7 @@ public class TaskController {
         if (client == null) return failedDependencyResponse();
 
         // Logging
-        logger.info("Request to `/task/send` (add task) from " + request.getRemoteAddr() + " by `" + client.getName() + "`");
-
-        // Error if channel is closed
-        if (!channelComponent.isStatus()) return badResponse(new Exception("Server is not started"));
+        logger.info("Request to `/task/send` (push task) from " + request.getRemoteAddr() + " by `" + client.getName() + "`");
 
         // Connection with Kafka testing
         try {
@@ -94,6 +87,16 @@ public class TaskController {
             TaskKey taskKey = new TaskKey(client.getId(), task);
             TaskCondition taskCondition = new TaskCondition(taskKey, topic, message);
             taskConditionService.save(taskCondition);
+
+            for (int i = 0; i < 4; i++) {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
+                TaskResult taskResult = taskResultService.getByKey(taskKey);
+                if (taskResult != null) return okResponse(formTaskResult(taskResult));
+            }
             return okResponse(formTaskId(task));
         } else {
             return badResponse(new Exception("TaskCondition wasn't accepted"));
@@ -111,9 +114,6 @@ public class TaskController {
 
         // Logging
         logger.info("Request to `/task/poll` (read task) from " + request.getRemoteAddr() + " by `" + client.getName() + "`");
-
-        // Error if channel is closed
-        if (!channelComponent.isStatus()) return badResponse(new Exception("Server is not started"));
 
         // Connection with Kafka testing
         try {

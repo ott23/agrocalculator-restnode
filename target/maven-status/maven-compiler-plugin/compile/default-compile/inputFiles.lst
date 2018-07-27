@@ -1,4 +1,5 @@
 /home/pers/Projects/agrocalculator-restnode/src/main/java/net/tngroup/acrestnode/nodeclient/components/OutputMessageComponent.java
+/home/pers/Projects/agrocalculator-restnode/src/main/java/net/tngroup/acrestnode/security/components/RestAuthenticationEntryPoint.java
 /home/pers/Projects/agrocalculator-restnode/src/main/java/net/tngroup/acrestnode/AutoExecutor.java
 /home/pers/Projects/agrocalculator-restnode/src/main/java/net/tngroup/acrestnode/Processor.java
 /home/pers/Projects/agrocalculator-restnode/src/main/java/net/tngroup/acrestnode/databases/cassandra/repositories/TaskConditionRepository.java

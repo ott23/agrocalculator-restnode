@@ -1,12 +1,10 @@
 package net.tngroup.acrestnode.web.controllers;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import net.tngroup.acrestnode.databases.cassandra.models.Client;
 import net.tngroup.acrestnode.databases.cassandra.models.Unit;
 import net.tngroup.acrestnode.databases.cassandra.services.ClientService;
 import net.tngroup.acrestnode.databases.cassandra.services.UnitService;
-import net.tngroup.acrestnode.nodeclient.components.ChannelComponent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,15 +29,12 @@ public class UnitController {
     // Loggers
     private Logger logger = LogManager.getFormatterLogger("CommonLogger");
 
-    private ChannelComponent channelComponent;
     private UnitService unitService;
     private ClientService clientService;
 
     @Autowired
-    public UnitController(ChannelComponent channelComponent,
-                          @Lazy ClientService clientService,
+    public UnitController(@Lazy ClientService clientService,
                           @Lazy UnitService unitService) {
-        this.channelComponent = channelComponent;
         this.clientService = clientService;
         this.unitService = unitService;
     }
@@ -54,9 +49,6 @@ public class UnitController {
         // Logging
         logger.info("Request to `/unit` (get list) from " + request.getRemoteAddr() + " by `" + client.getName() + "`");
 
-        // Error if channel is closed
-        if (!channelComponent.isStatus()) return badResponse(new Exception("Server is not started"));
-
         List<Unit> unitList = unitService.getAllByClient(client.getId());
         return okResponse(unitList);
     }
@@ -70,9 +62,6 @@ public class UnitController {
 
         // Logging
         logger.info("Request to `/unit/save` (add or update) from " + request.getRemoteAddr() + " by `" + client.getName() + "`");
-
-        // Error if channel is closed
-        if (!channelComponent.isStatus()) return badResponse(new Exception("Server is not started"));
 
         try {
             Unit unit = new ObjectMapper().readValue(jsonRequest, Unit.class);
@@ -105,9 +94,6 @@ public class UnitController {
 
         // Logging
         logger.info("Request to `/unit/delete/{id}` (delete) from " + request.getRemoteAddr() + " by `" + client.getName() + "`");
-
-        // Error if channel is closed
-        if (!channelComponent.isStatus()) return badResponse(new Exception("Server is not started"));
 
         try {
             Unit unit = unitService.getById(id);

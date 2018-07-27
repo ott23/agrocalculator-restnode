@@ -31,7 +31,6 @@ public class JwtAuthenticationFilter extends GenericFilterBean {
         Authentication authentication = TokenAuthenticationService.getAuthentication((HttpServletRequest) request, userDetailsService);
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
-
         try {
             Long expiration = (Long) authentication.getDetails();
             Long currentTime = System.currentTimeMillis();

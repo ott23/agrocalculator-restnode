@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
@@ -24,9 +25,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private UserDetailsService userDetailsService;
 
+    private AuthenticationEntryPoint authenticationEntryPoint;
+
     @Autowired
-    public SecurityConfiguration(UserDetailsServiceImpl userDetailsService) {
+    public SecurityConfiguration(UserDetailsServiceImpl userDetailsService,
+                                 AuthenticationEntryPoint authenticationEntryPoint) {
         this.userDetailsService = userDetailsService;
+        this.authenticationEntryPoint = authenticationEntryPoint;
     }
 
     @Bean
@@ -52,8 +57,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .cors().and()
-                .csrf().disable().authorizeRequests()
+                .cors()
+                .and()
+                .csrf().disable()
+                .exceptionHandling()
+                .authenticationEntryPoint(authenticationEntryPoint)
+                .and()
+                .authorizeRequests()
                 .anyRequest().authenticated()
                 .and()
                 .addFilterBefore(new JwtLoginFilter("/login", authenticationManager()),
