@@ -34,13 +34,14 @@ class Responses {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
     }
 
-    static ResponseEntity unavailableResponse() {
-        return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).build();
+    static ResponseEntity nonFoundResponse() {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 
-
-    static ResponseEntity conflictResponse() {
-        return ResponseEntity.status(HttpStatus.CONFLICT).build();
+    static ResponseEntity conflictResponse(String col) {
+        ObjectNode response = new ObjectMapper().createObjectNode();
+        response.put("Conflict column", col);
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(response.toString());
     }
 
     static ResponseEntity failedDependencyResponse() {

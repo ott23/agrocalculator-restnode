@@ -4,6 +4,8 @@ import net.tngroup.acrestnode.databases.cassandra.models.TaskCondition;
 
 public interface TaskConditionService {
 
-    void save(TaskCondition taskCondition);
+    TaskCondition getByHashCode(int hashCode);
+
+    TaskCondition save(TaskCondition taskCondition);
 
 }

@@ -1,16 +1,25 @@
 package net.tngroup.acrestnode.databases.cassandra.models;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.cassandra.core.mapping.PrimaryKey;
 
+import java.util.Date;
+
 @Data
-@AllArgsConstructor
+@NoArgsConstructor
 public class TaskResult {
 
     @PrimaryKey
     private TaskKey key;
 
     private String value;
+
+    private Date time;
+
+    public TaskResult(TaskKey key, String value) {
+        this.key = key;
+        this.value = value;
+    }
 
 }

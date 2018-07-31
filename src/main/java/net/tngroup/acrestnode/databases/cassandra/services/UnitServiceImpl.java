@@ -19,21 +19,18 @@ public class UnitServiceImpl implements UnitService {
     }
 
     @Override
-    public List<Unit> getAll() {
-        return unitRepository.findAll();
-    }
-
-    @Override
     public List<Unit> getAllByClient(UUID id) {
         return unitRepository.findAllByClient(id);
     }
 
     @Override
-    public List<Unit> getAllByNameOrImei(String name, String imei) {
-        Set<Unit> unitSet = new HashSet<>();
-        unitSet.addAll(unitRepository.findAllByName(name));
-        unitSet.addAll(unitRepository.findAllByImei(imei));
-        return new ArrayList<>(unitSet);
+    public List<Unit> getAllByName(String name) {
+        return unitRepository.findAllByName(name);
+    }
+
+    @Override
+    public List<Unit> getAllByImei(String imei) {
+        return unitRepository.findAllByImei(imei);
     }
 
     @Override
@@ -42,8 +39,8 @@ public class UnitServiceImpl implements UnitService {
     }
 
     @Override
-    public void save(Unit unit) {
-        unitRepository.save(unit);
+    public Unit save(Unit unit) {
+        return unitRepository.save(unit);
     }
 
     @Override

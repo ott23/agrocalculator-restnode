@@ -71,15 +71,45 @@ public class UnitController {
                 if (dbUnit != null && !dbUnit.getClient().equals(client.getId())) return failedDependencyResponse();
             }
 
-            List<Unit> unitList = unitService.getAllByNameOrImei(unit.getName(), unit.getImei());
-            if (unitList.size() == 1 && !unitList.get(0).getId().equals(unit.getId()) || unitList.size() > 1)
-                return conflictResponse();
+            List<Unit> unitList;
+            unitList = unitService.getAllByName(unit.getName());
+            if (unitList.size() == 1 && !unitList.get(0).getId().equals(unit.getId()) || unitList.size() > 1) return conflictResponse("name");
+
+            unitList = unitService.getAllByImei(unit.getImei());
+            if (unitList.size() == 1 && !unitList.get(0).getId().equals(unit.getId()) || unitList.size() > 1) return conflictResponse("imei");
 
             if (unit.getId() == null) unit.setId(UUID.randomUUID());
             if (unit.getClient() == null) unit.setClient(client.getId());
 
-            unitService.save(unit);
-            return successResponse();
+            unit = unitService.save(unit);
+
+            return okResponse(formUnit(unit));
+        } catch (Exception e) {
+            return badResponse(e);
+        }
+    }
+
+    @RequestMapping("/get/{id}")
+    public ResponseEntity getById(@PathVariable UUID id, HttpServletRequest request) {
+
+        System.out.println(id.toString());
+
+        // Get client, error if null
+        String name = SecurityContextHolder.getContext().getAuthentication().getName();
+        Client client = clientService.getByName(name);
+        if (client == null) return failedDependencyResponse();
+
+        // Logging
+        logger.info("Request to `/unit/get/{id}` (getn) from " + request.getRemoteAddr() + " by `" + client.getName() + "`");
+
+        try {
+            Unit unit = unitService.getById(id);
+
+            if (unit == null) nonFoundResponse();
+
+            if (!unit.getClient().equals(client.getId())) return failedDependencyResponse();
+
+            return okResponse(formUnit(unit));
         } catch (Exception e) {
             return badResponse(e);
         }
@@ -97,6 +127,9 @@ public class UnitController {
 
         try {
             Unit unit = unitService.getById(id);
+
+            if (unit == null) nonFoundResponse();
+
             if (!unit.getClient().equals(client.getId())) return failedDependencyResponse();
 
             unitService.deleteById(id);
@@ -104,6 +137,10 @@ public class UnitController {
         } catch (Exception e) {
             return badResponse(e);
         }
+    }
+
+    private String formUnit(Unit unit) throws Exception {
+        return new ObjectMapper().writeValueAsString(unit);
     }
 
 }

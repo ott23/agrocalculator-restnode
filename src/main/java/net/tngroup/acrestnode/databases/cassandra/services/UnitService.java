@@ -7,15 +7,15 @@ import java.util.UUID;
 
 public interface UnitService {
 
-    List<Unit> getAll();
-
     List<Unit> getAllByClient(UUID id);
 
-    List<Unit> getAllByNameOrImei(String name, String imei);
+    List<Unit> getAllByName(String name);
+
+    List<Unit> getAllByImei(String imei);
 
     Unit getById(UUID id);
 
-    void save(Unit unit);
+    Unit save(Unit unit);
 
     void deleteById(UUID id);
 
