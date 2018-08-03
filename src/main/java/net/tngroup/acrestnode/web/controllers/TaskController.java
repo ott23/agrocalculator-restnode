@@ -96,7 +96,7 @@ public class TaskController {
             taskConditionService.save(newTaskCondition);
 
             for (int i = 0; i < 4; i++) {
-                sleep(1000);
+                sleep(500 * i);
                 TaskResult taskResult = taskResultService.getByKey(taskKey);
                 if (taskResult != null && taskResult.getTime().compareTo(newTaskCondition.getTime()) > 0) {
                     return okResponse(formTaskResult(taskResult));

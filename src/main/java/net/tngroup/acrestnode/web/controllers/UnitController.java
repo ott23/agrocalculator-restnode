@@ -68,14 +68,12 @@ public class UnitController {
 
             if (unit.getId() != null) {
                 Unit dbUnit = unitService.getById(unit.getId());
-                if (dbUnit != null && !dbUnit.getClient().equals(client.getId())) return failedDependencyResponse();
+                if (dbUnit != null && !dbUnit.getClient().equals(client.getId())) {
+                    return failedDependencyResponse();
+                }
             }
 
-            List<Unit> unitList;
-            unitList = unitService.getAllByName(unit.getName());
-            if (unitList.size() == 1 && !unitList.get(0).getId().equals(unit.getId()) || unitList.size() > 1) return conflictResponse("name");
-
-            unitList = unitService.getAllByImei(unit.getImei());
+            List<Unit> unitList = unitService.getAllByImei(unit.getImei());
             if (unitList.size() == 1 && !unitList.get(0).getId().equals(unit.getId()) || unitList.size() > 1) return conflictResponse("imei");
 
             if (unit.getId() == null) unit.setId(UUID.randomUUID());
@@ -128,13 +126,14 @@ public class UnitController {
         try {
             Unit unit = unitService.getById(id);
 
-            if (unit == null) nonFoundResponse();
+            if (unit == null) return nonFoundResponse();
 
             if (!unit.getClient().equals(client.getId())) return failedDependencyResponse();
 
             unitService.deleteById(id);
             return successResponse();
         } catch (Exception e) {
+            e.printStackTrace();
             return badResponse(e);
         }
     }

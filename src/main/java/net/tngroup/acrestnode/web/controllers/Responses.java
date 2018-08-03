@@ -35,12 +35,14 @@ class Responses {
     }
 
     static ResponseEntity nonFoundResponse() {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        ObjectNode response = new ObjectMapper().createObjectNode();
+        response.put("response", "Not found");
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response.toString());
     }
 
     static ResponseEntity conflictResponse(String col) {
         ObjectNode response = new ObjectMapper().createObjectNode();
-        response.put("Conflict column", col);
+        response.put("response", "Column conflict - " + col);
         return ResponseEntity.status(HttpStatus.CONFLICT).body(response.toString());
     }
 
