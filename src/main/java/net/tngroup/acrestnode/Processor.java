@@ -63,8 +63,10 @@ public class Processor {
 
     private void start() {
         try {
-            if (channelComponent.isChannelReady()) settingComponent.updateSettings();
-            while (!settingComponent.isSettingReady()) Thread.yield();
+            if (channelComponent.isChannelReady()
+                    && !settingComponent.updateSettings()) {
+                throw new Exception("Settings are not loaded");
+            }
 
             cassandraConnector.init();
             cassandraConnector.connect();
@@ -72,14 +74,14 @@ public class Processor {
             kafkaComponent.init();
             kafkaComponent.testSocket();
 
-            settingService.updateByName("node.service.status", "true");
-            settingComponent.checkStatus();
-
             taskResultComponent.start();
+
+            changeStatus("true");
 
             logger.info("REST started");
         } catch (Exception e) {
-            e.printStackTrace();
+            changeStatus("false");
+
             logger.info("REST didn't started: " + e.getMessage());
         }
     }
@@ -87,8 +89,7 @@ public class Processor {
     private void stop() {
         cassandraConnector.close();
 
-        settingService.updateByName("node.service.status", "false");
-        settingComponent.checkStatus();
+        changeStatus("false");
 
         taskResultComponent.stop();
 
@@ -108,5 +109,10 @@ public class Processor {
 
     private void close() {
         System.exit(0);
+    }
+
+    private void changeStatus(String status) {
+        settingService.updateByName("node.service.status", status);
+        settingComponent.checkStatus();
     }
 }

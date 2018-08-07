@@ -3,6 +3,7 @@ package net.tngroup.acrestnode.security.services;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -14,12 +15,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 
+import static net.tngroup.acrestnode.security.TokenData.*;
+
 public class TokenAuthenticationService {
-    public static final long EXPIRATION_TIME = 864_000_000; // 10 days
-    private static final String SECRET = "DevelopmentSecret";
-    private static final String TOKEN_PREFIX = "Bearer";
-    private static final String REQUEST_HEADER_STRING = "Authorization";
-    private static final String TOKEN_HEADER_STRING = "X-Token";
+
 
     public static void addAuthentication(HttpServletResponse res, String username) {
 
@@ -38,7 +37,7 @@ public class TokenAuthenticationService {
     }
 
 
-    public static Authentication getAuthentication(HttpServletRequest request, UserDetailsService userDetailsService) {
+    public static Authentication getAuthentication(HttpServletRequest request, UserDetailsService userDetailsService)  {
 
         try {
             String token = request.getHeader(REQUEST_HEADER_STRING);
@@ -69,7 +68,7 @@ public class TokenAuthenticationService {
             }
 
             return null;
-        } catch (SignatureException e) {
+        } catch (SignatureException | ExpiredJwtException e) {
             return null;
         }
     }

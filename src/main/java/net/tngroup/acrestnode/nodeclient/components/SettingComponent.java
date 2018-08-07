@@ -100,17 +100,24 @@ public class SettingComponent {
         });
     }
 
-    public void updateSettings() {
+    public boolean updateSettings() {
         try {
             resetSettings();
             outputMessageComponent.sendMessageSettingsRequest();
-            while (!isSettingReady) {
-                Thread.sleep(1000);
+
+            int[] steps = {1, 2, 4};
+            for (int i = 0; i < 3; i++) {
+                Thread.sleep(steps[i] * 1000);
                 checkSettings();
+                if (isSettingReady) break;
             }
+
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
+
+        checkSettings();
+        return isSettingReady;
     }
 
 }

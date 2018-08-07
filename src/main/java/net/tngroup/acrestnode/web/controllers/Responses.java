@@ -1,7 +1,5 @@
 package net.tngroup.acrestnode.web.controllers;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.springframework.http.HttpStatus;
@@ -11,13 +9,6 @@ class Responses {
 
     static ResponseEntity okResponse(Object o) {
         return ResponseEntity.ok(o);
-    }
-
-    static ResponseEntity okFullResponse(Object o) throws JsonProcessingException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.setSerializationInclusion(JsonInclude.Include.ALWAYS);
-        String response = objectMapper.writeValueAsString(o);
-        return ResponseEntity.ok(response);
     }
 
     static ResponseEntity successResponse() {

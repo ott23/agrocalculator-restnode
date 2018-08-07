@@ -61,7 +61,7 @@ public class OutputMessageComponent {
         sendMessage(message);
     }
 
-    public void sendMessageSettingsRequest() {
+    void sendMessageSettingsRequest() {
         Message message = new Message(channelComponent.getCode(), "settings request", nodeType, null);
         sendMessage(message);
     }

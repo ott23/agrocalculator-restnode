@@ -4,7 +4,6 @@ import org.springframework.stereotype.Component;
 
 import javax.crypto.*;
 import javax.crypto.spec.SecretKeySpec;
-import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -22,7 +21,7 @@ public class CipherComponent {
         return new String(Base64.getEncoder().encode(encValue), StandardCharsets.UTF_8);
     }
 
-    String decodeDes(String input, String keyString) throws IOException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
+    String decodeDes(String input, String keyString) throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
         Cipher cipher = Cipher.getInstance("DES");
         byte[] decodedKey = Base64.getDecoder().decode(keyString);
         SecretKey key = new SecretKeySpec(decodedKey, 0, decodedKey.length, "DES");
