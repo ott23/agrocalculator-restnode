@@ -2,10 +2,8 @@ package net.tngroup.acrestnode.nodeclient.components;
 
 import lombok.Getter;
 import lombok.Setter;
-import net.tngroup.acrestnode.nodeclient.databases.h2.models.Setting;
-import net.tngroup.acrestnode.nodeclient.databases.h2.services.SettingService;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import net.tngroup.acrestnode.databases.h2.models.Setting;
+import net.tngroup.acrestnode.databases.h2.services.SettingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
@@ -22,8 +20,6 @@ public class SettingComponent {
 
     @Value("${settings.list}")
     private String settingsString;
-
-    private Logger logger = LogManager.getFormatterLogger("CommonLogger");
 
     private ChannelComponent channelComponent;
     private SettingService settingService;
@@ -44,10 +40,9 @@ public class SettingComponent {
 
     public void checkCode() {
         channelComponent.setCode(null);
-        Setting nodeSetting = settingService.getByName("node.service.code");
-        if (nodeSetting != null) channelComponent.setCode(nodeSetting.getValue());
+        Setting codeSetting = settingService.getByName("node.service.code");
+        if (codeSetting != null) channelComponent.setCode(codeSetting.getValue());
         else {
-            logger.info("Name did not exist, code was generated");
             channelComponent.setCode(UUID.randomUUID().toString());
             settingService.add(new Setting("node.service.code", channelComponent.getCode()));
         }
@@ -57,7 +52,6 @@ public class SettingComponent {
         channelComponent.setKey(null);
         Setting keySetting = settingService.getByName("node.service.key");
         if (keySetting != null && !keySetting.getValue().equals("")) channelComponent.setKey(keySetting.getValue());
-        else logger.info("Key did not exist");
     }
 
     public void checkStatus() {
@@ -81,9 +75,7 @@ public class SettingComponent {
         setSettingReady(true);
         if (nullSettingsCount > 0) {
             setSettingReady(false);
-            logger.info("Settings are not valid");
         }
-
     }
 
     private void resetSettings() {

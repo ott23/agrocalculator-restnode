@@ -50,4 +50,12 @@ public class RepositoryConfig {
         return support.getRepository(UnitRepository.class);
     }
 
+    @Bean
+    @Lazy
+    public GeozoneRepository geozoneRepository(CassandraConnector cassandraConnector)
+    {
+        final RepositoryFactorySupport support = new CassandraRepositoryFactory(cassandraConnector.cassandraTemplate());
+        return support.getRepository(GeozoneRepository.class);
+    }
+
 }

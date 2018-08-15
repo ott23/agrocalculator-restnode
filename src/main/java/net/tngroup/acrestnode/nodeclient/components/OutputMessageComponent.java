@@ -1,8 +1,6 @@
 package net.tngroup.acrestnode.nodeclient.components;
 
 import net.tngroup.acrestnode.nodeclient.models.Message;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -15,8 +13,6 @@ public class OutputMessageComponent {
     @Value("${node.type}")
     private String nodeType;
 
-    private Logger logger = LogManager.getFormatterLogger("CommonLogger");
-
     private ChannelComponent channelComponent;
     private CipherComponent cipherComponent;
 
@@ -27,43 +23,62 @@ public class OutputMessageComponent {
         this.cipherComponent = cipherComponent;
     }
 
-    /*
-    Handler of message sending
-     */
-    private void sendMessage(Message message) {
-        try {
-            logger.info("Sending message to server: %s", message.getType());
-
-            String msg = message.formJson();
-            if (channelComponent.getKey() != null) msg = cipherComponent.encodeDes(msg, channelComponent.getKey());
-            else msg = Base64.getEncoder().encodeToString(msg.getBytes());
-            String result_msg = "-" + msg.length() + "-" + msg;
-
-            while (channelComponent.getChannel() == null) Thread.sleep(1000);
-            channelComponent.getChannel().writeAndFlush(result_msg);
-        } catch (Exception e) {
-            logger.error("Error during message sending: %s", e.getMessage());
-        }
-    }
-
     void sendMessageConfirm(Message inputMessage) {
-        Message message = new Message(channelComponent.getCode(), "confirm", inputMessage.getType(), inputMessage.getId());
-        sendMessage(message);
+        Message outputMessage = new Message(channelComponent.getCode(), "confirm", inputMessage.getType(), inputMessage.getId());
+        try {
+            sendMessage(outputMessage);
+        } catch (Exception e) {
+            // Exception during message sending
+        }
+
     }
 
     void sendMessageStatus(boolean status) {
-        Message message = new Message(channelComponent.getCode(), "status", nodeType, status ? 1 : 0);
-        sendMessage(message);
+        Message outputMessage = new Message(channelComponent.getCode(), "status", nodeType, status ? 1 : 0);
+        try {
+            sendMessage(outputMessage);
+        } catch (Exception e) {
+            // Exception during message sending
+        }
     }
 
     void sendMessageKeyRequest() {
-        Message message = new Message(channelComponent.getCode(), "key request", nodeType, null);
-        sendMessage(message);
+        Message outputMessage = new Message(channelComponent.getCode(), "key request", nodeType, null);
+        try {
+            sendMessage(outputMessage);
+        } catch (Exception e) {
+            // Exception during message sending
+        }
     }
 
     void sendMessageSettingsRequest() {
-        Message message = new Message(channelComponent.getCode(), "settings request", nodeType, null);
-        sendMessage(message);
+        Message outputMessage = new Message(channelComponent.getCode(), "settings request", nodeType, null);
+        try {
+            sendMessage(outputMessage);
+        } catch (Exception e) {
+            // Exception during message sending
+        }
+    }
+
+    /*
+    Handler of message sending
+     */
+    private void sendMessage(Message message) throws Exception {
+        String msg = message.formJson();
+
+        if (channelComponent.getKey() != null) msg = cipherComponent.encodeDes(msg, channelComponent.getKey());
+        else msg = Base64.getEncoder().encodeToString(msg.getBytes());
+        String result_msg = "-" + msg.length() + "-" + msg;
+
+        while (channelComponent.getChannel() == null) {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+
+        }
+        channelComponent.getChannel().writeAndFlush(result_msg);
     }
 
 }

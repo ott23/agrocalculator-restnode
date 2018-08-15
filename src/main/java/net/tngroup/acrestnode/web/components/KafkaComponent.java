@@ -1,6 +1,6 @@
 package net.tngroup.acrestnode.web.components;
 
-import net.tngroup.acrestnode.nodeclient.databases.h2.services.SettingService;
+import net.tngroup.acrestnode.databases.h2.services.SettingService;
 import net.tngroup.acrestnode.nodeclient.components.SettingComponent;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;

@@ -28,7 +28,7 @@ public class NodeClientHandler extends SimpleChannelInboundHandler<String> {
     }
 
     @Override
-    public void channelRead0(ChannelHandlerContext ctx, String msg) {
+    public void channelRead0(ChannelHandlerContext ctx, String msg) throws Exception {
         inputMessageComponent.readMessage(msg);
     }
 

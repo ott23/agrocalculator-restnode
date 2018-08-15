@@ -10,8 +10,6 @@ import net.tngroup.acrestnode.databases.cassandra.services.ClientService;
 import net.tngroup.acrestnode.databases.cassandra.services.TaskConditionService;
 import net.tngroup.acrestnode.databases.cassandra.services.TaskResultService;
 import net.tngroup.acrestnode.web.components.KafkaComponent;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.http.ResponseEntity;
@@ -30,9 +28,6 @@ import static net.tngroup.acrestnode.web.controllers.Responses.*;
 @RestController
 @RequestMapping("/task")
 public class TaskController {
-
-    // Loggers
-    private Logger logger = LogManager.getFormatterLogger("CommonLogger");
 
     private KafkaComponent kafkaComponent;
     private ClientService clientService;
@@ -54,14 +49,11 @@ public class TaskController {
     Метод отправки в Kafka
      */
     @RequestMapping(value = "/send", method = RequestMethod.POST)
-    public ResponseEntity send(@RequestBody String inputJson, HttpServletRequest request) throws IOException {
+    public ResponseEntity send(@RequestBody String jsonRequest, HttpServletRequest request) throws IOException {
         // Get client, error if null
         String name = SecurityContextHolder.getContext().getAuthentication().getName();
         Client client = clientService.getByName(name);
         if (client == null) return failedDependencyResponse();
-
-        // Logging
-        logger.info("Request to `/task/send` (push task) from " + request.getRemoteAddr() + " by `" + client.getName() + "`");
 
         // Connection with Kafka testing
         try {
@@ -72,7 +64,7 @@ public class TaskController {
 
         // Json parsing
         ObjectMapper mapper = new ObjectMapper();
-        ObjectNode json = (ObjectNode) mapper.readTree(inputJson);
+        ObjectNode json = (ObjectNode) mapper.readTree(jsonRequest);
         String topic = json.remove("topic").asText();
         String message = json.toString();
 
@@ -111,14 +103,11 @@ public class TaskController {
 
 
     @RequestMapping(value = "/poll", method = RequestMethod.POST)
-    public ResponseEntity pollTaskId(@RequestBody String inputJson, HttpServletRequest request) throws IOException {
+    public ResponseEntity poll(@RequestBody String jsonRequest, HttpServletRequest request) throws IOException {
         // Get client, error if null
         String name = SecurityContextHolder.getContext().getAuthentication().getName();
         Client client = clientService.getByName(name);
         if (client == null) return failedDependencyResponse();
-
-        // Logging
-        logger.info("Request to `/task/poll` (read task) from " + request.getRemoteAddr() + " by `" + client.getName() + "`");
 
         // Connection with Kafka testing
         try {
@@ -128,7 +117,7 @@ public class TaskController {
         }
 
         // Json parsing
-        ObjectNode json = (ObjectNode) new ObjectMapper().readTree(inputJson);
+        ObjectNode json = (ObjectNode) new ObjectMapper().readTree(jsonRequest);
         UUID task = UUID.fromString(json.remove("task").asText());
 
         TaskKey taskKey = new TaskKey(client.getId(), task);

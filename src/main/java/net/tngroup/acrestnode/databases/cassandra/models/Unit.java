@@ -11,10 +11,10 @@ public class Unit {
     @PrimaryKey
     private UUID id;
 
+    private UUID client;
+
     private String name;
 
     private String imei;
-
-    private UUID client;
 
 }

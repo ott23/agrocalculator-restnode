@@ -1,11 +1,9 @@
 package net.tngroup.acrestnode.nodeclient.components;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import net.tngroup.acrestnode.nodeclient.databases.h2.models.Setting;
-import net.tngroup.acrestnode.nodeclient.databases.h2.services.SettingService;
+import net.tngroup.acrestnode.databases.h2.models.Setting;
+import net.tngroup.acrestnode.databases.h2.services.SettingService;
 import net.tngroup.acrestnode.nodeclient.models.Message;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -23,8 +21,6 @@ import java.util.regex.Pattern;
 
 @Component
 public class InputMessageComponent {
-
-    private Logger logger = LogManager.getFormatterLogger("CommonLogger");
 
     private ChannelComponent channelComponent;
     private SettingService settingService;
@@ -53,39 +49,37 @@ public class InputMessageComponent {
     */
     private String messageCache = null;
 
-    public void readMessage(String msg) {
+    public Message readMessage(String msg) throws Exception {
 
-        try {
-            if (messageCache != null) {
-                msg = messageCache + msg;
-                messageCache = null;
-            }
-
-            Pattern p = Pattern.compile("-[0-9]+-");
-            Matcher m = p.matcher(msg);
-
-            while (m.find()) {
-                String result_msg;
-                String lengthString = msg.substring(m.start() + 1, m.end() - 1);
-                int length = Integer.parseInt(lengthString);
-                if (msg.length() == m.end() + length) {
-
-                    result_msg = msg.substring(m.end(), m.end() + length);
-
-                    Message message = base64Message(result_msg);
-                    if (message == null) {
-                        message = decMessage(result_msg);
-                        message.setEncoded(true);
-                    }
-
-                    messageHandler(message);
-                } else messageCache = msg.substring(m.start(), msg.length());
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            logger.error("Error during message reading: %s", e.getMessage());
+        if (messageCache != null) {
+            msg = messageCache + msg;
+            messageCache = null;
         }
+
+        Pattern p = Pattern.compile("-[0-9]+-");
+        Matcher m = p.matcher(msg);
+
+        Message message = null;
+
+        while (m.find()) {
+            String result_msg;
+            String lengthString = msg.substring(m.start() + 1, m.end() - 1);
+            int length = Integer.parseInt(lengthString);
+            if (msg.length() == m.end() + length) {
+
+                result_msg = msg.substring(m.end(), m.end() + length);
+
+                message = base64Message(result_msg);
+                if (message == null) {
+                    message = decMessage(result_msg);
+                    message.setEncoded(true);
+                }
+
+                messageHandler(message);
+            } else messageCache = msg.substring(m.start(), msg.length());
+        }
+
+        return message;
     }
 
     /*
@@ -119,38 +113,30 @@ public class InputMessageComponent {
     /*
     Message handler
      */
-    private void messageHandler(Message message) {
-        logger.info("Message from server: %s", message.getType());
-
+    private void messageHandler(Message message) throws Exception {
         // Key
         if (message.getType().equals("key") && !message.isEncoded()) {
             keyEvent(message);
-            return;
-        }
-        // Wrong message
-        if (message.getType().equals("wrong message") && !message.isEncoded()) {
-            wrongMessageEvent();
-            return;
         }
         // Command
-        if (message.getType().equals("command") && message.isEncoded()) {
+        else if (message.getType().equals("command") && message.isEncoded()) {
             commandEvent(message);
-            return;
         }
         // Settings
-        if (message.getType().equals("settings") && message.isEncoded()) {
+        else if (message.getType().equals("settings") && message.isEncoded()) {
             settingsEvent(message);
-            return;
         }
-
-        logger.info("Unknown type of message");
+        // Wrong message
+        else {
+            wrongMessageEvent();
+        }
     }
 
-    private void keyEvent(Message message) {
-        settingService.updateByName("node.service.key", message.getValue());
+    private void keyEvent(Message inputMessage) {
+        settingService.updateByName("node.service.key", inputMessage.getValue());
         settingComponent.checkKey();
         settingComponent.checkChannel();
-        outputMessageComponent.sendMessageConfirm(message);
+        outputMessageComponent.sendMessageConfirm(inputMessage);
     }
 
     private void wrongMessageEvent() {
@@ -159,19 +145,18 @@ public class InputMessageComponent {
         outputMessageComponent.sendMessageKeyRequest();
     }
 
-    private void commandEvent(Message message) {
-        taskComponent.getTaskList().add(message.getValue());
-        outputMessageComponent.sendMessageConfirm(message);
+    private void commandEvent(Message inputMessage) {
+        taskComponent.getTaskList().add(inputMessage.getValue());
+        outputMessageComponent.sendMessageConfirm(inputMessage);
     }
 
-    private void settingsEvent(Message message) {
+    private void settingsEvent(Message inputMessage) throws Exception {
         try {
-            List<Setting> settingList = Arrays.asList(new ObjectMapper().readValue(message.getValue(), Setting[].class));
+            List<Setting> settingList = Arrays.asList(new ObjectMapper().readValue(inputMessage.getValue(), Setting[].class));
             settingComponent.setSettings(settingList);
-            outputMessageComponent.sendMessageConfirm(message);
+            outputMessageComponent.sendMessageConfirm(inputMessage);
         } catch (IOException e) {
-            logger.error("Error during settings reading");
+            throw new Exception("Unexpected error: invalid settings message");
         }
     }
-
 }

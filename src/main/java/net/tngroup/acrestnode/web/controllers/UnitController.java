@@ -5,8 +5,6 @@ import net.tngroup.acrestnode.databases.cassandra.models.Client;
 import net.tngroup.acrestnode.databases.cassandra.models.Unit;
 import net.tngroup.acrestnode.databases.cassandra.services.ClientService;
 import net.tngroup.acrestnode.databases.cassandra.services.UnitService;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.http.ResponseEntity;
@@ -26,11 +24,8 @@ import static net.tngroup.acrestnode.web.controllers.Responses.*;
 @RequestMapping("/unit")
 public class UnitController {
 
-    // Loggers
-    private Logger logger = LogManager.getFormatterLogger("CommonLogger");
-
-    private UnitService unitService;
     private ClientService clientService;
+    private UnitService unitService;
 
     @Autowired
     public UnitController(@Lazy ClientService clientService,
@@ -46,9 +41,6 @@ public class UnitController {
         Client client = clientService.getByName(name);
         if (client == null) return failedDependencyResponse();
 
-        // Logging
-        logger.info("Request to `/unit` (get list) from " + request.getRemoteAddr() + " by `" + client.getName() + "`");
-
         List<Unit> unitList = unitService.getAllByClient(client.getId());
         return okResponse(unitList);
     }
@@ -59,9 +51,6 @@ public class UnitController {
         String name = SecurityContextHolder.getContext().getAuthentication().getName();
         Client client = clientService.getByName(name);
         if (client == null) return failedDependencyResponse();
-
-        // Logging
-        logger.info("Request to `/unit/save` (add or update) from " + request.getRemoteAddr() + " by `" + client.getName() + "`");
 
         try {
             Unit unit = new ObjectMapper().readValue(jsonRequest, Unit.class);
@@ -81,7 +70,7 @@ public class UnitController {
 
             unit = unitService.save(unit);
 
-            return okResponse(formUnit(unit));
+            return okResponse(new ObjectMapper().writeValueAsString(unit));
         } catch (Exception e) {
             return badResponse(e);
         }
@@ -90,15 +79,10 @@ public class UnitController {
     @RequestMapping("/get/{id}")
     public ResponseEntity getById(@PathVariable UUID id, HttpServletRequest request) {
 
-        System.out.println(id.toString());
-
         // Get client, error if null
         String name = SecurityContextHolder.getContext().getAuthentication().getName();
         Client client = clientService.getByName(name);
         if (client == null) return failedDependencyResponse();
-
-        // Logging
-        logger.info("Request to `/unit/get/{id}` (getn) from " + request.getRemoteAddr() + " by `" + client.getName() + "`");
 
         try {
             Unit unit = unitService.getById(id);
@@ -107,7 +91,7 @@ public class UnitController {
 
             if (!unit.getClient().equals(client.getId())) return failedDependencyResponse();
 
-            return okResponse(formUnit(unit));
+            return okResponse(new ObjectMapper().writeValueAsString(unit));
         } catch (Exception e) {
             return badResponse(e);
         }
@@ -119,9 +103,6 @@ public class UnitController {
         String name = SecurityContextHolder.getContext().getAuthentication().getName();
         Client client = clientService.getByName(name);
         if (client == null) return failedDependencyResponse();
-
-        // Logging
-        logger.info("Request to `/unit/delete/{id}` (delete) from " + request.getRemoteAddr() + " by `" + client.getName() + "`");
 
         try {
             Unit unit = unitService.getById(id);
@@ -136,10 +117,6 @@ public class UnitController {
             e.printStackTrace();
             return badResponse(e);
         }
-    }
-
-    private String formUnit(Unit unit) throws Exception {
-        return new ObjectMapper().writeValueAsString(unit);
     }
 
 }

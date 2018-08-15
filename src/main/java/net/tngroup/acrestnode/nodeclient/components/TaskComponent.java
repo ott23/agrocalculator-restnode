@@ -1,7 +1,7 @@
 package net.tngroup.acrestnode.nodeclient.components;
 
 import lombok.Getter;
-import net.tngroup.acrestnode.Processor;
+import net.tngroup.acrestnode.node.Processor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

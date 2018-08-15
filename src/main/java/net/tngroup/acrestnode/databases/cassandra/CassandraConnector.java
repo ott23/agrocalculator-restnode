@@ -2,7 +2,7 @@ package net.tngroup.acrestnode.databases.cassandra;
 
 import com.datastax.driver.core.Cluster;
 import com.datastax.driver.core.Session;
-import net.tngroup.acrestnode.nodeclient.databases.h2.services.SettingService;
+import net.tngroup.acrestnode.databases.h2.services.SettingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.data.cassandra.core.CassandraTemplate;
