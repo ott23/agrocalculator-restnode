@@ -33,7 +33,7 @@ public class OutputMessageComponent {
 
     }
 
-    void sendMessageStatus(boolean status) {
+    public void sendMessageStatus(boolean status) {
         Message outputMessage = new Message(channelComponent.getCode(), "status", nodeType, status ? 1 : 0);
         try {
             sendMessage(outputMessage);

@@ -49,7 +49,7 @@ public class TaskController {
     Метод отправки в Kafka
      */
     @RequestMapping(value = "/send", method = RequestMethod.POST)
-    public ResponseEntity send(@RequestBody String jsonRequest, HttpServletRequest request) throws IOException {
+    public ResponseEntity send(HttpServletRequest request, @RequestBody String jsonRequest) throws IOException {
         // Get client, error if null
         String name = SecurityContextHolder.getContext().getAuthentication().getName();
         Client client = clientService.getByName(name);
@@ -103,7 +103,7 @@ public class TaskController {
 
 
     @RequestMapping(value = "/poll", method = RequestMethod.POST)
-    public ResponseEntity poll(@RequestBody String jsonRequest, HttpServletRequest request) throws IOException {
+    public ResponseEntity poll(HttpServletRequest request, @RequestBody String jsonRequest) throws IOException {
         // Get client, error if null
         String name = SecurityContextHolder.getContext().getAuthentication().getName();
         Client client = clientService.getByName(name);

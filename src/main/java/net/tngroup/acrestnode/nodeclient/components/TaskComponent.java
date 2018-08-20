@@ -37,7 +37,11 @@ public class TaskComponent extends Thread {
         List<String> bufferTaskList = new ArrayList<>(taskList);
         bufferTaskList.forEach((t) -> {
             taskList.remove(t);
-            processor.doCommand(t);
+            try {
+                processor.doCommand(t);
+            }catch (Exception e) {
+                // handled in aspect
+            }
         });
     }
 }

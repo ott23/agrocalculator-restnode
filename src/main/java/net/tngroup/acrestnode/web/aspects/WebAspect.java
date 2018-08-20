@@ -25,7 +25,7 @@ public class WebAspect {
 
     @Before(value = "webPointcut()")
     public void webMethod(JoinPoint joinPoint) {
-        String className = joinPoint.getThis().getClass().getName();
+        String className = joinPoint.getSignature().getDeclaringType().getSimpleName();
         String methodName = joinPoint.getSignature().getName();
         String address = "unknown address";
         List<String> params = new ArrayList<>();
@@ -41,8 +41,9 @@ public class WebAspect {
         }
 
         StringBuilder sb = new StringBuilder()
+                .append("`")
                 .append(className)
-                .append(" :request to `")
+                .append("`: request to `")
                 .append(methodName)
                 .append("` from `")
                 .append(address)
@@ -58,7 +59,7 @@ public class WebAspect {
 
     @AfterThrowing(value = "webPointcut()", throwing = "e")
     public void webThrowing(JoinPoint joinPoint, Throwable e) {
-        String className = joinPoint.getThis().getClass().getName();
+        String className = joinPoint.getSignature().getDeclaringType().getSimpleName();
         String methodName = joinPoint.getSignature().getName();
 
         StringBuilder sb = new StringBuilder()

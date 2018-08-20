@@ -46,14 +46,22 @@ public class GeozoneController {
     }
 
     @RequestMapping("/save")
-    public ResponseEntity save(@RequestBody String jsonRequest, HttpServletRequest request) {
+    public ResponseEntity save(HttpServletRequest request, @RequestBody String jsonRequest) {
+        ObjectMapper objectMapper = new ObjectMapper();
+
         // Get client, error if null
         String name = SecurityContextHolder.getContext().getAuthentication().getName();
         Client client = clientService.getByName(name);
         if (client == null) return failedDependencyResponse();
 
         try {
-            Geozone geozone = new ObjectMapper().readValue(jsonRequest, Geozone.class);
+            Geozone geozone = objectMapper.readValue(jsonRequest, Geozone.class);
+
+            try {
+                objectMapper.readTree(geozone.getGeometry());
+            } catch (Exception e) {
+                throw new Exception("Json not valid");
+            }
 
             if (geozone.getId() != null) {
                 Geozone dbGeozone = geozoneService.getById(geozone.getId());
@@ -74,7 +82,7 @@ public class GeozoneController {
     }
 
     @RequestMapping("/get/{id}")
-    public ResponseEntity getById(@PathVariable UUID id, HttpServletRequest request) {
+    public ResponseEntity getById(HttpServletRequest request, @PathVariable UUID id) {
 
         // Get client, error if null
         String name = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -96,7 +104,7 @@ public class GeozoneController {
     }
 
     @RequestMapping("/delete/{id}")
-    public ResponseEntity deleteById(@PathVariable UUID id, HttpServletRequest request) {
+    public ResponseEntity deleteById(HttpServletRequest request, @PathVariable UUID id) {
         // Get client, error if null
         String name = SecurityContextHolder.getContext().getAuthentication().getName();
         Client client = clientService.getByName(name);

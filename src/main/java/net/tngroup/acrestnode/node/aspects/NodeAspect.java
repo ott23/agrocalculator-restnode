@@ -3,10 +3,7 @@ package net.tngroup.acrestnode.node.aspects;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.After;
-import org.aspectj.lang.annotation.AfterReturning;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
 
 @Aspect
@@ -28,11 +25,16 @@ public class NodeAspect {
         logger.info("Application initialized");
     }
 
-    @AfterReturning(value = "commandPointcut()", returning = "result")
-    public void commandMethod(JoinPoint joinPoint, boolean result) {
+    @AfterReturning(value = "commandPointcut()")
+    public void commandMethod(JoinPoint joinPoint) {
         String command = (String) joinPoint.getArgs()[0];
-        if (result) logger.info("Command `" + command + "` successfully performed");
-        else logger.warn("Command `" + command + "` was not performed");
+        logger.info("Command `" + command + "` successfully performed");
+    }
+
+    @AfterThrowing(value = "commandPointcut()", throwing = "ex")
+    public void commandMethod(JoinPoint joinPoint, Throwable ex) {
+        String command = (String) joinPoint.getArgs()[0];
+        logger.warn("Command `" + command + "` was not performed: " + ex.getMessage());
     }
 
 }

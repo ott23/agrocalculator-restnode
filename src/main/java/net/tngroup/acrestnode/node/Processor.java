@@ -1,19 +1,17 @@
 package net.tngroup.acrestnode.node;
 
 import net.tngroup.acrestnode.databases.cassandra.CassandraConnector;
-import net.tngroup.acrestnode.nodeclient.components.ChannelComponent;
-import net.tngroup.acrestnode.nodeclient.components.SettingComponent;
 import net.tngroup.acrestnode.databases.h2.services.SettingService;
+import net.tngroup.acrestnode.nodeclient.components.ChannelComponent;
+import net.tngroup.acrestnode.nodeclient.components.OutputMessageComponent;
+import net.tngroup.acrestnode.nodeclient.components.SettingComponent;
 import net.tngroup.acrestnode.web.components.KafkaComponent;
 import net.tngroup.acrestnode.web.components.TaskResultComponent;
-import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class Processor {
-
-    private org.apache.logging.log4j.Logger logger = LogManager.getFormatterLogger("CommonLogger");
 
     private ChannelComponent channelComponent;
     private SettingComponent settingComponent;
@@ -21,6 +19,7 @@ public class Processor {
     private CassandraConnector cassandraConnector;
     private KafkaComponent kafkaComponent;
     private TaskResultComponent taskResultComponent;
+    private OutputMessageComponent outputMessageComponent;
 
     @Autowired
     public Processor(ChannelComponent channelComponent,
@@ -28,40 +27,40 @@ public class Processor {
                      SettingService settingService,
                      CassandraConnector cassandraConnector,
                      KafkaComponent kafkaComponent,
-                     TaskResultComponent taskResultComponent) {
+                     TaskResultComponent taskResultComponent,
+                     OutputMessageComponent outputMessageComponent) {
         this.channelComponent = channelComponent;
         this.settingComponent = settingComponent;
         this.settingService = settingService;
         this.cassandraConnector = cassandraConnector;
         this.kafkaComponent = kafkaComponent;
         this.taskResultComponent = taskResultComponent;
+        this.outputMessageComponent = outputMessageComponent;
     }
 
-    public boolean doCommand(String command) {
-        boolean result = false;
+    public void doCommand(String command) throws Exception {
         switch (command) {
             case "start":
-                result = start();
+                start();
                 break;
             case "stop":
-                result = stop();
+                stop();
                 break;
             case "restart":
-                result = restart();
+                restart();
                 break;
             case "destroy":
-                result = destroy();
+                destroy();
                 break;
             case "shutdown":
-                result = close();
+                close();
                 break;
             default:
                 break;
         }
-        return result;
     }
 
-    private boolean start() {
+    private void start() throws Exception {
         try {
             if (channelComponent.isChannelReady()
                     && !settingComponent.updateSettings()) {
@@ -77,38 +76,35 @@ public class Processor {
             taskResultComponent.start();
 
             changeStatus("true");
-            return true;
+            if (channelComponent.isChannelReady()) outputMessageComponent.sendMessageStatus(true);
         } catch (Exception e) {
             changeStatus("false");
-            return false;
+            if (channelComponent.isChannelReady()) outputMessageComponent.sendMessageStatus(false);
+            throw e;
         }
     }
 
-    private boolean stop() {
+    private void stop() {
         cassandraConnector.close();
         taskResultComponent.stop();
 
         changeStatus("false");
-        return true;
-
+        if (channelComponent.isChannelReady()) outputMessageComponent.sendMessageStatus(false);
     }
 
-    private boolean restart() {
+    private void restart() throws Exception {
         stop();
         start();
-        return true;
     }
 
-    private boolean destroy() {
+    private void destroy() {
         stop();
         settingService.deleteAll();
         close();
-        return true;
     }
 
-    private boolean close() {
+    private void close() {
         System.exit(0);
-        return true;
     }
 
     private void changeStatus(String status) {

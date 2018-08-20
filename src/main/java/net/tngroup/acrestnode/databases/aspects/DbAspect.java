@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class DbAspect {
 
-    private final Logger logger = LogManager.getFormatterLogger("CommonLogger");
+    private final Logger logger = LogManager.getFormatterLogger("DbLogger");
 
     @Pointcut("execution(public * net.tngroup.acrestnode.databases.cassandra.services.*.*(..))")
     public void cassandraPointcut() {
@@ -33,12 +33,15 @@ public class DbAspect {
     }
 
     private void dbMethod(String db, JoinPoint joinPoint) {
+        String className = joinPoint.getSignature().getDeclaringType().getSimpleName();
         String methodName = joinPoint.getSignature().getName();
         Object[] args = joinPoint.getArgs();
 
         StringBuilder sb = new StringBuilder()
                 .append(db)
                 .append(" database: request `")
+                .append(className)
+                .append("` - `")
                 .append(methodName)
                 .append("`");
 

@@ -7,55 +7,40 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ef620892-b034-40a8-bab4-f2d7f538dee1" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_jayway_jsonpath_json_path_2_4_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_vaadin_external_google_android_json_0_0_20131108_vaadin1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_12.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__net_bytebuddy_byte_buddy_1_7_11.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__net_bytebuddy_byte_buddy_agent_1_7_11.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__net_minidev_accessors_smart_1_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__net_minidev_json_smart_2_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_assertj_assertj_core_3_9_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_library_1_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_mockito_mockito_core_2_15_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_objenesis_objenesis_2_6.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_skyscreamer_jsonassert_1_5_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_test_2_0_3_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_test_2_0_3_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_test_autoconfigure_2_0_3_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_test_5_0_7_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_xmlunit_xmlunit_core_2_5_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/agrocalculator-restnode.iml" beforeDir="false" afterPath="$PROJECT_DIR$/agrocalculator-restnode.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/AutoExecutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/node/AutoExecutor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/Processor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/node/Processor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/databases/cassandra/CassandraConnector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/databases/cassandra/CassandraConnector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/databases/cassandra/models/Unit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/databases/cassandra/models/Unit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/databases/cassandra/repositories/RepositoryConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/databases/cassandra/repositories/RepositoryConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.mv.db" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/databases/aspects/DbAspect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/databases/aspects/DbAspect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/databases/cassandra/services/UnitService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/databases/cassandra/services/UnitService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/databases/cassandra/services/UnitServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/databases/cassandra/services/UnitServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/node/AutoExecutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/node/AutoExecutor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/node/Processor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/node/Processor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/node/aspects/NodeAspect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/node/aspects/NodeAspect.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/nodeclient/NodeClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/nodeclient/NodeClientHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/nodeclient/components/ChannelComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/nodeclient/components/ChannelComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/nodeclient/components/InputMessageComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/nodeclient/components/InputMessageComponent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/nodeclient/components/OutputMessageComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/nodeclient/components/OutputMessageComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/nodeclient/components/SettingComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/nodeclient/components/SettingComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/nodeclient/components/StatusComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/nodeclient/components/StatusComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/nodeclient/components/StatusSenderComponent.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/nodeclient/components/TaskComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/nodeclient/components/TaskComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/nodeclient/databases/h2/H2Config.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/nodeclient/databases/h2/models/Setting.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/nodeclient/databases/h2/repositories/SettingRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/nodeclient/databases/h2/services/SettingService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/nodeclient/databases/h2/services/SettingServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/components/KafkaComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/components/KafkaComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/security/PasswordEncoderImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/security/SecurityConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/security/TokenData.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/security/filters/AuthenticationEntryPointFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/security/filters/JwtAuthenticationFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/security/filters/JwtLoginFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/security/filters/UnavailableFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/security/models/Credentials.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/security/services/TokenAuthenticationService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/security/services/UserDetailsServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/aspects/WebAspect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/aspects/WebAspect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/components/TaskResultComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/components/TaskResultComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/controllers/GeozoneController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/controllers/GeozoneController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/controllers/TaskController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/controllers/TaskController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/controllers/UnitController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/controllers/UnitController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/agrocalculator-restnode-1.0.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/agrocalculator-restnode-1.0.0-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/agrocalculator-restnode-1.0.0-SNAPSHOT.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/target/agrocalculator-restnode-1.0.0-SNAPSHOT.jar.original" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/agrocalculator-restnode-1.0.0-SNAPSHOT.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/agrocalculator-restnode-1.0.0-SNAPSHOT.jar.original" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/AgroCalculatorRestNode.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/AgroCalculatorRestNode.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/AutoExecutor.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/Processor.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/databases/aspects/DbAspect.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/databases/aspects/DbAspect.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/databases/cassandra/CassandraConnector.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/databases/cassandra/CassandraConnector.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/databases/cassandra/models/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/databases/cassandra/models/Client.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/databases/cassandra/models/Geozone.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/databases/cassandra/models/Geozone.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/databases/cassandra/models/Message.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/databases/cassandra/models/Message.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/databases/cassandra/models/MessageKey.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/databases/cassandra/models/MessageKey.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/databases/cassandra/models/TaskCondition.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/databases/cassandra/models/TaskCondition.class" afterDir="false" />
@@ -63,6 +48,7 @@
       <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/databases/cassandra/models/TaskResult.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/databases/cassandra/models/TaskResult.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/databases/cassandra/models/Unit.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/databases/cassandra/models/Unit.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/databases/cassandra/repositories/ClientRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/databases/cassandra/repositories/ClientRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/databases/cassandra/repositories/GeozoneRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/databases/cassandra/repositories/GeozoneRepository.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/databases/cassandra/repositories/MessageRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/databases/cassandra/repositories/MessageRepository.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/databases/cassandra/repositories/RepositoryConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/databases/cassandra/repositories/RepositoryConfig.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/databases/cassandra/repositories/TaskConditionRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/databases/cassandra/repositories/TaskConditionRepository.class" afterDir="false" />
@@ -70,45 +56,56 @@
       <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/databases/cassandra/repositories/UnitRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/databases/cassandra/repositories/UnitRepository.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/databases/cassandra/services/ClientService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/databases/cassandra/services/ClientService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/databases/cassandra/services/ClientServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/databases/cassandra/services/ClientServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/databases/cassandra/services/GeozoneService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/databases/cassandra/services/GeozoneService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/databases/cassandra/services/GeozoneServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/databases/cassandra/services/GeozoneServiceImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/databases/cassandra/services/TaskConditionService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/databases/cassandra/services/TaskConditionService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/databases/cassandra/services/TaskConditionServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/databases/cassandra/services/TaskConditionServiceImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/databases/cassandra/services/TaskResultService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/databases/cassandra/services/TaskResultService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/databases/cassandra/services/TaskResultServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/databases/cassandra/services/TaskResultServiceImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/databases/cassandra/services/UnitService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/databases/cassandra/services/UnitService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/databases/cassandra/services/UnitServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/databases/cassandra/services/UnitServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/databases/h2/models/Setting.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/databases/h2/models/Setting.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/databases/h2/repositories/SettingRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/databases/h2/repositories/SettingRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/databases/h2/services/SettingService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/databases/h2/services/SettingService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/databases/h2/services/SettingServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/databases/h2/services/SettingServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/node/AutoExecutor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/node/AutoExecutor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/node/Processor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/node/Processor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/node/aspects/NodeAspect.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/node/aspects/NodeAspect.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/nodeclient/NodeClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/nodeclient/NodeClient.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/nodeclient/NodeClientConnectionListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/nodeclient/NodeClientConnectionListener.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/nodeclient/NodeClientHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/nodeclient/NodeClientHandler.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/nodeclient/NodeClientSocketInitializer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/nodeclient/NodeClientSocketInitializer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/nodeclient/aspects/MessageAspect.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/nodeclient/aspects/MessageAspect.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/nodeclient/aspects/StatusAspect.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/nodeclient/aspects/StatusAspect.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/nodeclient/components/ChannelComponent.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/nodeclient/components/ChannelComponent.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/nodeclient/components/CipherComponent.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/nodeclient/components/CipherComponent.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/nodeclient/components/InputMessageComponent.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/nodeclient/components/InputMessageComponent.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/nodeclient/components/OutputMessageComponent.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/nodeclient/components/OutputMessageComponent.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/nodeclient/components/SettingComponent.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/nodeclient/components/SettingComponent.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/nodeclient/components/StatusComponent.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/nodeclient/components/StatusComponent.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/nodeclient/components/StatusSenderComponent.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/nodeclient/components/StatusSenderComponent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/nodeclient/components/StatusSenderComponent.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/nodeclient/components/TaskComponent.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/nodeclient/components/TaskComponent.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/nodeclient/databases/h2/H2Config.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/nodeclient/databases/h2/models/Setting.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/nodeclient/databases/h2/repositories/SettingRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/nodeclient/databases/h2/services/SettingService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/nodeclient/databases/h2/services/SettingServiceImpl.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/nodeclient/models/Message.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/nodeclient/models/Message.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/security/PasswordEncoderImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/security/PasswordEncoderImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/security/SecurityConfiguration.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/security/SecurityConfiguration.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/security/filters/AuthenticationEntryPointFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/security/filters/AuthenticationEntryPointFilter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/security/filters/JwtAuthenticationFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/security/filters/JwtAuthenticationFilter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/security/filters/JwtLoginFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/security/filters/JwtLoginFilter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/security/filters/UnavailableFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/security/filters/UnavailableFilter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/security/models/Credentials.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/security/models/Credentials.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/security/services/TokenAuthenticationService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/security/services/TokenAuthenticationService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/security/services/UserDetailsServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/security/services/UserDetailsServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/security/PasswordEncoderImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/security/SecurityConfiguration.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/security/TokenData.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/security/filters/AuthenticationEntryPointFilter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/security/filters/JwtAuthenticationFilter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/security/filters/JwtLoginFilter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/security/filters/UnavailableFilter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/security/models/Credentials.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/security/services/TokenAuthenticationService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/security/services/UserDetailsServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/web/aspects/WebAspect.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/web/aspects/WebAspect.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/web/components/KafkaComponent.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/web/components/KafkaComponent.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/web/components/TaskResultComponent.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/web/components/TaskResultComponent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/web/controllers/GeozoneController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/web/controllers/GeozoneController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/web/controllers/Responses.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/web/controllers/Responses.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/web/controllers/TaskController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/web/controllers/UnitController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/web/controllers/TaskController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/web/controllers/TaskController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/web/controllers/UnitController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/net/tngroup/acrestnode/web/controllers/UnitController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -123,86 +120,38 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="NodeAspect.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/node/aspects/NodeAspect.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="21" column="52" selection-start-line="21" selection-start-column="52" selection-end-line="21" selection-end-column="52" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AutoExecutor.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/node/AutoExecutor.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="774">
-              <caret line="53" column="1" selection-start-line="53" selection-start-column="1" selection-end-line="53" selection-end-column="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Processor.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/node/Processor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="95" column="17" lean-forward="true" selection-start-line="95" selection-start-column="17" selection-end-line="95" selection-end-column="17" />
+            <state relative-caret-position="1548">
+              <caret line="94" selection-start-line="94" selection-end-line="103" selection-end-column="5" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Responses.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/controllers/Responses.java">
+      <file leaf-file-name="TaskComponent.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/nodeclient/components/TaskComponent.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-242">
-              <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
+            <state relative-caret-position="334">
+              <caret line="35" column="32" selection-start-line="35" selection-start-column="32" selection-end-line="35" selection-end-column="32" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UnitController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/controllers/UnitController.java">
+      <file leaf-file-name="JwtLoginFilter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/security/filters/JwtLoginFilter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="424">
-              <caret line="119" column="5" lean-forward="true" selection-start-line="36" selection-start-column="4" selection-end-line="119" selection-end-column="5" />
+            <state relative-caret-position="288">
+              <caret line="30" selection-start-line="30" selection-end-line="30" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WebAspect.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/aspects/WebAspect.java">
+      <file leaf-file-name="RepositoryConfig.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/databases/cassandra/repositories/RepositoryConfig.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="64" column="9" selection-start-line="64" selection-start-column="9" selection-end-line="64" selection-end-column="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GeozoneController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/controllers/GeozoneController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1450">
-              <caret line="94" column="9" selection-start-line="94" selection-start-column="9" selection-end-line="94" selection-end-column="9" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DbAspect.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/databases/aspects/DbAspect.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="519">
-              <caret line="40" column="43" lean-forward="true" selection-start-line="40" selection-start-column="43" selection-end-line="40" selection-end-column="43" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NodeClientHandler.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/nodeclient/NodeClientHandler.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="30" column="84" selection-start-line="30" selection-start-column="84" selection-end-line="30" selection-end-column="84" />
+            <state relative-caret-position="159">
+              <caret line="25" column="62" selection-start-line="25" selection-start-column="62" selection-end-line="25" selection-end-column="62" />
             </state>
           </provider>
         </entry>
@@ -210,8 +159,53 @@
       <file leaf-file-name="TaskController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/controllers/TaskController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
+            <state relative-caret-position="1115">
+              <caret line="105" column="90" selection-start-line="105" selection-start-column="90" selection-end-line="105" selection-end-column="90" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TaskResultComponent.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/components/TaskResultComponent.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="339">
+              <caret line="37" column="17" lean-forward="true" selection-start-line="37" selection-start-column="17" selection-end-line="37" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SecurityConfiguration.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/security/SecurityConfiguration.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="108">
+              <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TokenData.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/security/TokenData.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="36">
+              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Credentials.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/security/models/Credentials.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AutoExecutor.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/node/AutoExecutor.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="594">
+              <caret line="42" selection-start-line="42" selection-end-line="52" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -246,12 +240,7 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
-        <option value="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/security/SecurityConfiguration.java" />
-        <option value="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/security/components/RestAuthenticationEntryPoint.java" />
-        <option value="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/databases/cassandra/services/UnitService.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/databases/cassandra/services/ClientServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/databases/cassandra/services/UnitServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/databases/cassandra/services/TaskResultServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/databases/cassandra/services/TaskConditionService.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/databases/cassandra/services/TaskConditionServiceImpl.java" />
@@ -281,22 +270,27 @@
         <option value="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/nodeclient/aspects/MessageAspect.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/nodeclient/components/ChannelComponent.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/nodeclient/components/CipherComponent.java" />
-        <option value="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/nodeclient/components/InputMessageComponent.java" />
-        <option value="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/nodeclient/components/OutputMessageComponent.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/nodeclient/components/SettingComponent.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/nodeclient/components/StatusComponent.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/nodeclient/components/StatusSenderComponent.java" />
-        <option value="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/nodeclient/components/TaskComponent.java" />
-        <option value="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/node/aspects/NodeAspect.java" />
-        <option value="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/node/AutoExecutor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/node/Processor.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/aspects/DbAspect.java" />
-        <option value="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/aspects/WebAspect.java" />
-        <option value="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/nodeclient/NodeClientHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/controllers/TaskController.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/controllers/UnitController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/controllers/GeozoneController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/aspects/SecurityAspect.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/nodeclient/NodeClientHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/nodeclient/components/InputMessageComponent.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/databases/aspects/DbAspect.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/databases/cassandra/services/UnitService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/databases/cassandra/services/UnitServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/aspects/WebAspect.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/controllers/GeozoneController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/nodeclient/components/OutputMessageComponent.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/node/aspects/NodeAspect.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/AgroCalculatorRestNode.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/node/AutoExecutor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/node/Processor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/nodeclient/components/TaskComponent.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/components/TaskResultComponent.java" />
       </list>
     </option>
   </component>
@@ -350,8 +344,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -385,10 +377,41 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="acrestnode" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="agrocalculator-restnode" type="b2602c69:ProjectViewProjectNode" />
+              <item name="agrocalculator-restnode" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="acrestnode" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="agrocalculator-restnode" type="b2602c69:ProjectViewProjectNode" />
+              <item name="agrocalculator-restnode" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="acrestnode" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="agrocalculator-restnode" type="b2602c69:ProjectViewProjectNode" />
+              <item name="agrocalculator-restnode" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="acrestnode" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+              <item name="controllers" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="AndroidView" />
     </panes>
   </component>
@@ -399,7 +422,7 @@
     <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../agrocalculator-server" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Problems" />
@@ -408,12 +431,11 @@
     <property name="restartRequiresConfirmation" value="false" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/nodeclient" />
-      <recent name="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/databases/cassandra" />
-      <recent name="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode" />
+    <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/resources" />
-      <recent name="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/databases/cassandra/models" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/src" />
+      <recent name="$PROJECT_DIR$/src/main" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="net.tngroup.acrestnode.web.aspects" />
@@ -422,11 +444,12 @@
       <recent name="net.tngroup.acrestnode.databases.cassandra.services" />
       <recent name="net.tngroup.acrestnode.databases.cassandra.repositories" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/nodeclient" />
+      <recent name="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/databases/cassandra" />
+      <recent name="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode" />
       <recent name="$PROJECT_DIR$/src/main/resources" />
-      <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/src" />
-      <recent name="$PROJECT_DIR$/src/main" />
+      <recent name="$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/databases/cassandra/models" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -573,11 +596,14 @@
       <workItem from="1533629374442" duration="13391000" />
       <workItem from="1534315842362" duration="141000" />
       <workItem from="1534316002090" duration="13002000" />
+      <workItem from="1534407664000" duration="9142000" />
+      <workItem from="1534498611121" duration="9082000" />
+      <workItem from="1534750846055" duration="1561000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="289258000" />
+    <option name="totallyTimeSpent" value="309043000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -590,6 +616,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1280" y="-2" width="1920" height="1082" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3195767" />
@@ -599,19 +626,19 @@
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="right" id="Maven Projects" order="3" weight="0.34471717" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32771337" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32984293" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32771337" />
       <window_info anchor="bottom" id="Spring" order="7" />
       <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.32139093" />
       <window_info id="Designer" order="3" />
-      <window_info content_ui="combo" id="Project" order="2" sideWeight="0.4984326" visible="true" weight="0.21024546" />
+      <window_info content_ui="combo" id="Project" order="2" sideWeight="0.4984326" visible="true" weight="0.2145144" />
       <window_info anchor="right" id="Bean Validation" order="4" weight="0.32977587" />
       <window_info id="Web" order="1" side_tool="true" weight="0.32977587" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info id="Structure" order="0" sideWeight="0.5015674" side_tool="true" weight="0.21024546" />
       <window_info id="UI Designer" order="4" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39936775" />
       <window_info id="Favorites" order="5" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39936775" />
       <window_info id="Capture Tool" order="6" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -638,23 +665,14 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/databases/cassandra/services/TaskConditionService.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/databases/cassandra/repositories/MessageRepository.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/databases/cassandra/repositories/ClientRepository.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/databases/cassandra/repositories/TaskResultRepository.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/databases/cassandra/repositories/TaskConditionRepository.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/databases/cassandra/repositories/UnitRepository.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/databases/cassandra/services/TaskConditionServiceImpl.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/databases/cassandra/models/TaskCondition.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/security/models/Credentials.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/security/services/UserDetailsServiceImpl.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/security/PasswordEncoderImpl.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/security/TokenData.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/security/filters/UnavailableFilter.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/security/filters/JwtLoginFilter.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/security/filters/JwtAuthenticationFilter.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/security/services/TokenAuthenticationService.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/security/filters/AuthenticationEntryPointFilter.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/security/services/UserDetailsServiceImpl.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/security/PasswordEncoderImpl.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/security/filters/UnavailableFilter.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/security/filters/JwtAuthenticationFilter.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/security/services/TokenAuthenticationService.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/security/filters/AuthenticationEntryPointFilter.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/databases/cassandra/models/Client.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -687,26 +705,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="681">
           <caret line="38" column="45" selection-start-line="38" selection-start-column="45" selection-end-line="38" selection-end-column="45" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#628#629#0" expanded="true" />
-            <element signature="e#686#687#0" expanded="true" />
-            <element signature="e#752#753#0" expanded="true" />
-            <element signature="e#812#813#0" expanded="true" />
-            <element signature="e#880#881#0" expanded="true" />
-            <element signature="e#940#941#0" expanded="true" />
-            <element signature="e#993#994#0" expanded="true" />
-            <element signature="e#1059#1060#0" expanded="true" />
-            <element signature="e#1117#1118#0" expanded="true" />
-            <element signature="e#1171#1172#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/security/SecurityConfiguration.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-201">
-          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -714,13 +712,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="72">
           <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/databases/cassandra/repositories/RepositoryConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="843">
-          <caret line="57" column="44" selection-start-line="57" selection-start-column="44" selection-end-line="57" selection-end-column="44" />
         </state>
       </provider>
     </entry>
@@ -735,9 +726,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="17" column="27" selection-start-line="17" selection-start-column="27" selection-end-line="17" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -776,31 +764,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/nodeclient/aspects/MessageAspect.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" column="25" selection-start-line="2" selection-start-column="25" selection-end-line="2" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/nodeclient/components/CipherComponent.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="450">
           <caret line="32" column="1" selection-start-line="32" selection-start-column="1" selection-end-line="32" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/nodeclient/components/InputMessageComponent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2592">
-          <caret line="161" column="1" selection-start-line="161" selection-start-column="1" selection-end-line="161" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/nodeclient/components/OutputMessageComponent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="861">
-          <caret line="83" column="1" selection-start-line="83" selection-start-column="1" selection-end-line="83" selection-end-column="1" />
         </state>
       </provider>
     </entry>
@@ -818,97 +785,195 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/nodeclient/components/StatusSenderComponent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="31" selection-start-line="31" selection-end-line="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/nodeclient/components/TaskComponent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="42" column="1" selection-start-line="42" selection-start-column="1" selection-end-line="42" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/nodeclient/NodeClient.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
+        <state relative-caret-position="-216">
           <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/node/aspects/NodeAspect.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="21" column="52" selection-start-line="21" selection-start-column="52" selection-end-line="21" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/node/AutoExecutor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="774">
-          <caret line="53" column="1" selection-start-line="53" selection-start-column="1" selection-end-line="53" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/node/Processor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="95" column="17" lean-forward="true" selection-start-line="95" selection-start-column="17" selection-end-line="95" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/nodeclient/NodeClientHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="30" column="84" selection-start-line="30" selection-start-column="84" selection-end-line="30" selection-end-column="84" />
+        <state relative-caret-position="450">
+          <caret line="34" column="13" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/nodeclient/components/InputMessageComponent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1062">
+          <caret line="76" selection-start-line="76" selection-end-line="76" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/controllers/Responses.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-242">
-          <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
+        <state relative-caret-position="504">
+          <caret line="33" column="4" selection-start-line="33" selection-start-column="4" selection-end-line="37" selection-end-column="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/aspects/WebAspect.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/databases/cassandra/services/UnitService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="64" column="9" selection-start-line="64" selection-start-column="9" selection-end-line="64" selection-end-column="9" />
+        <state relative-caret-position="144">
+          <caret line="11" column="4" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="41" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/controllers/TaskController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/databases/cassandra/services/UnitServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
+        <state relative-caret-position="306">
+          <caret line="29" selection-start-line="25" selection-end-line="29" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/controllers/UnitController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="424">
-          <caret line="119" column="5" lean-forward="true" selection-start-line="36" selection-start-column="4" selection-end-line="119" selection-end-column="5" />
+        <state relative-caret-position="828">
+          <caret line="64" column="12" selection-start-line="64" selection-start-column="12" selection-end-line="65" selection-end-column="142" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/controllers/GeozoneController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/aspects/SecurityAspect.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1450">
-          <caret line="94" column="9" selection-start-line="94" selection-start-column="9" selection-end-line="94" selection-end-column="9" />
+        <state relative-caret-position="324">
+          <caret line="29" column="49" selection-start-line="29" selection-start-column="49" selection-end-line="29" selection-end-column="49" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/aspects/WebAspect.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="413">
+          <caret line="43" column="16" selection-start-line="43" selection-start-column="16" selection-end-line="43" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/controllers/GeozoneController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="76" lean-forward="true" selection-start-line="76" selection-end-line="76" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/databases/aspects/DbAspect.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="519">
-          <caret line="40" column="43" lean-forward="true" selection-start-line="40" selection-start-column="43" selection-end-line="40" selection-end-column="43" />
+        <state relative-caret-position="504">
+          <caret line="38" selection-start-line="38" selection-end-line="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/nodeclient/aspects/MessageAspect.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-396">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/components/KafkaComponent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1907">
+          <caret line="183" selection-start-line="183" selection-end-line="183" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/nodeclient/components/OutputMessageComponent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="35" column="11" selection-start-line="35" selection-start-column="11" selection-end-line="35" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/nodeclient/components/StatusSenderComponent.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/AgroCalculatorRestNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="11" column="44" selection-start-line="11" selection-start-column="44" selection-end-line="11" selection-end-column="44" />
+          <folding>
+            <element signature="e#597#598#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/node/aspects/NodeAspect.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="27" selection-start-line="27" selection-end-line="37" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/node/Processor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1548">
+          <caret line="94" selection-start-line="94" selection-end-line="103" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/node/AutoExecutor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="594">
+          <caret line="42" selection-start-line="42" selection-end-line="52" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/security/SecurityConfiguration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/security/TokenData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/security/models/Credentials.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/security/filters/JwtLoginFilter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="30" selection-start-line="30" selection-end-line="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/databases/cassandra/repositories/RepositoryConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="159">
+          <caret line="25" column="62" selection-start-line="25" selection-start-column="62" selection-end-line="25" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/nodeclient/components/TaskComponent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="334">
+          <caret line="35" column="32" selection-start-line="35" selection-start-column="32" selection-end-line="35" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/controllers/TaskController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1115">
+          <caret line="105" column="90" selection-start-line="105" selection-start-column="90" selection-end-line="105" selection-end-column="90" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/tngroup/acrestnode/web/components/TaskResultComponent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="339">
+          <caret line="37" column="17" lean-forward="true" selection-start-line="37" selection-start-column="17" selection-end-line="37" selection-end-column="17" />
         </state>
       </provider>
     </entry>

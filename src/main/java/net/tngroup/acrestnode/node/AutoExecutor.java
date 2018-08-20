@@ -5,7 +5,6 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import net.tngroup.acrestnode.nodeclient.NodeClient;
 import net.tngroup.acrestnode.nodeclient.components.ChannelComponent;
 import net.tngroup.acrestnode.nodeclient.components.SettingComponent;
-import net.tngroup.acrestnode.nodeclient.components.StatusSenderComponent;
 import net.tngroup.acrestnode.nodeclient.components.TaskComponent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -18,7 +17,6 @@ public class AutoExecutor implements ApplicationRunner {
     private NodeClient nodeClient;
     private ChannelComponent channelComponent;
     private TaskComponent taskComponent;
-    private StatusSenderComponent statusSenderComponent;
     private SettingComponent settingComponent;
     private Processor processor;
 
@@ -26,13 +24,11 @@ public class AutoExecutor implements ApplicationRunner {
     AutoExecutor(NodeClient nodeClient,
                  ChannelComponent channelComponent,
                  TaskComponent taskComponent,
-                 StatusSenderComponent statusSenderComponent,
                  SettingComponent settingComponent,
                  Processor processor) {
         this.nodeClient = nodeClient;
         this.channelComponent = channelComponent;
         this.taskComponent = taskComponent;
-        this.statusSenderComponent = statusSenderComponent;
         this.settingComponent = settingComponent;
         this.processor = processor;
     }
@@ -44,11 +40,16 @@ public class AutoExecutor implements ApplicationRunner {
         settingComponent.checkStatus();
         settingComponent.checkSettings();
 
-        if (channelComponent.isStatus()) processor.doCommand("start");
-
         nodeClient.createBootstrap(new Bootstrap(), new NioEventLoopGroup());
 
         taskComponent.start();
-        statusSenderComponent.start();
+
+        if (channelComponent.isStatus()) {
+            try {
+                processor.doCommand("start");
+            } catch (Exception e) {
+                // handler in aspect
+            }
+        }
     }
 }

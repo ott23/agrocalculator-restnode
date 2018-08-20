@@ -9,8 +9,6 @@ public interface UnitService {
 
     List<Unit> getAllByClient(UUID id);
 
-    List<Unit> getAllByName(String name);
-
     List<Unit> getAllByImei(String imei);
 
     Unit getById(UUID id);

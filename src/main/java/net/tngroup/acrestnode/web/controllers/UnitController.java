@@ -46,7 +46,7 @@ public class UnitController {
     }
 
     @RequestMapping("/save")
-    public ResponseEntity save(@RequestBody String jsonRequest, HttpServletRequest request) {
+    public ResponseEntity save(HttpServletRequest request, @RequestBody String jsonRequest) {
         // Get client, error if null
         String name = SecurityContextHolder.getContext().getAuthentication().getName();
         Client client = clientService.getByName(name);
@@ -77,7 +77,7 @@ public class UnitController {
     }
 
     @RequestMapping("/get/{id}")
-    public ResponseEntity getById(@PathVariable UUID id, HttpServletRequest request) {
+    public ResponseEntity getById(HttpServletRequest request, @PathVariable UUID id) {
 
         // Get client, error if null
         String name = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -98,7 +98,7 @@ public class UnitController {
     }
 
     @RequestMapping("/delete/{id}")
-    public ResponseEntity deleteById(@PathVariable UUID id, HttpServletRequest request) {
+    public ResponseEntity deleteById(HttpServletRequest request, @PathVariable UUID id) {
         // Get client, error if null
         String name = SecurityContextHolder.getContext().getAuthentication().getName();
         Client client = clientService.getByName(name);

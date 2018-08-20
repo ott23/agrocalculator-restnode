@@ -38,7 +38,7 @@ public class TaskResultComponent {
             try {
                 while (!Thread.currentThread().isInterrupted()) {
                     handleTaskResults();
-                    Thread.sleep(1000);
+                    Thread.sleep(200);
                 }
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();

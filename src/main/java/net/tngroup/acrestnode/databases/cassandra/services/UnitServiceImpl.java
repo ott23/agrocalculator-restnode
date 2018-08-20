@@ -24,11 +24,6 @@ public class UnitServiceImpl implements UnitService {
     }
 
     @Override
-    public List<Unit> getAllByName(String name) {
-        return unitRepository.findAllByName(name);
-    }
-
-    @Override
     public List<Unit> getAllByImei(String imei) {
         return unitRepository.findAllByImei(imei);
     }
