@@ -15,12 +15,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import javax.servlet.http.HttpServletRequest;
-
 import java.util.function.Function;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.verifyZeroInteractions;
-
 
 
 public class GeozoneControllerTest {
@@ -29,20 +27,25 @@ public class GeozoneControllerTest {
     @InjectMocks
     private GeozoneController geozoneController;
 
-    @Mock private JsonComponent jsonComponent;
-    @Mock private ClientService clientService;
-    @Mock private GeozoneService geozoneService;
-    @Spy private SecurityComponent wrongSecurityComponent = Mockito.spy(new WrongSecurityComponent());
-    @Mock private HttpServletRequest httpServletRequest;
+    @Mock
+    private JsonComponent jsonComponent;
+    @Mock
+    private ClientService clientService;
+    @Mock
+    private GeozoneService geozoneService;
+    @Spy
+    private SecurityComponent wrongSecurityComponent = Mockito.spy(new WrongSecurityComponent());
+    @Mock
+    private HttpServletRequest httpServletRequest;
 
     @Before
-    public void initMocks(){
+    public void initMocks() {
         MockitoAnnotations.initMocks(this);
 
     }
 
     @Test
-    public void givenNullClientName_whenCallGetList_thenShouldBeFailedDependencyResponse(){
+    public void givenNullClientName_whenCallGetList_thenShouldBeFailedDependencyResponse() {
 
         assertEquals(
                 geozoneController.getList(httpServletRequest).getStatusCode(),
@@ -52,7 +55,8 @@ public class GeozoneControllerTest {
         verifyZeroInteractions(geozoneService);
     }
 
-    private class WrongSecurityComponent implements SecurityComponent{
+    private class WrongSecurityComponent implements SecurityComponent {
+
         @Override
         public ResponseEntity doIfUser(Function<Client, ResponseEntity> next) {
             return Responses.failedDependencyResponse();
