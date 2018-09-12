@@ -9,6 +9,7 @@ import net.tngroup.acrestnode.databases.cassandra.models.TaskResult;
 import net.tngroup.acrestnode.databases.cassandra.services.ClientService;
 import net.tngroup.acrestnode.databases.cassandra.services.TaskConditionService;
 import net.tngroup.acrestnode.databases.cassandra.services.TaskResultService;
+import net.tngroup.acrestnode.web.components.JsonComponent;
 import net.tngroup.acrestnode.web.components.KafkaComponent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -33,16 +34,19 @@ public class TaskController {
     private ClientService clientService;
     private TaskConditionService taskConditionService;
     private TaskResultService taskResultService;
+    private JsonComponent jsonComponent;
 
     @Autowired
     public TaskController(@Lazy KafkaComponent kafkaComponent,
                           @Lazy ClientService clientService,
                           @Lazy TaskConditionService taskConditionService,
-                          @Lazy TaskResultService taskResultService) {
+                          @Lazy TaskResultService taskResultService,
+                          JsonComponent jsonComponent) {
         this.kafkaComponent = kafkaComponent;
         this.clientService = clientService;
         this.taskConditionService = taskConditionService;
         this.taskResultService = taskResultService;
+        this.jsonComponent = jsonComponent;
     }
 
     /*
@@ -63,7 +67,7 @@ public class TaskController {
         }
 
         // Json parsing
-        ObjectMapper mapper = new ObjectMapper();
+        ObjectMapper mapper = jsonComponent.getObjectMapper();
         ObjectNode json = (ObjectNode) mapper.readTree(jsonRequest);
         String topic = json.remove("topic").asText();
         String message = json.toString();
@@ -117,7 +121,7 @@ public class TaskController {
         }
 
         // Json parsing
-        ObjectNode json = (ObjectNode) new ObjectMapper().readTree(jsonRequest);
+        ObjectNode json = (ObjectNode) jsonComponent.getObjectMapper().readTree(jsonRequest);
         UUID task = UUID.fromString(json.remove("task").asText());
 
         TaskKey taskKey = new TaskKey(client.getId(), task);
@@ -136,7 +140,7 @@ public class TaskController {
     }
 
     private String formTaskId(UUID task) {
-        ObjectMapper mapper = new ObjectMapper();
+        ObjectMapper mapper = jsonComponent.getObjectMapper();
         ObjectNode response = mapper.createObjectNode();
 
         response.put("task", task.toString());
@@ -145,7 +149,7 @@ public class TaskController {
     }
 
     private String formTaskResult(TaskResult taskResult) {
-        ObjectMapper mapper = new ObjectMapper();
+        ObjectMapper mapper = jsonComponent.getObjectMapper();
         ObjectNode response = mapper.createObjectNode();
 
         response.put("task", taskResult.getKey().getTask().toString());
@@ -156,7 +160,7 @@ public class TaskController {
     }
 
     private String formTaskNotReady(UUID task) {
-        ObjectMapper mapper = new ObjectMapper();
+        ObjectMapper mapper = jsonComponent.getObjectMapper();
         ObjectNode response = mapper.createObjectNode();
 
         response.put("task", task.toString());

@@ -1,10 +1,10 @@
 package net.tngroup.acrestnode.web.controllers;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import net.tngroup.acrestnode.databases.cassandra.models.Client;
 import net.tngroup.acrestnode.databases.cassandra.models.Unit;
 import net.tngroup.acrestnode.databases.cassandra.services.ClientService;
 import net.tngroup.acrestnode.databases.cassandra.services.UnitService;
+import net.tngroup.acrestnode.web.components.JsonComponent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.http.ResponseEntity;
@@ -26,12 +26,15 @@ public class UnitController {
 
     private ClientService clientService;
     private UnitService unitService;
+    private JsonComponent jsonComponent;
 
     @Autowired
     public UnitController(@Lazy ClientService clientService,
-                          @Lazy UnitService unitService) {
+                          @Lazy UnitService unitService,
+                          JsonComponent jsonComponent) {
         this.clientService = clientService;
         this.unitService = unitService;
+        this.jsonComponent = jsonComponent;
     }
 
     @RequestMapping
@@ -46,14 +49,13 @@ public class UnitController {
     }
 
     @RequestMapping("/save")
-    public ResponseEntity save(HttpServletRequest request, @RequestBody String jsonRequest) {
+    public ResponseEntity save(HttpServletRequest request, @RequestBody Unit unit) {
         // Get client, error if null
         String name = SecurityContextHolder.getContext().getAuthentication().getName();
         Client client = clientService.getByName(name);
         if (client == null) return failedDependencyResponse();
 
         try {
-            Unit unit = new ObjectMapper().readValue(jsonRequest, Unit.class);
 
             if (unit.getId() != null) {
                 Unit dbUnit = unitService.getById(unit.getId());
@@ -70,7 +72,7 @@ public class UnitController {
 
             unit = unitService.save(unit);
 
-            return okResponse(new ObjectMapper().writeValueAsString(unit));
+            return okResponse(jsonComponent.getObjectMapper().writeValueAsString(unit));
         } catch (Exception e) {
             return badResponse(e);
         }
@@ -91,7 +93,7 @@ public class UnitController {
 
             if (!unit.getClient().equals(client.getId())) return failedDependencyResponse();
 
-            return okResponse(new ObjectMapper().writeValueAsString(unit));
+            return okResponse(jsonComponent.getObjectMapper().writeValueAsString(unit));
         } catch (Exception e) {
             return badResponse(e);
         }

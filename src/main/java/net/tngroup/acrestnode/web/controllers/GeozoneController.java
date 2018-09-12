@@ -5,6 +5,7 @@ import net.tngroup.acrestnode.databases.cassandra.models.Client;
 import net.tngroup.acrestnode.databases.cassandra.models.Geozone;
 import net.tngroup.acrestnode.databases.cassandra.services.ClientService;
 import net.tngroup.acrestnode.databases.cassandra.services.GeozoneService;
+import net.tngroup.acrestnode.web.components.JsonComponent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.http.ResponseEntity;
@@ -24,14 +25,17 @@ import static net.tngroup.acrestnode.web.controllers.Responses.*;
 @RequestMapping("/geozone")
 public class GeozoneController {
 
+    private JsonComponent jsonComponent;
     private ClientService clientService;
     private GeozoneService geozoneService;
 
     @Autowired
     public GeozoneController(@Lazy ClientService clientService,
-                             @Lazy GeozoneService geozoneService) {
+                             @Lazy GeozoneService geozoneService,
+                             JsonComponent jsonComponent) {
         this.clientService = clientService;
         this.geozoneService = geozoneService;
+        this.jsonComponent = jsonComponent;
     }
 
     @RequestMapping
@@ -46,8 +50,9 @@ public class GeozoneController {
     }
 
     @RequestMapping("/save")
-    public ResponseEntity save(HttpServletRequest request, @RequestBody String jsonRequest) {
-        ObjectMapper objectMapper = new ObjectMapper();
+    public ResponseEntity save(HttpServletRequest request, @RequestBody Geozone geozone) {
+
+
 
         // Get client, error if null
         String name = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -55,10 +60,9 @@ public class GeozoneController {
         if (client == null) return failedDependencyResponse();
 
         try {
-            Geozone geozone = objectMapper.readValue(jsonRequest, Geozone.class);
 
             try {
-                objectMapper.readTree(geozone.getGeometry());
+                jsonComponent.getObjectMapper().readTree(geozone.getGeometry());
             } catch (Exception e) {
                 throw new Exception("Json not valid");
             }
@@ -124,6 +128,6 @@ public class GeozoneController {
             return badResponse(e);
         }
     }
-    
+
 
 }
