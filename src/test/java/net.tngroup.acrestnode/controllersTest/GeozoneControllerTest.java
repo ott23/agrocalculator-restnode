@@ -1,7 +1,6 @@
 package net.tngroup.acrestnode.controllersTest;
 
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import net.tngroup.acrestnode.databases.cassandra.models.Client;
 import net.tngroup.acrestnode.databases.cassandra.models.Geozone;
 import net.tngroup.acrestnode.databases.cassandra.services.ClientService;
@@ -59,8 +58,7 @@ public class GeozoneControllerTest {
     }
 
     @Test
-    public void givenClient_whenCallGetList_thenShouldBeCallGeozoneServiceAndReturnResponse()
-            throws JsonProcessingException {
+    public void givenClient_whenCallGetList_thenShouldBeCallGeozoneServiceAndReturnResponse() {
 
         securityComponent = Mockito.spy(new ValidSecurityComponent());
         MockitoAnnotations.initMocks(this);
