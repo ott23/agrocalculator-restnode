@@ -1,6 +1,6 @@
 package net.tngroup.acrestnode.web.controllers;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import net.tngroup.acrestnode.databases.cassandra.models.Client;
 import net.tngroup.acrestnode.databases.cassandra.models.Geozone;
 import net.tngroup.acrestnode.databases.cassandra.services.ClientService;
@@ -54,7 +54,7 @@ public class GeozoneController {
     }
 
     @RequestMapping("/save")
-    public ResponseEntity save(HttpServletRequest request, @RequestBody Geozone geozone) {
+    public ResponseEntity save(HttpServletRequest request, @RequestBody Geozone geozone) throws Exception {
 
 
 
@@ -63,7 +63,7 @@ public class GeozoneController {
         Client client = clientService.getByName(name);
         if (client == null) return failedDependencyResponse();
 
-        try {
+
 
             try {
                 jsonComponent.getObjectMapper().readTree(geozone.getGeometry());
@@ -83,21 +83,18 @@ public class GeozoneController {
 
             geozone = geozoneService.save(geozone);
 
-            return okResponse(new ObjectMapper().writeValueAsString(geozone));
-        } catch (Exception e) {
-            return badResponse(e);
-        }
+            return okResponse(jsonComponent.getObjectMapper().writeValueAsString(geozone));
+
     }
 
     @RequestMapping("/get/{id}")
-    public ResponseEntity getById(HttpServletRequest request, @PathVariable UUID id) {
+    public ResponseEntity getById(HttpServletRequest request, @PathVariable UUID id) throws JsonProcessingException {
 
         // Get client, error if null
         String name = SecurityContextHolder.getContext().getAuthentication().getName();
         Client client = clientService.getByName(name);
         if (client == null) return failedDependencyResponse();
 
-        try {
             Geozone geozone = geozoneService.getById(id);
 
             if (geozone == null) nonFoundResponse();
@@ -105,10 +102,8 @@ public class GeozoneController {
             assert geozone != null;
             if (!geozone.getClient().equals(client.getId())) return failedDependencyResponse();
 
-            return okResponse(new ObjectMapper().writeValueAsString(geozone));
-        } catch (Exception e) {
-            return badResponse(e);
-        }
+            return okResponse(jsonComponent.getObjectMapper().writeValueAsString(geozone));
+
     }
 
     @RequestMapping("/delete/{id}")
@@ -118,7 +113,6 @@ public class GeozoneController {
         Client client = clientService.getByName(name);
         if (client == null) return failedDependencyResponse();
 
-        try {
             Geozone geozone = geozoneService.getById(id);
 
             if (geozone == null) return nonFoundResponse();
@@ -127,10 +121,7 @@ public class GeozoneController {
 
             geozoneService.deleteById(id);
             return successResponse();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return badResponse(e);
-        }
+
     }
 
 

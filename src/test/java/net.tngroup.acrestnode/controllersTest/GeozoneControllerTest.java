@@ -9,39 +9,36 @@ import net.tngroup.acrestnode.web.controllers.Responses;
 import net.tngroup.acrestnode.web.security.components.SecurityComponent;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.springframework.http.HttpStatus;
 
 import javax.servlet.http.HttpServletRequest;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verifyZeroInteractions;
 
 
 
 public class GeozoneControllerTest {
 
-    @InjectMocks
+
     private GeozoneController geozoneController;
 
-    @Mock
     private JsonComponent jsonComponent;
-    @Mock
     private ClientService clientService;
-    @Mock
     private GeozoneService geozoneService;
-    @Mock
-    private SecurityComponent securityComponent = next -> Responses.failedDependencyResponse();
-
-    @Mock
+    private SecurityComponent wrongSecurityComponent;
     private HttpServletRequest httpServletRequest;
 
     @Before
     public void initMocks(){
 
-        MockitoAnnotations.initMocks(this);
+        jsonComponent = mock(JsonComponent.class);
+        clientService = mock(ClientService.class);
+        geozoneService = mock(GeozoneService.class);
+        wrongSecurityComponent  = next -> Responses.failedDependencyResponse();
+        httpServletRequest = mock(HttpServletRequest.class);
+        geozoneController = new GeozoneController(clientService, geozoneService, jsonComponent, wrongSecurityComponent);
     }
 
     @Test
