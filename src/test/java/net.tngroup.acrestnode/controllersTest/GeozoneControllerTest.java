@@ -48,11 +48,9 @@ public class GeozoneControllerTest {
         securityComponent = Mockito.spy(new WrongSecurityComponent());
         MockitoAnnotations.initMocks(this);
 
+        HttpStatus resultStatus = geozoneController.getList(httpServletRequest).getStatusCode();
 
-        assertEquals(
-                geozoneController.getList(httpServletRequest).getStatusCode(),
-                HttpStatus.FAILED_DEPENDENCY
-        );
+        assertEquals(resultStatus, HttpStatus.FAILED_DEPENDENCY);
 
         verifyZeroInteractions(geozoneService);
     }
