@@ -6,6 +6,7 @@ import net.tngroup.acrestnode.databases.cassandra.models.Geozone;
 import net.tngroup.acrestnode.databases.cassandra.services.ClientService;
 import net.tngroup.acrestnode.databases.cassandra.services.GeozoneService;
 import net.tngroup.acrestnode.web.components.JsonComponent;
+import net.tngroup.acrestnode.web.security.components.SecurityComponent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.http.ResponseEntity;
@@ -28,25 +29,28 @@ public class GeozoneController {
     private JsonComponent jsonComponent;
     private ClientService clientService;
     private GeozoneService geozoneService;
+    private SecurityComponent securityComponent;
 
     @Autowired
     public GeozoneController(@Lazy ClientService clientService,
                              @Lazy GeozoneService geozoneService,
-                             JsonComponent jsonComponent) {
+                             JsonComponent jsonComponent,
+                             SecurityComponent securityComponent) {
         this.clientService = clientService;
         this.geozoneService = geozoneService;
         this.jsonComponent = jsonComponent;
+        this.securityComponent = securityComponent;
     }
 
     @RequestMapping
     public ResponseEntity getList(HttpServletRequest request) {
         // Get client, error if null
-        String name = SecurityContextHolder.getContext().getAuthentication().getName();
-        Client client = clientService.getByName(name);
-        if (client == null) return failedDependencyResponse();
 
-        List<Geozone> geozoneList = geozoneService.getAllByClient(client.getId());
-        return okResponse(geozoneList);
+        return securityComponent.doIfUser(client -> {
+            List<Geozone> geozoneList = geozoneService.getAllByClient(client.getId());
+            return okResponse(geozoneList);
+        });
+
     }
 
     @RequestMapping("/save")
