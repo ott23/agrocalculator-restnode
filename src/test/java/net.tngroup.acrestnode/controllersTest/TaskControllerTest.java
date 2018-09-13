@@ -74,8 +74,6 @@ public class TaskControllerTest {
                 taskController.send(httpServletRequest, new TaskRequest()));
     }
 
-
-
     private class ValidSecurityComponent implements SecurityComponent {
 
         @Override
