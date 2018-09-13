@@ -100,6 +100,26 @@ public class GeozoneControllerTest {
 
     }
 
+    @Test
+    public void givenExistGeozoneWithOtherClient_whenCallSave_thenShouldBeReturnFailedDependency(){
+
+        securityComponent = Mockito.spy(new ValidSecurityComponent());
+        MockitoAnnotations.initMocks(this);
+
+        final ResponseEntity errorResponse = Responses.failedDependencyResponse();
+        final Geozone mockGeozone = spy(new Geozone());
+        final Geozone dbGeozone = mock(Geozone.class);
+
+        when(mockGeozone.getId()).thenReturn(UUID.randomUUID());
+        when(geozoneService.getById(any())).thenReturn(dbGeozone);
+        when(dbGeozone.getClient()).thenReturn(UUID.randomUUID());
+
+        assertEquals(
+                geozoneController.save(httpServletRequest, mockGeozone).getStatusCode(),
+                errorResponse.getStatusCode()
+        );
+    }
+
     private class WrongSecurityComponent implements SecurityComponent {
 
         @Override
