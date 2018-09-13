@@ -131,6 +131,14 @@
             <version>${h2.version}</version>
         </dependency>
 
+        <!--Spring Tests-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+
     </dependencies>
 
 

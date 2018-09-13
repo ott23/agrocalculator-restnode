@@ -3,6 +3,7 @@ package net.tngroup.acrestnode.databases.cassandra.models;
 import lombok.Data;
 import org.springframework.data.cassandra.core.mapping.PrimaryKey;
 
+import java.util.Map;
 import java.util.UUID;
 
 @Data
@@ -15,6 +16,6 @@ public class Geozone {
 
     private String name;
 
-    private String geometry;
+    private Map<String, Object> geometry;
 
 }

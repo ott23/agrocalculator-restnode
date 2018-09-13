@@ -1,3 +1,10 @@
 
 \.idea/
+
+target/classes/net/tngroup/acrestnode/
+
+agrocalculator-restnode\.iml
+
+db\.mv\.db
+
 target/
