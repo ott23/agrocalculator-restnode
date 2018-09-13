@@ -141,7 +141,37 @@ public class GeozoneControllerTest {
 
     }
 
+    @Test
+    public void givenNonExistedID_whenCallGet_thenShouldBeReturnNotFoundResponse() {
 
+        securityComponent = Mockito.spy(new ValidSecurityComponent());
+        MockitoAnnotations.initMocks(this);
+
+        when(geozoneService.getById(any())).thenReturn(null);
+
+        assertEquals(
+                Responses.nonFoundResponse().getStatusCode(),
+                geozoneController.getById(httpServletRequest, UUID.randomUUID()).getStatusCode()
+        );
+
+    }
+
+    @Test
+    public void givenGeozoneIdFromOtherClient_whenCallGet_thenShouldBeReturnFailedDependency() {
+
+        securityComponent = Mockito.spy(new ValidSecurityComponent());
+        MockitoAnnotations.initMocks(this);
+
+        final Geozone mockGeozone = new Geozone();
+        mockGeozone.setClient(UUID.randomUUID());
+
+        when(geozoneService.getById(any())).thenReturn(mockGeozone);
+        assertEquals(
+                geozoneController.getById(httpServletRequest, UUID.randomUUID()).getStatusCode(),
+                Responses.failedDependencyResponse().getStatusCode()
+        );
+
+    }
 
 
     private class WrongSecurityComponent implements SecurityComponent {
