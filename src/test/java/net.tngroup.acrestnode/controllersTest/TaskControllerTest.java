@@ -12,15 +12,16 @@ import net.tngroup.acrestnode.web.controllers.requestmodels.TaskRequest;
 import net.tngroup.acrestnode.web.security.components.SecurityComponent;
 import org.junit.Assert;
 import org.junit.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.Spy;
+import org.mockito.*;
+import org.springframework.http.ResponseEntity;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.UUID;
+import java.util.function.Function;
 
+import static net.tngroup.acrestnode.web.controllers.Responses.kafkaNotAvailableResponse;
+import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.when;
 
 public class TaskControllerTest {
@@ -41,8 +42,11 @@ public class TaskControllerTest {
     @Mock
     private HttpServletRequest httpServletRequest;
 
+    @Spy
     private JsonComponent jsonComponent = new JsonComponent();
 
+    @Spy
+    private SecurityComponent securityComponent = new ValidSecurityComponent();
 
     @Test
     public void deserializationTest() throws IOException {
@@ -59,12 +63,29 @@ public class TaskControllerTest {
 
     }
 
-    @Spy
-    private SecurityComponent securityComponent = next -> {
-        final Client mockCLient = Mockito.mock(Client.class);
-        when(mockCLient.getId()).thenReturn(MOCK_CLIENT_ID);
-        return next.apply(mockCLient);
-    };
+    @Test
+    public void givenProblemWithKafka_whenCallSend_thenShouldBeKafkaNotAvailable() throws Exception {
+
+        MockitoAnnotations.initMocks(this);
+        doThrow(Exception.class).when(kafkaComponent).testSocket();
+
+        Assert.assertEquals(
+                kafkaNotAvailableResponse(),
+                taskController.send(httpServletRequest, new TaskRequest()));
+    }
+
+
+
+    private class ValidSecurityComponent implements SecurityComponent {
+
+        @Override
+        public ResponseEntity doIfUser(Function<Client, ResponseEntity> next) {
+
+            final Client mockCLient = Mockito.mock(Client.class);
+            when(mockCLient.getId()).thenReturn(MOCK_CLIENT_ID);
+            return next.apply(mockCLient);
+        }
+    }
 
 
 }

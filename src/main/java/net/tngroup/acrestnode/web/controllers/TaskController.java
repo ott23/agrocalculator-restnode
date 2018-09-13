@@ -62,7 +62,7 @@ public class TaskController {
         return securityComponent.doIfUser(client -> {
 
             // Connection with Kafka testing
-            if (testKafkaConnextion()) return kafkaNotAvailableResponse();
+            if (!testKafkaConnextion()) return kafkaNotAvailableResponse();
 
             final String topic = taskRequest.getTopic();
             final String message = taskRequest.getMessage();
@@ -107,7 +107,7 @@ public class TaskController {
     public ResponseEntity poll(HttpServletRequest request, @RequestBody PollRequest pollRequest) throws IOException {
 
         return securityComponent.doIfUser(client -> {
-            if (testKafkaConnextion()) return kafkaNotAvailableResponse();
+            if (!testKafkaConnextion()) return kafkaNotAvailableResponse();
 
             final TaskKey taskKey = new TaskKey(client.getId(), pollRequest.getTask());
             final TaskResult taskResult = taskResultService.getByKey(taskKey);
