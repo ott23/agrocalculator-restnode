@@ -1,6 +1,7 @@
 package net.tngroup.acrestnode.controllersTest;
 
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import net.tngroup.acrestnode.databases.cassandra.models.Client;
 import net.tngroup.acrestnode.databases.cassandra.models.Geozone;
 import net.tngroup.acrestnode.databases.cassandra.services.ClientService;
@@ -17,15 +18,19 @@ import org.springframework.http.ResponseEntity;
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import java.util.function.Function;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 
 public class GeozoneControllerTest {
 
+
+    private final static UUID MOCK_CLIENT_ID = UUID.randomUUID();
 
     @InjectMocks
     private GeozoneController geozoneController;
@@ -76,6 +81,25 @@ public class GeozoneControllerTest {
 
     }
 
+    @Test
+    public void givenGeozoneWithoutIdAndClient_whenCallSave_thenShouldBeReturnRandomIdAndCurrentClientId(){
+
+        securityComponent = Mockito.spy(new ValidSecurityComponent());
+        MockitoAnnotations.initMocks(this);
+
+        final Geozone mockGeozone = new Geozone();
+
+        when(geozoneService.save(any())).thenReturn(mockGeozone);
+        when(jsonComponent.getObjectMapper()).thenReturn(new ObjectMapper());
+
+        geozoneController.save(httpServletRequest, mockGeozone);
+
+        verify(geozoneService, times(1)).save(mockGeozone);
+        assertNotNull(mockGeozone.getId());
+        assertEquals(mockGeozone.getClient(), MOCK_CLIENT_ID);
+
+    }
+
     private class WrongSecurityComponent implements SecurityComponent {
 
         @Override
@@ -88,7 +112,10 @@ public class GeozoneControllerTest {
 
         @Override
         public ResponseEntity doIfUser(Function<Client, ResponseEntity> next) {
-            return next.apply(new Client());
+
+            final Client mockCLient = Mockito.mock(Client.class);
+            when(mockCLient.getId()).thenReturn(MOCK_CLIENT_ID);
+            return next.apply(mockCLient);
         }
     }
 

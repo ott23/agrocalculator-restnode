@@ -1,5 +1,6 @@
 package net.tngroup.acrestnode.web.controllers;
 
+import com.datastax.driver.core.utils.UUIDs;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import net.tngroup.acrestnode.databases.cassandra.models.Client;
 import net.tngroup.acrestnode.databases.cassandra.models.Geozone;
@@ -65,7 +66,7 @@ public class GeozoneController {
                     return failedDependencyResponse();
                 }
             } else {
-                geozone.setId(UUID.randomUUID());
+                geozone.setId(UUIDs.timeBased());
             }
 
             if (geozone.getClient() == null) geozone.setClient(client.getId());
