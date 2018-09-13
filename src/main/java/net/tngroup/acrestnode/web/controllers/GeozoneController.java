@@ -44,7 +44,6 @@ public class GeozoneController {
 
     @RequestMapping
     public ResponseEntity getList(HttpServletRequest request) {
-        // Get client, error if null
 
         return securityComponent.doIfUser(client -> {
             List<Geozone> geozoneList = geozoneService.getAllByClient(client.getId());
@@ -54,36 +53,32 @@ public class GeozoneController {
     }
 
     @RequestMapping("/save")
-    public ResponseEntity save(HttpServletRequest request, @RequestBody Geozone geozone) throws Exception {
+    public ResponseEntity save(HttpServletRequest request, @RequestBody final Geozone geozone) {
 
 
+        return securityComponent.doIfUser(client -> {
 
-        // Get client, error if null
-        String name = SecurityContextHolder.getContext().getAuthentication().getName();
-        Client client = clientService.getByName(name);
-        if (client == null) return failedDependencyResponse();
-
-
-
-            try {
-                jsonComponent.getObjectMapper().readTree(geozone.getGeometry());
-            } catch (Exception e) {
-                throw new Exception("Json not valid");
-            }
 
             if (geozone.getId() != null) {
                 Geozone dbGeozone = geozoneService.getById(geozone.getId());
                 if (dbGeozone != null && !dbGeozone.getClient().equals(client.getId())) {
                     return failedDependencyResponse();
                 }
+            } else {
+                geozone.setId(UUID.randomUUID());
             }
 
-            if (geozone.getId() == null) geozone.setId(UUID.randomUUID());
             if (geozone.getClient() == null) geozone.setClient(client.getId());
 
-            geozone = geozoneService.save(geozone);
+            final Geozone resultGeozone = geozoneService.save(geozone);
 
-            return okResponse(jsonComponent.getObjectMapper().writeValueAsString(geozone));
+            try {
+                return okResponse(jsonComponent.getObjectMapper().writeValueAsString(resultGeozone));
+            } catch (JsonProcessingException e) {
+                return Responses.failedDependencyResponse();
+            }
+
+        });
 
     }
 
