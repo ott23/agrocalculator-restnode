@@ -15,6 +15,6 @@ public interface GeozoneService {
 
     Geozone save(Geozone Geozone);
 
-    void deleteById(UUID id);
+    boolean deleteById(UUID id);
 
 }

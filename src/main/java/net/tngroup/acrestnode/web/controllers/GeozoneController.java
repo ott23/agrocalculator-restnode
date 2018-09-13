@@ -112,9 +112,11 @@ public class GeozoneController {
 
             if (!geozone.getClient().equals(client.getId())) return failedDependencyResponse();
 
-            geozoneService.deleteById(id);
-
-            return successResponse();
+            if (geozoneService.deleteById(id)) {
+                return successResponse();
+            } else {
+                return nonFoundResponse();
+            }
         });
     }
 

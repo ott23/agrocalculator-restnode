@@ -174,6 +174,7 @@ public class GeozoneControllerTest {
     }
 
 
+
     private class WrongSecurityComponent implements SecurityComponent {
 
         @Override

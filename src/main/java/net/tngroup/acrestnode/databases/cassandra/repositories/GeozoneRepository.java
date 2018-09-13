@@ -5,6 +5,7 @@ import org.springframework.data.cassandra.repository.AllowFiltering;
 import org.springframework.data.cassandra.repository.CassandraRepository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 public interface GeozoneRepository extends CassandraRepository<Geozone, UUID> {
@@ -15,4 +16,5 @@ public interface GeozoneRepository extends CassandraRepository<Geozone, UUID> {
     @AllowFiltering
     List<Geozone> findAllByClient(UUID id);
 
+    Optional<Geozone> deleteGeozoneById(UUID id);
 }
