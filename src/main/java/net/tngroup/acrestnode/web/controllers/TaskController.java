@@ -11,6 +11,8 @@ import net.tngroup.acrestnode.databases.cassandra.services.TaskConditionService;
 import net.tngroup.acrestnode.databases.cassandra.services.TaskResultService;
 import net.tngroup.acrestnode.web.components.JsonComponent;
 import net.tngroup.acrestnode.web.components.KafkaComponent;
+import net.tngroup.acrestnode.web.controllers.requestmodels.TaskRequest;
+import net.tngroup.acrestnode.web.security.components.SecurityComponent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.http.ResponseEntity;
@@ -35,73 +37,73 @@ public class TaskController {
     private TaskConditionService taskConditionService;
     private TaskResultService taskResultService;
     private JsonComponent jsonComponent;
+    private SecurityComponent securityComponent;
 
     @Autowired
     public TaskController(@Lazy KafkaComponent kafkaComponent,
                           @Lazy ClientService clientService,
                           @Lazy TaskConditionService taskConditionService,
                           @Lazy TaskResultService taskResultService,
-                          JsonComponent jsonComponent) {
+                          JsonComponent jsonComponent,
+                          SecurityComponent securityComponent) {
         this.kafkaComponent = kafkaComponent;
         this.clientService = clientService;
         this.taskConditionService = taskConditionService;
         this.taskResultService = taskResultService;
         this.jsonComponent = jsonComponent;
+        this.securityComponent = securityComponent;
     }
 
     /*
     Метод отправки в Kafka
      */
     @RequestMapping(value = "/send", method = RequestMethod.POST)
-    public ResponseEntity send(HttpServletRequest request, @RequestBody String jsonRequest) throws IOException {
-        // Get client, error if null
-        String name = SecurityContextHolder.getContext().getAuthentication().getName();
-        Client client = clientService.getByName(name);
-        if (client == null) return failedDependencyResponse();
+    public ResponseEntity send(HttpServletRequest request, @RequestBody TaskRequest taskRequest) throws IOException {
 
-        // Connection with Kafka testing
-        try {
-            kafkaComponent.testSocket();
-        } catch (Exception e) {
-            return kafkaNotAvailableResponse();
-        }
+        return securityComponent.doIfUser(client -> {
 
-        // Json parsing
-        ObjectMapper mapper = jsonComponent.getObjectMapper();
-        ObjectNode json = (ObjectNode) mapper.readTree(jsonRequest);
-        String topic = json.remove("topic").asText();
-        String message = json.toString();
-
-        TaskCondition oldTaskCondition = taskConditionService.getByHashCode(new TaskCondition(topic, message).getHashCode());
-
-        UUID task;
-        if (oldTaskCondition != null && oldTaskCondition.getKey().getClient().equals(client.getId())) {
-            task = oldTaskCondition.getKey().getTask();
-        } else {
-            task = UUID.randomUUID();
-        }
-
-        String key = client.getId() + "/" + task;
-
-        // Kafka request
-        String kafkaResponse = kafkaComponent.send(topic, key, message);
-
-        if (kafkaResponse.equals("Success")) {
-            TaskKey taskKey = new TaskKey(client.getId(), task);
-            TaskCondition newTaskCondition = new TaskCondition(taskKey, topic, message);
-            taskConditionService.save(newTaskCondition);
-
-            for (int i = 0; i < 4; i++) {
-                sleep(500 * i);
-                TaskResult taskResult = taskResultService.getByKey(taskKey);
-                if (taskResult != null && taskResult.getTime().compareTo(newTaskCondition.getTime()) > 0) {
-                    return okResponse(formTaskResult(taskResult));
-                }
+            // Connection with Kafka testing
+            try {
+                kafkaComponent.testSocket();
+            } catch (Exception e) {
+                return kafkaNotAvailableResponse();
             }
-            return okResponse(formTaskId(task));
-        } else {
-            return badResponse(new Exception("TaskCondition wasn't accepted"));
-        }
+
+            final String topic = taskRequest.getTopic();
+            final String message = taskRequest.getMessage();
+
+            final TaskCondition oldTaskCondition = taskConditionService.getByHashCode(new TaskCondition(topic, message).getHashCode());
+
+            final UUID task;
+            if (oldTaskCondition != null && oldTaskCondition.getKey().getClient().equals(client.getId())) {
+                task = oldTaskCondition.getKey().getTask();
+            } else {
+                task = UUID.randomUUID();
+            }
+
+            final String key = client.getId() + "/" + task;
+
+            // Kafka request
+            final String kafkaResponse = kafkaComponent.send(topic, key, message);
+
+            if (kafkaResponse.equals("Success")) {
+                final TaskKey taskKey = new TaskKey(client.getId(), task);
+                final TaskCondition newTaskCondition = new TaskCondition(taskKey, topic, message);
+                taskConditionService.save(newTaskCondition);
+
+                for (int i = 0; i < 4; i++) {
+                    sleep(500 * i);
+                    final TaskResult taskResult = taskResultService.getByKey(taskKey);
+                    if (taskResult != null && taskResult.getTime().compareTo(newTaskCondition.getTime()) > 0) {
+                        return okResponse(formTaskResult(taskResult));
+                    }
+                }
+                return okResponse(formTaskId(task));
+            } else {
+                return badResponse(new Exception("TaskCondition wasn't accepted"));
+            }
+        });
+
 
     }
 
