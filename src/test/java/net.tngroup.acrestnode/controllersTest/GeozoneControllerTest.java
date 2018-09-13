@@ -1,6 +1,7 @@
 package net.tngroup.acrestnode.controllersTest;
 
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import net.tngroup.acrestnode.databases.cassandra.models.Client;
 import net.tngroup.acrestnode.databases.cassandra.models.Geozone;
@@ -120,6 +121,25 @@ public class GeozoneControllerTest {
         );
     }
 
+    @Test
+    public void givenValidClientIdAndGeozoneId_whenCallGet_thenShouldBeReturnGeozone() throws JsonProcessingException {
+
+        securityComponent = Mockito.spy(new ValidSecurityComponent());
+        MockitoAnnotations.initMocks(this);
+
+        final Geozone mockGeozone = new Geozone();
+        final ObjectMapper objectMapper = new ObjectMapper();
+        mockGeozone.setClient(MOCK_CLIENT_ID);
+
+        when(geozoneService.getById(any())).thenReturn(mockGeozone);
+        when(jsonComponent.getObjectMapper()).thenReturn(objectMapper);
+
+        assertEquals(
+                geozoneController.getById(httpServletRequest, UUID.randomUUID()).getBody(),
+                objectMapper.writeValueAsString(mockGeozone));
+
+
+    }
 
 
 
