@@ -40,7 +40,7 @@ public class GeozoneServiceImpl implements GeozoneService {
     }
 
     @Override
-    public void deleteById(UUID id) {
-        geozoneRepository.deleteById(id);
+    public boolean deleteById(UUID id) {
+        return geozoneRepository.deleteGeozoneById(id).isPresent();
     }
 }
