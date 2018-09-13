@@ -82,7 +82,7 @@ public class GeozoneControllerTest {
     }
 
     @Test
-    public void givenGeozoneWithoutIdAndClient_whenCallSave_thenShouldBeReturnRandomIdAndCurrentClientId(){
+    public void givenGeozoneWithoutIdAndClient_whenCallSave_thenShouldBeReturnRandomIdAndCurrentClientId() {
 
         securityComponent = Mockito.spy(new ValidSecurityComponent());
         MockitoAnnotations.initMocks(this);
@@ -101,7 +101,7 @@ public class GeozoneControllerTest {
     }
 
     @Test
-    public void givenExistGeozoneWithOtherClient_whenCallSave_thenShouldBeReturnFailedDependency(){
+    public void givenExistGeozoneWithOtherClient_whenCallSave_thenShouldBeReturnFailedDependency() {
 
         securityComponent = Mockito.spy(new ValidSecurityComponent());
         MockitoAnnotations.initMocks(this);
@@ -119,6 +119,8 @@ public class GeozoneControllerTest {
                 errorResponse.getStatusCode()
         );
     }
+
+
 
     private class WrongSecurityComponent implements SecurityComponent {
 
