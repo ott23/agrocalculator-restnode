@@ -192,6 +192,55 @@ public class GeozoneControllerTest {
 
     }
 
+    @Test
+    public void givenInvalidGeozoneId_whenCallDelete_thenShouldBeReturnNotFound(){
+
+        securityComponent = Mockito.spy(new ValidSecurityComponent());
+        MockitoAnnotations.initMocks(this);
+        when(geozoneService.getById(any())).thenReturn(null);
+
+        assertEquals(
+                geozoneController.deleteById(httpServletRequest, UUID.randomUUID()),
+                Responses.nonFoundResponse()
+        );
+    }
+
+    @Test
+    public void givenInvalidClientId_whenCallDelete_thenShouldBeReturnFailedDependency(){
+
+        securityComponent = Mockito.spy(new ValidSecurityComponent());
+        MockitoAnnotations.initMocks(this);
+
+        final Geozone geozone = new Geozone();
+        geozone.setClient(UUID.randomUUID());
+
+        when(geozoneService.getById(any())).thenReturn(geozone);
+
+        assertEquals(
+                geozoneController.deleteById(httpServletRequest, UUID.randomUUID()),
+                Responses.failedDependencyResponse()
+        );
+    }
+
+    @Test
+    public void givenValidClientIdAndGeozoneId_whenTwoClientDoDeletePermanent_thenReturnNonFound(){
+
+        securityComponent = Mockito.spy(new ValidSecurityComponent());
+        MockitoAnnotations.initMocks(this);
+
+        final Geozone geozone = new Geozone();
+        geozone.setClient(MOCK_CLIENT_ID);
+
+        when(geozoneService.getById(any())).thenReturn(geozone);
+        when(geozoneService.deleteById(any())).thenReturn(false);
+
+        assertEquals(
+                geozoneController.deleteById(httpServletRequest, UUID.randomUUID()),
+                Responses.nonFoundResponse()
+        );
+
+    }
+
 
     private class WrongSecurityComponent implements SecurityComponent {
 
