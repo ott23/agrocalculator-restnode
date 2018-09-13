@@ -173,6 +173,24 @@ public class GeozoneControllerTest {
 
     }
 
+    @Test
+    public void givenValidGeozoneIdAndClientId_whenCallDelete_thenShouldBeReturnSuccessResponse() {
+
+        securityComponent = Mockito.spy(new ValidSecurityComponent());
+        MockitoAnnotations.initMocks(this);
+
+        final Geozone geozone = new Geozone();
+        geozone.setClient(MOCK_CLIENT_ID);
+
+        when(geozoneService.getById(any())).thenReturn(geozone);
+        when(geozoneService.deleteById(any())).thenReturn(true);
+
+        assertEquals(
+                geozoneController.deleteById(httpServletRequest, UUID.randomUUID()),
+                Responses.successResponse()
+        );
+
+    }
 
 
     private class WrongSecurityComponent implements SecurityComponent {
