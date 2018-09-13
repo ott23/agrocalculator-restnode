@@ -2,7 +2,6 @@ package net.tngroup.acrestnode.web.controllers;
 
 import com.datastax.driver.core.utils.UUIDs;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import net.tngroup.acrestnode.databases.cassandra.models.Client;
 import net.tngroup.acrestnode.databases.cassandra.models.Geozone;
 import net.tngroup.acrestnode.databases.cassandra.services.ClientService;
 import net.tngroup.acrestnode.databases.cassandra.services.GeozoneService;
@@ -11,7 +10,6 @@ import net.tngroup.acrestnode.web.security.components.SecurityComponent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -84,40 +82,40 @@ public class GeozoneController {
     }
 
     @RequestMapping("/get/{id}")
-    public ResponseEntity getById(HttpServletRequest request, @PathVariable UUID id) throws JsonProcessingException {
+    public ResponseEntity getById(HttpServletRequest request, @PathVariable UUID id) {
 
-        // Get client, error if null
-        String name = SecurityContextHolder.getContext().getAuthentication().getName();
-        Client client = clientService.getByName(name);
-        if (client == null) return failedDependencyResponse();
+        return securityComponent.doIfUser(client -> {
 
-            Geozone geozone = geozoneService.getById(id);
+            final Geozone geozone = geozoneService.getById(id);
 
-            if (geozone == null) nonFoundResponse();
+            if (geozone == null) return nonFoundResponse();
 
-            assert geozone != null;
             if (!geozone.getClient().equals(client.getId())) return failedDependencyResponse();
 
-            return okResponse(jsonComponent.getObjectMapper().writeValueAsString(geozone));
+            try {
+                return okResponse(jsonComponent.getObjectMapper().writeValueAsString(geozone));
+            } catch (JsonProcessingException e) {
+                return failedDependencyResponse();
+            }
+        });
 
     }
 
     @RequestMapping("/delete/{id}")
     public ResponseEntity deleteById(HttpServletRequest request, @PathVariable UUID id) {
-        // Get client, error if null
-        String name = SecurityContextHolder.getContext().getAuthentication().getName();
-        Client client = clientService.getByName(name);
-        if (client == null) return failedDependencyResponse();
 
-            Geozone geozone = geozoneService.getById(id);
+        return securityComponent.doIfUser(client -> {
+
+            final Geozone geozone = geozoneService.getById(id);
 
             if (geozone == null) return nonFoundResponse();
 
             if (!geozone.getClient().equals(client.getId())) return failedDependencyResponse();
 
             geozoneService.deleteById(id);
-            return successResponse();
 
+            return successResponse();
+        });
     }
 
 
