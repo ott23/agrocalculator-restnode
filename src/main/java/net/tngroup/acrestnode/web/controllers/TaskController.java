@@ -31,6 +31,8 @@ import static net.tngroup.acrestnode.web.controllers.Responses.*;
 @RequestMapping("/task")
 public class TaskController {
 
+    public static final int ATTEMPTS_COUNT = 4;
+
     private KafkaComponent kafkaComponent;
     private ClientService clientService;
     private TaskConditionService taskConditionService;
@@ -69,31 +71,32 @@ public class TaskController {
 
             final TaskCondition oldTaskCondition = taskConditionService.getByHashCode(new TaskCondition(topic, message).getHashCode());
 
-            final UUID task;
+            final UUID taskUuid;
             if (oldTaskCondition != null && oldTaskCondition.getKey().getClient().equals(client.getId())) {
-                task = oldTaskCondition.getKey().getTask();
+                taskUuid = oldTaskCondition.getKey().getTask();
             } else {
-                task = UUID.randomUUID();
+                taskUuid = UUID.randomUUID();
             }
 
-            final String key = client.getId() + "/" + task;
+            final String key = client.getId() + "/" + taskUuid;
 
             // Kafka request
             final String kafkaResponse = kafkaComponent.send(topic, key, message);
 
             if (kafkaResponse.equals("Success")) {
-                final TaskKey taskKey = new TaskKey(client.getId(), task);
-                final TaskCondition newTaskCondition = new TaskCondition(taskKey, topic, message);
-                taskConditionService.save(newTaskCondition);
+                final TaskKey taskKey = new TaskKey(client.getId(), taskUuid);
+                TaskCondition newTaskCondition = new TaskCondition(taskKey, topic, message);
 
-                for (int i = 0; i < 4; i++) {
+                newTaskCondition = taskConditionService.save(newTaskCondition);
+
+                for (int i = 0; i < ATTEMPTS_COUNT; i++) {
                     sleep(500 * i);
                     final TaskResult taskResult = taskResultService.getByKey(taskKey);
-                    if (taskResult != null && taskResult.getTime().compareTo(newTaskCondition.getTime()) > 0) {
+                    if (taskResult != null && taskResult.getTime().after(newTaskCondition.getTime())) {
                         return okResponse(formTaskResult(taskResult));
                     }
                 }
-                return okResponse(formTaskId(task));
+                return okResponse(formTaskId(taskUuid));
             } else {
                 return badResponse(new Exception("TaskCondition wasn't accepted"));
             }
