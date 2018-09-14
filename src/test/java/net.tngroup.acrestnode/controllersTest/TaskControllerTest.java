@@ -11,6 +11,7 @@ import net.tngroup.acrestnode.databases.cassandra.services.TaskConditionService;
 import net.tngroup.acrestnode.databases.cassandra.services.TaskResultService;
 import net.tngroup.acrestnode.web.components.JsonComponent;
 import net.tngroup.acrestnode.web.components.KafkaComponent;
+import net.tngroup.acrestnode.web.controllers.Responses;
 import net.tngroup.acrestnode.web.controllers.TaskController;
 import net.tngroup.acrestnode.web.controllers.requestmodels.TaskRequest;
 import net.tngroup.acrestnode.web.security.components.SecurityComponent;
@@ -109,7 +110,7 @@ public class TaskControllerTest {
     }
 
     @Test
-    public void givenNewTaskRequestAndNotImmidetlyResult_whenCallSend_thenReturnFormTaskResult()
+    public void givenNewTaskRequestAndNotImmediatelyResult_whenCallSend_thenReturnFormTaskResult()
             throws Exception {
 
         MockitoAnnotations.initMocks(this);
@@ -141,6 +142,25 @@ public class TaskControllerTest {
 
         verify(taskConditionService, times(1)).save(any());
         verify(taskResultService, times(3)).getByKey(any());
+    }
+
+    @Test
+    public void givenNewTaskRequestAndKafkaReturnError_whenCallSend_thenShouldBeBadResponse() throws Exception {
+
+        MockitoAnnotations.initMocks(this);
+
+        doNothing().when(kafkaComponent).testSocket();
+        when(taskConditionService.getByHashCode(anyInt())).thenReturn(null);
+        when(kafkaComponent.send(any(), any(), any())).thenReturn("Error");
+
+
+        assertEquals(
+                taskController.send(httpServletRequest, new TaskRequest()).getStatusCode(),
+                Responses.badResponse(new Exception()).getStatusCode()
+        );
+
+        verify(taskConditionService, times(0)).save(any());
+        verify(taskResultService, times(0)).getByKey(any());
     }
 
 
