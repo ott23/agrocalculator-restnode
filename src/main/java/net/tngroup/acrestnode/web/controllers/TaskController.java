@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
 import java.util.UUID;
 
 import static net.tngroup.acrestnode.web.controllers.Responses.*;
@@ -71,12 +70,11 @@ public class TaskController {
 
             final TaskCondition oldTaskCondition = taskConditionService.getByHashCode(new TaskCondition(topic, message).getHashCode());
 
-            final UUID taskUuid;
-            if (oldTaskCondition != null && oldTaskCondition.getKey().getClient().equals(client.getId())) {
-                taskUuid = oldTaskCondition.getKey().getTask();
-            } else {
-                taskUuid = UUID.randomUUID();
-            }
+            final UUID taskUuid = oldTaskCondition != null
+                    && oldTaskCondition.getKey().getClient().equals(client.getId()) ?
+                    oldTaskCondition.getKey().getTask() :
+                    UUID.randomUUID();
+
 
             final String key = client.getId() + "/" + taskUuid;
 
@@ -93,7 +91,7 @@ public class TaskController {
                     sleep(500 * i);
                     final TaskResult taskResult = taskResultService.getByKey(taskKey);
                     if (taskResult != null && taskResult.getTime().after(newTaskCondition.getTime())) {
-                        return okResponse(formTaskResult(taskResult));
+                        return okResponse(formTaskResult(jsonComponent, taskResult));
                     }
                 }
                 return okResponse(formTaskId(taskUuid));
@@ -107,16 +105,22 @@ public class TaskController {
 
 
     @RequestMapping(value = "/poll", method = RequestMethod.POST)
-    public ResponseEntity poll(HttpServletRequest request, @RequestBody PollRequest pollRequest) throws IOException {
+    public ResponseEntity poll(HttpServletRequest request, @RequestBody PollRequest pollRequest) {
 
         return securityComponent.doIfUser(client -> {
+
             if (!testKafkaConnextion()) return kafkaNotAvailableResponse();
 
+            if (pollRequest.getTask() == null) return badResponse(new Exception("task must be not null"));
+
             final TaskKey taskKey = new TaskKey(client.getId(), pollRequest.getTask());
+
+            if (!taskConditionService.getByTaskKey(taskKey).isPresent()) return nonFoundResponse();
+
             final TaskResult taskResult = taskResultService.getByKey(taskKey);
 
-            if (taskResult == null) return okResponse(formTaskNotReady(pollRequest.getTask()));
-            else return okResponse(formTaskResult(taskResult));
+            if (taskResult == null) return okResponse(formTaskNotReady(jsonComponent, pollRequest.getTask()));
+            else return okResponse(formTaskResult(jsonComponent, taskResult));
         });
     }
 
@@ -137,7 +141,7 @@ public class TaskController {
         return response.toString();
     }
 
-    private String formTaskResult(TaskResult taskResult) {
+    public static String formTaskResult(JsonComponent jsonComponent, TaskResult taskResult) {
         ObjectMapper mapper = jsonComponent.getObjectMapper();
         ObjectNode response = mapper.createObjectNode();
 
@@ -148,7 +152,7 @@ public class TaskController {
         return response.toString();
     }
 
-    private String formTaskNotReady(UUID task) {
+    public static String formTaskNotReady(JsonComponent jsonComponent, UUID task) {
         ObjectMapper mapper = jsonComponent.getObjectMapper();
         ObjectNode response = mapper.createObjectNode();
 

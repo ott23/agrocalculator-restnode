@@ -13,6 +13,7 @@ import net.tngroup.acrestnode.web.components.JsonComponent;
 import net.tngroup.acrestnode.web.components.KafkaComponent;
 import net.tngroup.acrestnode.web.controllers.Responses;
 import net.tngroup.acrestnode.web.controllers.TaskController;
+import net.tngroup.acrestnode.web.controllers.requestmodels.PollRequest;
 import net.tngroup.acrestnode.web.controllers.requestmodels.TaskRequest;
 import net.tngroup.acrestnode.web.security.components.SecurityComponent;
 import org.junit.Test;
@@ -21,7 +22,9 @@ import org.springframework.http.ResponseEntity;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.util.Date;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.function.Function;
 
@@ -161,6 +164,92 @@ public class TaskControllerTest {
 
         verify(taskConditionService, times(0)).save(any());
         verify(taskResultService, times(0)).getByKey(any());
+    }
+
+
+    @Test
+    public void givenProblemWithKafka_whenCallPoll_thenShouldBeKafkaNotAvailable() throws Exception {
+
+        MockitoAnnotations.initMocks(this);
+        doThrow(Exception.class).when(kafkaComponent).testSocket();
+
+        assertEquals(
+                kafkaNotAvailableResponse(),
+                taskController.poll(httpServletRequest, new PollRequest()));
+    }
+
+    @Test
+    public void givenTaskResult_whenCallPoll_thenShouldBeOkResponse()
+            throws NoSuchFieldException, IllegalAccessException {
+
+        MockitoAnnotations.initMocks(this);
+
+        final PollRequest pollRequest = new PollRequest();
+        Field taskField = PollRequest.class.getDeclaredField("task");
+        taskField.setAccessible(true);
+        taskField.set(pollRequest, UUID.randomUUID());
+        taskField.setAccessible(false);
+
+        final TaskResult taskResult = new TaskResult();
+        taskResult.setTime(new Date());
+        taskResult.setKey(new TaskKey(MOCK_CLIENT_ID, UUID.randomUUID()));
+        taskResult.setValue("{\"value\" : 1}");
+
+        when(taskResultService.getByKey(any())).thenReturn(taskResult);
+        when(taskConditionService.getByTaskKey(any())).thenReturn(Optional.of(new TaskCondition()));
+
+        final ResponseEntity response = taskController.poll(httpServletRequest, pollRequest);
+
+        assertNotNull(response.getBody());
+        assertEquals(response.getStatusCode(), okResponse(null).getStatusCode());
+        assertEquals(response.getBody(), TaskController.formTaskResult(new JsonComponent(), taskResult));
+
+    }
+
+    @Test
+    public void givenInvalidTask_whenCallPoll_thenShouldBeNotFound()
+            throws NoSuchFieldException, IllegalAccessException {
+
+        MockitoAnnotations.initMocks(this);
+
+        final PollRequest pollRequest = new PollRequest();
+        Field taskField = PollRequest.class.getDeclaredField("task");
+        taskField.setAccessible(true);
+        taskField.set(pollRequest, UUID.randomUUID());
+        taskField.setAccessible(false);
+
+        when(taskConditionService.getByTaskKey(any())).thenReturn(Optional.empty());
+
+        assertEquals(
+                taskController.poll(httpServletRequest, pollRequest).getStatusCode(),
+                Responses.nonFoundResponse().getStatusCode()
+        );
+    }
+
+    @Test
+    public void givenValidNotReadyTask_whenCallPoll_thenReturnOkNotReady()
+            throws NoSuchFieldException, IllegalAccessException {
+
+        MockitoAnnotations.initMocks(this);
+        final PollRequest pollRequest = new PollRequest();
+        final UUID taskUuid = UUID.randomUUID();
+        Field taskField = PollRequest.class.getDeclaredField("task");
+        taskField.setAccessible(true);
+        taskField.set(pollRequest, taskUuid);
+        taskField.setAccessible(false);
+
+        when(taskConditionService.getByTaskKey(any())).thenReturn(Optional.of(new TaskCondition()));
+
+        final ResponseEntity response = taskController.poll(httpServletRequest, pollRequest);
+        assertEquals(
+                response.getBody(),
+                TaskController.formTaskNotReady(new JsonComponent(), taskUuid)
+        );
+
+        assertEquals(
+                response.getStatusCode(),
+                okResponse(null).getStatusCode()
+        );
     }
 
 
