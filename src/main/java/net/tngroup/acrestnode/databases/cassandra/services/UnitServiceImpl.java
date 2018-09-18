@@ -1,12 +1,12 @@
 package net.tngroup.acrestnode.databases.cassandra.services;
 
-import net.tngroup.acrestnode.databases.cassandra.models.Unit;
-import net.tngroup.acrestnode.databases.cassandra.repositories.UnitRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
-import org.springframework.stereotype.Service;
+        import net.tngroup.acrestnode.databases.cassandra.models.Unit;
+        import net.tngroup.acrestnode.databases.cassandra.repositories.UnitRepository;
+        import org.springframework.beans.factory.annotation.Autowired;
+        import org.springframework.context.annotation.Lazy;
+        import org.springframework.stereotype.Service;
 
-import java.util.*;
+        import java.util.*;
 
 @Service
 public class UnitServiceImpl implements UnitService {
@@ -39,7 +39,7 @@ public class UnitServiceImpl implements UnitService {
     }
 
     @Override
-    public void deleteById(UUID id) {
-        unitRepository.deleteById(id);
+    public boolean deleteById(UUID id) {
+        return unitRepository.deleteUnitById(id).isPresent();
     }
 }

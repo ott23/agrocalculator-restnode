@@ -3,7 +3,6 @@ package net.tngroup.acrestnode.web.controllers;
 import com.datastax.driver.core.utils.UUIDs;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import net.tngroup.acrestnode.databases.cassandra.models.Geozone;
-import net.tngroup.acrestnode.databases.cassandra.services.ClientService;
 import net.tngroup.acrestnode.databases.cassandra.services.GeozoneService;
 import net.tngroup.acrestnode.web.components.JsonComponent;
 import net.tngroup.acrestnode.web.security.components.SecurityComponent;
@@ -26,16 +25,13 @@ import static net.tngroup.acrestnode.web.controllers.Responses.*;
 public class GeozoneController {
 
     private JsonComponent jsonComponent;
-    private ClientService clientService;
     private GeozoneService geozoneService;
     private SecurityComponent securityComponent;
 
     @Autowired
-    public GeozoneController(@Lazy ClientService clientService,
-                             @Lazy GeozoneService geozoneService,
+    public GeozoneController(@Lazy GeozoneService geozoneService,
                              JsonComponent jsonComponent,
                              SecurityComponent securityComponent) {
-        this.clientService = clientService;
         this.geozoneService = geozoneService;
         this.jsonComponent = jsonComponent;
         this.securityComponent = securityComponent;
@@ -98,7 +94,6 @@ public class GeozoneController {
                 return failedDependencyResponse();
             }
         });
-
     }
 
     @RequestMapping("/delete/{id}")
@@ -119,6 +114,5 @@ public class GeozoneController {
             }
         });
     }
-
 
 }

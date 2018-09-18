@@ -15,6 +15,6 @@ public interface UnitService {
 
     Unit save(Unit unit);
 
-    void deleteById(UUID id);
+    boolean deleteById(UUID id);
 
 }

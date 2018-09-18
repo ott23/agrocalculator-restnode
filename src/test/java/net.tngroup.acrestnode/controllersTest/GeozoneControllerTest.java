@@ -3,7 +3,6 @@ package net.tngroup.acrestnode.controllersTest;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import net.tngroup.acrestnode.databases.cassandra.models.Client;
 import net.tngroup.acrestnode.databases.cassandra.models.Geozone;
 import net.tngroup.acrestnode.databases.cassandra.services.ClientService;
 import net.tngroup.acrestnode.databases.cassandra.services.GeozoneService;
@@ -11,6 +10,7 @@ import net.tngroup.acrestnode.web.components.JsonComponent;
 import net.tngroup.acrestnode.web.controllers.GeozoneController;
 import net.tngroup.acrestnode.web.controllers.Responses;
 import net.tngroup.acrestnode.web.security.components.SecurityComponent;
+import org.junit.Before;
 import org.junit.Test;
 import org.mockito.*;
 import org.springframework.http.HttpStatus;
@@ -20,7 +20,6 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import java.util.function.Function;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -47,6 +46,12 @@ public class GeozoneControllerTest {
     @Mock
     private HttpServletRequest httpServletRequest;
 
+    @Before
+    public void initValidSecurityComponent() {
+        securityComponent = Mockito.spy(new ValidSecurityComponent(MOCK_CLIENT_ID));
+    }
+
+    //region ==================== GetList ====================
 
     @Test
     public void givenNullClient_whenCallGetList_thenShouldBeCallGeozoneService() {
@@ -64,7 +69,6 @@ public class GeozoneControllerTest {
     @Test
     public void givenClient_whenCallGetList_thenShouldBeCallGeozoneServiceAndReturnResponse() {
 
-        securityComponent = Mockito.spy(new ValidSecurityComponent());
         MockitoAnnotations.initMocks(this);
 
         List<Geozone> result = new ArrayList<>();
@@ -78,14 +82,15 @@ public class GeozoneControllerTest {
         assertEquals(actual.getStatusCode(), HttpStatus.OK);
 
         assertEquals(actual.getBody(), result);
-
-
     }
+
+    //endregion
+
+    //region ==================== Save ====================
 
     @Test
     public void givenGeozoneWithoutIdAndClient_whenCallSave_thenShouldBeReturnRandomIdAndCurrentClientId() {
 
-        securityComponent = Mockito.spy(new ValidSecurityComponent());
         MockitoAnnotations.initMocks(this);
 
         final Geozone mockGeozone = new Geozone();
@@ -104,7 +109,6 @@ public class GeozoneControllerTest {
     @Test
     public void givenExistGeozoneWithOtherClient_whenCallSave_thenShouldBeReturnFailedDependency() {
 
-        securityComponent = Mockito.spy(new ValidSecurityComponent());
         MockitoAnnotations.initMocks(this);
 
         final ResponseEntity errorResponse = Responses.failedDependencyResponse();
@@ -121,10 +125,13 @@ public class GeozoneControllerTest {
         );
     }
 
+    //endregion
+
+    //region ==================== Get ====================
+
     @Test
     public void givenValidClientIdAndGeozoneId_whenCallGet_thenShouldBeReturnGeozone() throws JsonProcessingException {
 
-        securityComponent = Mockito.spy(new ValidSecurityComponent());
         MockitoAnnotations.initMocks(this);
 
         final Geozone mockGeozone = new Geozone();
@@ -144,7 +151,6 @@ public class GeozoneControllerTest {
     @Test
     public void givenNonExistedID_whenCallGet_thenShouldBeReturnNotFoundResponse() {
 
-        securityComponent = Mockito.spy(new ValidSecurityComponent());
         MockitoAnnotations.initMocks(this);
 
         when(geozoneService.getById(any())).thenReturn(null);
@@ -159,7 +165,6 @@ public class GeozoneControllerTest {
     @Test
     public void givenGeozoneIdFromOtherClient_whenCallGet_thenShouldBeReturnFailedDependency() {
 
-        securityComponent = Mockito.spy(new ValidSecurityComponent());
         MockitoAnnotations.initMocks(this);
 
         final Geozone mockGeozone = new Geozone();
@@ -173,10 +178,13 @@ public class GeozoneControllerTest {
 
     }
 
+    //endregion
+
+    //region ==================== Delete ====================
+
     @Test
     public void givenValidGeozoneIdAndClientId_whenCallDelete_thenShouldBeReturnSuccessResponse() {
 
-        securityComponent = Mockito.spy(new ValidSecurityComponent());
         MockitoAnnotations.initMocks(this);
 
         final Geozone geozone = new Geozone();
@@ -193,9 +201,8 @@ public class GeozoneControllerTest {
     }
 
     @Test
-    public void givenInvalidGeozoneId_whenCallDelete_thenShouldBeReturnNotFound(){
+    public void givenInvalidGeozoneId_whenCallDelete_thenShouldBeReturnNotFound() {
 
-        securityComponent = Mockito.spy(new ValidSecurityComponent());
         MockitoAnnotations.initMocks(this);
         when(geozoneService.getById(any())).thenReturn(null);
 
@@ -206,9 +213,8 @@ public class GeozoneControllerTest {
     }
 
     @Test
-    public void givenInvalidClientId_whenCallDelete_thenShouldBeReturnFailedDependency(){
+    public void givenInvalidClientId_whenCallDelete_thenShouldBeReturnFailedDependency() {
 
-        securityComponent = Mockito.spy(new ValidSecurityComponent());
         MockitoAnnotations.initMocks(this);
 
         final Geozone geozone = new Geozone();
@@ -223,9 +229,8 @@ public class GeozoneControllerTest {
     }
 
     @Test
-    public void givenValidClientIdAndGeozoneId_whenTwoClientDoDeletePermanent_thenReturnNonFound(){
+    public void givenValidClientIdAndGeozoneId_whenTwoClientDoDeletePermanent_thenReturnNonFound() {
 
-        securityComponent = Mockito.spy(new ValidSecurityComponent());
         MockitoAnnotations.initMocks(this);
 
         final Geozone geozone = new Geozone();
@@ -241,25 +246,5 @@ public class GeozoneControllerTest {
 
     }
 
-
-    private class WrongSecurityComponent implements SecurityComponent {
-
-        @Override
-        public ResponseEntity doIfUser(Function<Client, ResponseEntity> next) {
-            return Responses.failedDependencyResponse();
-        }
-    }
-
-    private class ValidSecurityComponent implements SecurityComponent {
-
-        @Override
-        public ResponseEntity doIfUser(Function<Client, ResponseEntity> next) {
-
-            final Client mockCLient = Mockito.mock(Client.class);
-            when(mockCLient.getId()).thenReturn(MOCK_CLIENT_ID);
-            return next.apply(mockCLient);
-        }
-    }
-
-
+    //endregion
 }

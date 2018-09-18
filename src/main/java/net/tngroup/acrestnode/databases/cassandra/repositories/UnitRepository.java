@@ -22,4 +22,6 @@ public interface UnitRepository extends CassandraRepository<Unit, UUID> {
     @AllowFiltering
     List<Unit> findAllByClient(UUID id);
 
+    Optional<Unit> deleteUnitById(UUID id);
+
 }
