@@ -141,7 +141,7 @@ public class TaskController {
         return response.toString();
     }
 
-    public static String formTaskResult(JsonComponent jsonComponent, TaskResult taskResult) {
+    public static ObjectNode formTaskResult(JsonComponent jsonComponent, TaskResult taskResult) {
         ObjectMapper mapper = jsonComponent.getObjectMapper();
         ObjectNode response = mapper.createObjectNode();
 
@@ -149,17 +149,17 @@ public class TaskController {
         response.put("time", taskResult.getTime().getTime());
         response.putPOJO("result", taskResult.getValue());
 
-        return response.toString();
+        return response;
     }
 
-    public static String formTaskNotReady(JsonComponent jsonComponent, UUID task) {
+    public static ObjectNode formTaskNotReady(JsonComponent jsonComponent, UUID task) {
         ObjectMapper mapper = jsonComponent.getObjectMapper();
         ObjectNode response = mapper.createObjectNode();
 
         response.put("task", task.toString());
         response.put("result", "No result available");
 
-        return response.toString();
+        return response;
     }
 
     private boolean testKafkaConnextion() {

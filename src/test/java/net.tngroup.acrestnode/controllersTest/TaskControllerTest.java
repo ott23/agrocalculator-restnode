@@ -1,5 +1,6 @@
 package net.tngroup.acrestnode.controllersTest;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import net.tngroup.acrestnode.databases.cassandra.models.TaskCondition;
@@ -8,6 +9,7 @@ import net.tngroup.acrestnode.databases.cassandra.models.TaskResult;
 import net.tngroup.acrestnode.databases.cassandra.services.ClientService;
 import net.tngroup.acrestnode.databases.cassandra.services.TaskConditionService;
 import net.tngroup.acrestnode.databases.cassandra.services.TaskResultService;
+import net.tngroup.acrestnode.utils.Json;
 import net.tngroup.acrestnode.web.components.JsonComponent;
 import net.tngroup.acrestnode.web.components.KafkaComponent;
 import net.tngroup.acrestnode.web.controllers.Responses;
@@ -181,7 +183,7 @@ public class TaskControllerTest {
 
     @Test
     public void givenTaskResult_whenCallPoll_thenShouldBeOkResponse()
-            throws NoSuchFieldException, IllegalAccessException {
+            throws NoSuchFieldException, IllegalAccessException, JsonProcessingException {
 
         MockitoAnnotations.initMocks(this);
 
@@ -203,7 +205,9 @@ public class TaskControllerTest {
 
         assertNotNull(response.getBody());
         assertEquals(response.getStatusCode(), okResponse(null).getStatusCode());
-        assertEquals(response.getBody(), TaskController.formTaskResult(new JsonComponent(), taskResult));
+        assertEquals(response.getBody(), Json.objectMapper.writeValueAsString(
+                TaskController.formTaskResult(new JsonComponent(), taskResult))
+        );
 
     }
 
@@ -229,7 +233,7 @@ public class TaskControllerTest {
 
     @Test
     public void givenValidNotReadyTask_whenCallPoll_thenReturnOkNotReady()
-            throws NoSuchFieldException, IllegalAccessException {
+            throws NoSuchFieldException, IllegalAccessException, JsonProcessingException {
 
         MockitoAnnotations.initMocks(this);
         final PollRequest pollRequest = new PollRequest();
@@ -244,7 +248,7 @@ public class TaskControllerTest {
         final ResponseEntity response = taskController.poll(httpServletRequest, pollRequest);
         assertEquals(
                 response.getBody(),
-                TaskController.formTaskNotReady(new JsonComponent(), taskUuid)
+                Json.objectMapper.writeValueAsString(TaskController.formTaskNotReady(new JsonComponent(), taskUuid))
         );
 
         assertEquals(
