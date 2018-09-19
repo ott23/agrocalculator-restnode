@@ -1,65 +1,65 @@
 package net.tngroup.acrestnode.controllersTest;
 
 import net.tngroup.acrestnode.databases.cassandra.models.Unit;
+import net.tngroup.acrestnode.databases.cassandra.services.UnitService;
+import net.tngroup.acrestnode.databases.cassandra.services.base.ClientEntityService;
+import net.tngroup.acrestnode.web.components.JsonComponent;
 import net.tngroup.acrestnode.web.controllers.UnitController;
-import org.junit.Before;
-import org.springframework.http.ResponseEntity;
+import net.tngroup.acrestnode.web.controllers.base.ClientEntityController;
+import net.tngroup.acrestnode.web.security.components.SecurityComponent;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.mockito.Spy;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.UUID;
 
-public class UnitControllerTest extends BaseReadDeleteTest<Unit> {
+public class UnitControllerTest extends ClientEntityControllerTest<Unit> {
 
+    @InjectMocks
     private UnitController unitController;
+    @Mock
+    private JsonComponent jsonComponent;
+    @Mock
+    private UnitService unitService;
+    @Spy
+    private SecurityComponent securityComponent;
+    @Mock
+    private HttpServletRequest httpServletRequest;
+
 
     @Override
-    protected EntityController<Unit> provideEntityController() {
-
-        return new EntityController<Unit>() {
-
-            @Override
-            public ResponseEntity getList(HttpServletRequest httpServletRequest) {
-                return unitController.getList(httpServletRequest);
-            }
-
-            @Override
-            public ResponseEntity save(HttpServletRequest httpServletRequest, Unit entity) {
-                return unitController.save(httpServletRequest, entity);
-            }
-
-            @Override
-            public ResponseEntity getById(HttpServletRequest httpServletRequest, UUID uuid) {
-                return unitController.getById(httpServletRequest, uuid);
-            }
-
-            @Override
-            public ResponseEntity deleteById(HttpServletRequest httpServletRequest, UUID uuid) {
-                return unitController.deleteById(httpServletRequest, uuid);
-            }
-        };
+    protected ClientEntityController<Unit> getEntityController() {
+        return unitController;
     }
 
     @Override
-    protected Entity<Unit> newEntity() {
-        return new Entity<Unit>() {
-
-            private Unit unit = new Unit();
-
-            @Override
-            public void setClient(UUID clientId) {
-                unit.setClient(clientId);
-            }
-
-            @Override
-            public Unit get() {
-                return unit;
-            }
-        };
+    protected void setSecurityComponent(SecurityComponent securityComponent) {
+        this.securityComponent = securityComponent;
     }
 
-    @Before
-    public void initController() {
-
+    @Override
+    protected HttpServletRequest getHttpServletMock() {
+        return httpServletRequest;
     }
 
+    @Override
+    protected ClientEntityService<Unit> getClientEntityService() {
+        return unitService;
+    }
+
+    @Override
+    protected JsonComponent getJsonComponent() {
+        return jsonComponent;
+    }
+
+    @Override
+    protected Unit newEntity() {
+        return new Unit();
+    }
+
+    @Override
+    protected void initMocks() {
+        MockitoAnnotations.initMocks(this);
+    }
 }

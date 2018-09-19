@@ -36,11 +36,8 @@ public abstract class ClientEntityController<T extends ClientEntity> {
         return securityComponent.doIfUser(client -> {
 
             final T clientEntity = clientEntityService.getById(id);
-
-            if (clientEntity == null) nonFoundResponse();
-
+            if (clientEntity == null) return nonFoundResponse();
             if (!clientEntity.getClient().equals(client.getId())) return failedDependencyResponse();
-
             return okResponse(clientEntity);
         });
     }
@@ -48,17 +45,14 @@ public abstract class ClientEntityController<T extends ClientEntity> {
     public ResponseEntity deleteById(HttpServletRequest request, UUID id) {
 
         return securityComponent.doIfUser(client -> {
-
-            final T unit = clientEntityService.getById(id);
-
-            if (unit == null) return nonFoundResponse();
-
-            if (!unit.getClient().equals(client.getId())) return failedDependencyResponse();
-
-            clientEntityService.deleteById(id);
-            return successResponse();
+            final T clientEntity = clientEntityService.getById(id);
+            if (clientEntity == null) return nonFoundResponse();
+            if (!clientEntity.getClient().equals(client.getId())) return failedDependencyResponse();
+            if (clientEntityService.deleteById(id)) {
+                return successResponse();
+            } else {
+                return nonFoundResponse();
+            }
         });
     }
-
-
 }
