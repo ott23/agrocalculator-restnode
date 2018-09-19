@@ -13,8 +13,11 @@ import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.UUID;
 
 public class UnitControllerTest extends ClientEntityControllerTest<Unit> {
+
+    private final static UUID MOCK_CLIENT_ID = UUID.randomUUID();
 
     @InjectMocks
     private UnitController unitController;
@@ -23,10 +26,11 @@ public class UnitControllerTest extends ClientEntityControllerTest<Unit> {
     @Mock
     private UnitService unitService;
     @Spy
-    private SecurityComponent securityComponent;
+    private SecurityComponent securityComponent = new ValidSecurityComponent(MOCK_CLIENT_ID);
     @Mock
     private HttpServletRequest httpServletRequest;
 
+    //region ==================== ClientEntityControllerTest ====================
 
     @Override
     protected ClientEntityController<Unit> getEntityController() {
@@ -62,4 +66,12 @@ public class UnitControllerTest extends ClientEntityControllerTest<Unit> {
     protected void initMocks() {
         MockitoAnnotations.initMocks(this);
     }
+
+    //endregion
+
+    //region ==================== Save ====================
+
+
+
+    //endregion
 }

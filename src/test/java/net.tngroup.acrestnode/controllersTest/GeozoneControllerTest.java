@@ -43,6 +43,45 @@ public class GeozoneControllerTest extends ClientEntityControllerTest<Geozone> {
     @Mock
     private HttpServletRequest httpServletRequest;
 
+    //region ==================== ClientEntityControllerTest ====================
+
+
+    @Override
+    protected ClientEntityController<Geozone> getEntityController() {
+        return geozoneController;
+    }
+
+    @Override
+    protected void setSecurityComponent(SecurityComponent securityComponent) {
+        this.securityComponent = securityComponent;
+    }
+
+    @Override
+    protected HttpServletRequest getHttpServletMock() {
+        return httpServletRequest;
+    }
+
+    @Override
+    protected ClientEntityService<Geozone> getClientEntityService() {
+        return geozoneService;
+    }
+
+    @Override
+    protected JsonComponent getJsonComponent() {
+        return jsonComponent;
+    }
+
+    @Override
+    protected Geozone newEntity() {
+        return new Geozone();
+    }
+
+    @Override
+    protected void initMocks() {
+        MockitoAnnotations.initMocks(this);
+    }
+
+    //endregion
 
     //region ==================== Save ====================
 
@@ -83,42 +122,5 @@ public class GeozoneControllerTest extends ClientEntityControllerTest<Geozone> {
         );
     }
 
-    @Override
-    protected ClientEntityController<Geozone> getEntityController() {
-        return geozoneController;
-    }
-
-    @Override
-    protected void setSecurityComponent(SecurityComponent securityComponent) {
-        this.securityComponent = securityComponent;
-    }
-
-    @Override
-    protected HttpServletRequest getHttpServletMock() {
-        return httpServletRequest;
-    }
-
-    @Override
-    protected ClientEntityService<Geozone> getClientEntityService() {
-        return geozoneService;
-    }
-
-    @Override
-    protected JsonComponent getJsonComponent() {
-        return jsonComponent;
-    }
-
-    @Override
-    protected Geozone newEntity() {
-        return new Geozone();
-    }
-
-    @Override
-    protected void initMocks() {
-        MockitoAnnotations.initMocks(this);
-    }
-
     //endregion
-
-
 }
