@@ -1,11 +1,9 @@
 package net.tngroup.acrestnode.web.controllers;
 
 import com.datastax.driver.core.utils.UUIDs;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import net.tngroup.acrestnode.databases.cassandra.models.Geozone;
-import net.tngroup.acrestnode.databases.cassandra.services.ClientService;
 import net.tngroup.acrestnode.databases.cassandra.services.GeozoneService;
-import net.tngroup.acrestnode.web.components.JsonComponent;
+import net.tngroup.acrestnode.web.controllers.base.ClientEntityController;
 import net.tngroup.acrestnode.web.security.components.SecurityComponent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -16,47 +14,37 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 import java.util.UUID;
 
-import static net.tngroup.acrestnode.web.controllers.Responses.*;
+import static net.tngroup.acrestnode.web.controllers.Responses.failedDependencyResponse;
+import static net.tngroup.acrestnode.web.controllers.Responses.okResponse;
 
 @RestController
 @RequestMapping("/geozone")
-public class GeozoneController {
+public class GeozoneController extends ClientEntityController<Geozone> {
 
-    private JsonComponent jsonComponent;
-    private ClientService clientService;
     private GeozoneService geozoneService;
-    private SecurityComponent securityComponent;
 
     @Autowired
-    public GeozoneController(@Lazy ClientService clientService,
-                             @Lazy GeozoneService geozoneService,
-                             JsonComponent jsonComponent,
+    public GeozoneController(@Lazy GeozoneService geozoneService,
                              SecurityComponent securityComponent) {
-        this.clientService = clientService;
+        super(geozoneService, securityComponent);
         this.geozoneService = geozoneService;
-        this.jsonComponent = jsonComponent;
-        this.securityComponent = securityComponent;
     }
 
+
+    @Override
     @RequestMapping
     public ResponseEntity getList(HttpServletRequest request) {
-
-        return securityComponent.doIfUser(client -> {
-            List<Geozone> geozoneList = geozoneService.getAllByClient(client.getId());
-            return okResponse(geozoneList);
-        });
-
+        return super.getList(request);
     }
+
 
     @RequestMapping("/save")
     public ResponseEntity save(HttpServletRequest request, @RequestBody final Geozone geozone) {
 
 
         return securityComponent.doIfUser(client -> {
-
 
             if (geozone.getId() != null) {
                 Geozone dbGeozone = geozoneService.getById(geozone.getId());
@@ -68,57 +56,20 @@ public class GeozoneController {
             }
 
             if (geozone.getClient() == null) geozone.setClient(client.getId());
-
-            final Geozone resultGeozone = geozoneService.save(geozone);
-
-            try {
-                return okResponse(jsonComponent.getObjectMapper().writeValueAsString(resultGeozone));
-            } catch (JsonProcessingException e) {
-                return Responses.failedDependencyResponse();
-            }
-
+            final Geozone savedGeozone = geozoneService.save(geozone);
+            return okResponse(savedGeozone);
         });
-
     }
 
+    @Override
     @RequestMapping("/get/{id}")
     public ResponseEntity getById(HttpServletRequest request, @PathVariable UUID id) {
-
-        return securityComponent.doIfUser(client -> {
-
-            final Geozone geozone = geozoneService.getById(id);
-
-            if (geozone == null) return nonFoundResponse();
-
-            if (!geozone.getClient().equals(client.getId())) return failedDependencyResponse();
-
-            try {
-                return okResponse(jsonComponent.getObjectMapper().writeValueAsString(geozone));
-            } catch (JsonProcessingException e) {
-                return failedDependencyResponse();
-            }
-        });
-
+        return super.getById(request, id);
     }
 
+    @Override
     @RequestMapping("/delete/{id}")
     public ResponseEntity deleteById(HttpServletRequest request, @PathVariable UUID id) {
-
-        return securityComponent.doIfUser(client -> {
-
-            final Geozone geozone = geozoneService.getById(id);
-
-            if (geozone == null) return nonFoundResponse();
-
-            if (!geozone.getClient().equals(client.getId())) return failedDependencyResponse();
-
-            if (geozoneService.deleteById(id)) {
-                return successResponse();
-            } else {
-                return nonFoundResponse();
-            }
-        });
+        return super.deleteById(request, id);
     }
-
-
 }

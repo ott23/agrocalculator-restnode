@@ -1,14 +1,20 @@
 package net.tngroup.acrestnode.web.controllers;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import net.tngroup.acrestnode.utils.Json;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 public class Responses {
 
     public static ResponseEntity okResponse(Object o) {
-        return ResponseEntity.ok(o);
+        try {
+            return ResponseEntity.ok(Json.objectMapper.writeValueAsString(o));
+        } catch (JsonProcessingException e) {
+            return badResponse(e);
+        }
     }
 
     public static ResponseEntity successResponse() {

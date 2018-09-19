@@ -1,14 +1,15 @@
 package net.tngroup.acrestnode.controllersTest;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import net.tngroup.acrestnode.databases.cassandra.models.Client;
 import net.tngroup.acrestnode.databases.cassandra.models.TaskCondition;
 import net.tngroup.acrestnode.databases.cassandra.models.TaskKey;
 import net.tngroup.acrestnode.databases.cassandra.models.TaskResult;
 import net.tngroup.acrestnode.databases.cassandra.services.ClientService;
 import net.tngroup.acrestnode.databases.cassandra.services.TaskConditionService;
 import net.tngroup.acrestnode.databases.cassandra.services.TaskResultService;
+import net.tngroup.acrestnode.utils.Json;
 import net.tngroup.acrestnode.web.components.JsonComponent;
 import net.tngroup.acrestnode.web.components.KafkaComponent;
 import net.tngroup.acrestnode.web.controllers.Responses;
@@ -17,7 +18,10 @@ import net.tngroup.acrestnode.web.controllers.requestmodels.PollRequest;
 import net.tngroup.acrestnode.web.controllers.requestmodels.TaskRequest;
 import net.tngroup.acrestnode.web.security.components.SecurityComponent;
 import org.junit.Test;
-import org.mockito.*;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.mockito.Spy;
 import org.springframework.http.ResponseEntity;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,7 +30,6 @@ import java.lang.reflect.Field;
 import java.util.Date;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.function.Function;
 
 import static net.tngroup.acrestnode.web.controllers.Responses.kafkaNotAvailableResponse;
 import static net.tngroup.acrestnode.web.controllers.Responses.okResponse;
@@ -57,7 +60,7 @@ public class TaskControllerTest {
     private JsonComponent jsonComponent = new JsonComponent();
 
     @Spy
-    private SecurityComponent securityComponent = new ValidSecurityComponent();
+    private SecurityComponent securityComponent = new ValidSecurityComponent(MOCK_CLIENT_ID);
 
     @Test
     public void deserializationTest() throws IOException {
@@ -180,7 +183,7 @@ public class TaskControllerTest {
 
     @Test
     public void givenTaskResult_whenCallPoll_thenShouldBeOkResponse()
-            throws NoSuchFieldException, IllegalAccessException {
+            throws NoSuchFieldException, IllegalAccessException, JsonProcessingException {
 
         MockitoAnnotations.initMocks(this);
 
@@ -202,7 +205,9 @@ public class TaskControllerTest {
 
         assertNotNull(response.getBody());
         assertEquals(response.getStatusCode(), okResponse(null).getStatusCode());
-        assertEquals(response.getBody(), TaskController.formTaskResult(new JsonComponent(), taskResult));
+        assertEquals(response.getBody(), Json.objectMapper.writeValueAsString(
+                TaskController.formTaskResult(new JsonComponent(), taskResult))
+        );
 
     }
 
@@ -228,7 +233,7 @@ public class TaskControllerTest {
 
     @Test
     public void givenValidNotReadyTask_whenCallPoll_thenReturnOkNotReady()
-            throws NoSuchFieldException, IllegalAccessException {
+            throws NoSuchFieldException, IllegalAccessException, JsonProcessingException {
 
         MockitoAnnotations.initMocks(this);
         final PollRequest pollRequest = new PollRequest();
@@ -243,7 +248,7 @@ public class TaskControllerTest {
         final ResponseEntity response = taskController.poll(httpServletRequest, pollRequest);
         assertEquals(
                 response.getBody(),
-                TaskController.formTaskNotReady(new JsonComponent(), taskUuid)
+                Json.objectMapper.writeValueAsString(TaskController.formTaskNotReady(new JsonComponent(), taskUuid))
         );
 
         assertEquals(
@@ -251,18 +256,4 @@ public class TaskControllerTest {
                 okResponse(null).getStatusCode()
         );
     }
-
-
-    private class ValidSecurityComponent implements SecurityComponent {
-
-        @Override
-        public ResponseEntity doIfUser(Function<Client, ResponseEntity> next) {
-
-            final Client mockCLient = Mockito.mock(Client.class);
-            when(mockCLient.getId()).thenReturn(MOCK_CLIENT_ID);
-            return next.apply(mockCLient);
-        }
-    }
-
-
 }

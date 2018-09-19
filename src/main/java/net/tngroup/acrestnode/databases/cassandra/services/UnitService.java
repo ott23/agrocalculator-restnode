@@ -1,20 +1,14 @@
 package net.tngroup.acrestnode.databases.cassandra.services;
 
 import net.tngroup.acrestnode.databases.cassandra.models.Unit;
+import net.tngroup.acrestnode.databases.cassandra.services.base.ClientEntityService;
 
 import java.util.List;
-import java.util.UUID;
 
-public interface UnitService {
-
-    List<Unit> getAllByClient(UUID id);
+public interface UnitService extends ClientEntityService<Unit> {
 
     List<Unit> getAllByImei(String imei);
 
-    Unit getById(UUID id);
-
     Unit save(Unit unit);
-
-    void deleteById(UUID id);
 
 }

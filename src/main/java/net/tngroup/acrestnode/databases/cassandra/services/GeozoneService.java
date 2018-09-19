@@ -1,20 +1,14 @@
 package net.tngroup.acrestnode.databases.cassandra.services;
 
 import net.tngroup.acrestnode.databases.cassandra.models.Geozone;
+import net.tngroup.acrestnode.databases.cassandra.services.base.ClientEntityService;
 
 import java.util.List;
-import java.util.UUID;
 
-public interface GeozoneService {
-
-    List<Geozone> getAllByClient(UUID id);
+public interface GeozoneService extends ClientEntityService<Geozone> {
 
     List<Geozone> getAllByName(String name);
 
-    Geozone getById(UUID id);
-
     Geozone save(Geozone Geozone);
-
-    boolean deleteById(UUID id);
 
 }

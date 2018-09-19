@@ -1,18 +1,12 @@
 package net.tngroup.acrestnode.databases.cassandra.models;
 
 import lombok.Data;
-import org.springframework.data.cassandra.core.mapping.PrimaryKey;
+import net.tngroup.acrestnode.databases.cassandra.models.base.ClientEntity;
 
 import java.util.Map;
-import java.util.UUID;
 
 @Data
-public class Geozone {
-
-    @PrimaryKey
-    private UUID id;
-
-    private UUID client;
+public class Geozone extends ClientEntity {
 
     private String name;
 
