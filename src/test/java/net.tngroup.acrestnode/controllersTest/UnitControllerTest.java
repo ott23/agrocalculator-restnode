@@ -79,7 +79,7 @@ public class UnitControllerTest extends ClientEntityControllerTest<Unit> {
     //region ==================== Save ====================
 
     @Test
-    public void givenExistUnitWithOtherUserId_whenCallSave_thenShouldBeReturnFailedDependency(){
+    public void givenExistUnitWithOtherUserId_whenCallSave_thenShouldBeReturnFailedDependency() {
 
         MockitoAnnotations.initMocks(this);
 
@@ -101,7 +101,7 @@ public class UnitControllerTest extends ClientEntityControllerTest<Unit> {
     }
 
     @Test
-    public void givenExistUnitWithUserId_whenCallSave_thenShouldBeReturnSaveUnit(){
+    public void givenExistUnitWithUserId_whenCallSave_thenShouldBeReturnSaveUnit() {
 
         MockitoAnnotations.initMocks(this);
 
