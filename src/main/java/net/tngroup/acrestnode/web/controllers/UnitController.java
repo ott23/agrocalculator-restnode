@@ -42,14 +42,13 @@ public class UnitController extends ClientEntityController<Unit> {
         return securityComponent.doIfUser(client -> {
 
             if (unit.getId() != null) {
-                Unit dbUnit = unitService.getById(unit.getId());
+                final Unit dbUnit = unitService.getById(unit.getId());
                 if (dbUnit != null && !dbUnit.getClient().equals(client.getId())) {
                     return failedDependencyResponse();
                 }
             }
 
-            List<Unit> unitList = unitService.getAllByImei(unit.getImei());
-
+            final List<Unit> unitList = unitService.getAllByImei(unit.getImei());
 
             if (unitList.size() == 1 && !unitList.get(0).getId().equals(unit.getId()) || unitList.size() > 1)
                 return conflictResponse("imei");
